@@ -1,0 +1,151 @@
+@media (min-width: 0px) and (max-width: 767px){
+	.padding-rl{
+		padding: 0 1rem;
+	}
+	.navbar-content{
+		justify-content: space-between;
+	}
+	.main-banner__img--content img{
+		object-fit: cover;
+		object-position: right;	
+	}
+	.main-banner__text{
+		padding-left: 1rem;
+		top: 15%;
+	}
+	.main-banner__title{
+		margin-bottom: 1rem;
+	}
+	.title-general{
+		font-size: 1.6rem
+	}
+	.subtitle-general{
+		font-size: 1rem;
+	}
+	.subanner{
+		margin-top: -20px;
+	}
+	.subanner-content{
+		width: 19%;
+		padding: .5rem;
+	}
+	.search-content input{
+		width: 51%;
+	}
+	.cards-dropdown{
+		justify-content: center;
+		padding-bottom: 1rem;
+	}
+	.main-cards__slider .slick-prev{
+		left: -15px;
+	}
+	.main-cards__slider .slick-next{
+		right: -15px;
+	}
+	.slider-card__content--title p{
+		font-size: .6rem;
+	}
+	.slider-card__content--title small{
+		font-size: .6rem;
+	}
+	.slider-card__content--text p{
+		font-size: 8px;
+	}
+	.main-publicidad{
+		height: 40vh;
+		margin-bottom: 10rem !important;
+	}
+	.main-publicidad__text{
+		position: static;
+	}
+	.main-publicidad__bg{
+		height: 100%;
+		margin-bottom: 4rem;
+	}
+	.main-publicidad__bg img{
+		height: 100%;
+		object-position: right;
+		object-fit: cover;
+	}
+	.main-footer__text p{
+		font-size: 1rem;
+	}
+	.main-footer__afiliar--input input{
+		width: 70%;
+	}
+	.main-footer__copy{
+		flex-direction: column;
+	}
+	.main-footer__copy--copy{
+		text-align: center;
+	}
+	.main-footer__copy--redes{
+		text-align: center;
+	}
+	.slider-card__img{
+		height: 130px;
+	}
+	.modal{
+		padding: 0 !important;
+	}
+	.modal-dialog{
+		width: 90%;
+	}
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+	.main-banner__text{
+		top: 25%;
+	}
+	.title-general{
+		font-size: 2rem
+	}
+	.navbar-content{
+		justify-content: space-between;
+	}
+	.subanner{
+		margin-top: -20px;
+	}
+	.subanner-content{
+		width: 18%;
+	}
+	.search-content input{
+		width: 50%;
+	}
+	.slider-card__content--title p{
+		font-size: .7rem;
+	}
+	.slider-card__content--title small{
+		font-size: .5rem;
+	}
+	.slider-card__content--text p{
+		font-size: 8px;
+	}
+	.main-publicidad{
+		height: 50vh;
+	}
+	.main-cards__slider{
+		padding: 2rem;
+	}
+	.slider-card__img{
+		height: 145px;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+	.padding-rl{
+		padding: 0 1rem;
+	}
+	.nav-item a.nav-link{
+		font-size: .9rem;
+	}
+	.slider-card__content--title p{
+		font-size: .9rem
+	}
+	.main-publicidad{
+		height: 60vh;
+	}
+	.slider-card__img{
+		height: 160px;
+	}
+}
