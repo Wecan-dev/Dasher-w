@@ -5,13 +5,14 @@
 	.navbar-content{
 		justify-content: space-between;
 	}
-	.main-banner__img--content img{
-		object-fit: cover;
-		object-position: right;	
-	}
+	
 	.main-banner__text{
 		padding-left: 1rem;
-		top: 15%;
+		top: 30%;
+		width: 60%;
+	}
+	.slider-card__img img{
+		object-fit: none;
 	}
 	.main-banner__title{
 		margin-bottom: 1rem;
@@ -91,6 +92,21 @@
 	.modal-dialog{
 		width: 90%;
 	}
+	.content-modal__title{
+		font-size: 1.5rem;
+		margin: 0 2rem;
+	}
+	.formulario-modal{
+		top: 30%;
+		width: 90%;
+		margin: 0 1rem;
+	}
+	.footer{
+		padding-bottom: 2rem;
+	}
+	.dropdown-menu {
+    	transform: translate3d(-60px, 30px, 0) !important;
+	}
 }
 
 @media (min-width: 767px) and (max-width: 991px){
@@ -130,6 +146,16 @@
 	.slider-card__img{
 		height: 145px;
 	}
+	.modal-dialog{
+		width: 70%;
+	}
+	.content-modal__title{
+		font-size: 2rem;
+	}
+	.formulario-modal{
+		margin: 0 7rem;
+		top: 35%;
+	}	
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -147,5 +173,12 @@
 	}
 	.slider-card__img{
 		height: 160px;
+	}
+	.content-modal__title{
+		font-size: 2rem;
+	}
+	.formulario-modal{
+		margin: 0 6.5rem;
+		top: 35%;
 	}
 }
