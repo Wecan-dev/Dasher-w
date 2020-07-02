@@ -388,6 +388,12 @@ button:focus{
 .subanner-content img{
     width: 100%;
 }
+.subanner-content p{
+    font-size: .8rem;
+    color: #707070;
+    font-weight: 700;
+    text-align: center;
+}
 .search-content{
     display: flex;
     justify-content: center;

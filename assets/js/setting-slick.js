@@ -29,7 +29,7 @@ $('.main-banner__content').slick({
     settings: {
       slidesToShow: 1,
       slidesToScroll: 1,
-      dots: true,
+      dots: false,
 
     }
   }
@@ -66,7 +66,10 @@ $('.main-cards__slider').slick({
       slidesToScroll: 1,
       dots: false,
       autoplay: false,
-      autoplaySpeed: 1000
+      autoplaySpeed: 1000,
+      arrows:false,
+      centerMode: true,
+      centerPadding: '25px',
     }
   }
   ]
