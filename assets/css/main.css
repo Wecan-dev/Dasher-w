@@ -167,7 +167,9 @@ a:hover{
 .padding-rl{
     padding: 0 4rem;
 }
-
+.padding-tb{
+    padding: 3rem 0;
+}
 
 
 .header{
@@ -762,4 +764,240 @@ button:focus{
 }
 .nav-box{
     box-shadow: 0px 0px 8px 0px rgba(112,112,112,0.57);
+}
+.banner-envios{
+    padding-top: 4rem;
+}
+.banner-envios__img{
+    height: 100vh;
+}
+.banner-envios__img img{
+    height: 100%;
+    width: 100%;
+}
+.banner-envios__text{
+    position: absolute;
+    color: #707070;
+    font-size: 3rem;
+    font-weight: 900;
+    top: 30%;
+    width: 45%;
+    padding-left: 4rem;
+}
+
+.category-envios__content, .ruta-envios__content, .pasos-envios__content, .negocio-envios__content{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.category-envios__img {
+    height: 75vh;
+}
+
+.category-envios__img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.subanner-envios{
+    margin-top: 0;
+    justify-content: flex-start;
+    margin-top: 1rem;
+}
+.category-envios__text{
+    color: #707070;
+    padding-right: 6rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.category-envios__text h3, .ruta-envios__text--title h3, .negocio-envios__text--title h3, .form-envios__content--content h3{
+    font-weight: 700;
+    color: #707070;
+}
+.category-envios__text p, .negocio-envios__text--text p{
+    text-align: justify;
+    padding: 1.5rem 0;
+    font-weight: 600;
+}
+.subanner-envios .subanner-content{
+    margin-top: 0;
+    width: 15%;
+    margin-right: 1rem;
+    padding: .5rem;
+}
+.subanner-envios .subanner-content p{
+    font-size: .6rem;
+    text-align: center;
+    padding: initial;
+}
+
+.pasos-envios__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.pasos-envios__card{
+    display: flex;
+    flex-wrap: wrap;
+}
+.pasos-envios__img h3{
+    font-weight: 700;
+    color: #707070;
+    padding-bottom: 2rem;
+}
+.pasos-card__content{
+    width: 35%;
+    padding: 1rem 1.5rem;
+    box-shadow: 0px 0px 4px 0px rgba(112,112,112,0.44);
+    margin: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.pasos-card__content:nth-child(1){
+    margin-top: 0;
+}
+.pasos-card__content:nth-child(2){
+    margin-top: 0;
+}
+.pasos-card__content--img{
+    width: 90px;
+    height: 90px;
+}
+.pasos-card__content--img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.pasos-card__content--title{
+    color: #f1ac00;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 1rem 0;
+}
+.pasos-card__content--text{
+    color: #525252;
+    font-size: .8rem;
+    text-align: center;
+    font-weight: 600;
+}
+.ruta-envios__img{
+    height: 75vh;
+}
+.ruta-envios__img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.ruta-envios__text, .negocio-envios__text{
+    color: #707070;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.ruta-envios__text--text{
+    padding: 2rem 0;
+    font-weight: 600;
+}
+.btn-ruta-envios{
+    color: #cb6120;
+    font-weight: 800;
+    background: #e6e6e6;
+    padding: .5rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0px 0px 5px 0px rgba(112,112,112,0.44);
+    transition: .3s ease-in-out;
+}
+.btn-ruta-envios:hover{
+    color: #f1ac00;
+    transition: .3s ease-in-out;
+}
+.negocio-envios__img{
+    height: 80vh;
+}
+.negocio-envios__img img{
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+    object-position: right;
+}
+.negocio-envios__text{
+    padding-left: 4rem;
+}
+.negocio-envios__text--text span{
+    color: #f1ac00;
+    font-weight: 700;
+    padding: 1rem 0;
+}
+.negocio-envios__text--text{
+    padding-bottom: 2rem;
+}
+.repartir-envios__img img{
+    object-position: initial;
+}
+.repartir-envios__text{
+    padding-right: 4rem;
+    padding-left: 0;
+}
+.form-envios__content{
+    display: grid;
+    grid-template-columns: 65% 45%;
+}
+.form-envios{
+    background: #f5f5f5;
+}
+.form-envios__content--img{
+    height: 75vh;
+}
+.form-envios__content--img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.form-envios__content--form{
+    padding: 0 8rem;
+    text-align: center !important;
+}
+.form-envios__content--form input, .form-envios__content--form textarea{
+    width: 100% !important;
+    background: transparent !important;
+    border: 2px solid #cb6120 !important;
+    border-radius: 20px !important;
+    padding: .3rem .8rem !important;
+    margin: .5rem 0 !important;
+    transition: .3s ease-in-out !important;
+    resize: none !important;
+    overflow: hidden;
+}
+.form-envios__content--form input:focus, .form-envios__content--form textarea:focus {
+    outline: none !important;
+    border-color: #f1ac00 !important;
+    transition: .3s ease-in-out !important;
+
+}
+.form-envios__content--content h3{
+    padding: 3rem 0;
+}
+.btn-form-envios{
+    background: transparent !important;
+    color: #cb6120 !important;
+    border: 2px solid #cb6120 !important;
+    padding: .4rem .8rem !important;
+}
+.btn-form-envios:hover{
+    background: transparent !important;
+    color: #f1ac00 !important;
+    border-color: #f1ac00 !important;
+}
+.footer-envios .main-footer__afiliar--link a{
+    font-weight: 300;
+    cursor: pointer;
+    color: #707070;
+    transition: .3s ease-in-out;
+}
+.footer-envios .main-footer__afiliar--link a:hover{
+    color: #cb6120;
+    transition: .3s ease-in-out;
 }

@@ -121,6 +121,95 @@
 	.slick-list.draggable{
 		padding-left: 0 !important;
 	}
+	.banner-envios__text{
+		padding-left: 1rem;
+		font-size: 2.4rem;
+		width: 80%;
+	}
+	.banner-envios__img img{
+		object-fit: cover;
+	}
+	.category-envios__content, .ruta-envios__content, .pasos-envios__content, .negocio-envios__content{
+		grid-template-columns: 100%;
+	}
+	.category-envios__text{
+		padding-right: 0;
+	}
+	.subanner-envios{
+		justify-content: center;
+	}
+	.subanner-envios .subanner-content{
+		width: 25%;
+		margin: .4rem;
+	}
+	.category-envios__img, .pasos-envios__img img, .negocio-envios__img, .form-envios__content--img{
+		display: none;
+	}
+	.form-envios__content{
+		grid-template-columns: 100%;
+	}
+	.pasos-envios__card{
+		justify-content: space-between;
+	}
+	.pasos-card__content{
+		margin: .4rem;
+		padding: .6rem;
+		width: 45%;
+	}
+	.pasos-card__content--title{
+		padding: .5rem;
+		font-size: .8rem;
+	}
+	.pasos-card__content--text{
+		font-size: .6rem;
+		font-weight: 500;
+	}
+	.category-envios__text h3, .ruta-envios__text--title h3, .negocio-envios__text--title h3, .form-envios__content--content h3,
+	.pasos-envios__img h3{
+		font-size: 1.5rem;
+	}
+	.category-envios__text p, .negocio-envios__text--text p, .ruta-envios__text--text{
+		font-weight: 500;
+	}
+	.ruta-envios__img{
+		height: 50vh;
+		padding-top: 2rem;
+	}
+	.negocio-envios__text{
+		padding: 1rem;
+	}
+	.btn-ruta-envios{
+		font-size: .8rem;
+	}
+	.padding-tb{
+		padding: 1rem 0;
+	}
+	.negocio-envios__content{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.repartir-envios__img{
+		display: block;
+		height: 40vh;
+	}
+	.form-envios__content--form{
+		padding: 0 1rem;
+	}
+	.footer-envios .main-footer__afiliar--input input{
+		width: 65%;
+	}
+	.footer-envios .btn-afiliar{
+		padding: 7px;
+	}
+	.footer-envios .main-footer__afiliar--link{
+		display: flex;
+		flex-direction: column;
+	}
+	.footer-envios .main-footer__afiliar--link a{
+		font-size: .8rem;
+		padding: .2rem;
+	}
+
 }
 
 @media (min-width: 767px) and (max-width: 991px){
