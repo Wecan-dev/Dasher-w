@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Dasher</title>
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/slick-theme.css" rel="stylesheet">
+  <link href="assets/css/slick.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+</head>
+<body>
+	
+<header class="header">
+
+    <nav class="navbar navbar-expand-lg ">
+    	<div class="navbar-content padding-rl">
+			<div class="main-brand">
+				<a class="navbar-brand" href="<?php bloginfo('url'); ?>">
+					<img id="iso" src="assets/img/logo dasher narvbar.png" alt="" />
+				</a>
+			</div>  
+			<button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="collapse" type="button"
+			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+				<div class="navbar-collapse offcanvas-collapse">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item ">
+							<a class="nav-link  " href="<?php bloginfo('url'); ?>">Home</a>
+						</li>
+
+						<li class="nav-item ">
+							<a class="nav-link  " href="#about">Afilia tu negocio</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link " href="<?php bloginfo('url'); ?>/news">Como funciona</a>
+
+						</li>
+						<li class="nav-item">
+							<a class="nav-link "href="#">Promos Dasher</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-registrar" data-toggle="modal" data-target="#modal-form">Registrate</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link nav-ingresar"href="#">Ingresar</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link "href="#">Contacto</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link "href="#"><img src="assets/img/carrito.png" alt=""></a>
+						</li>
+
+						
+					</ul>
+				</div>
+			
+			</div>
+		</div>
+	</nav>
+	<div class="nav-responsive d-block d-md-none">
+		<div class="nav-responsive__main">
+			<a href="#">
+				<div class="nav-responsive__content">
+					<img src="assets/img/Grupo 887.png" alt="">
+				</div>
+			</a>
+			<a href="#">
+				<div class="nav-responsive__content">
+					<img src="assets/img/serch bottom.png" alt="">
+				</div>
+			</a>
+			<a href="#">
+				<div class="nav-responsive__content nav-box">
+					<img src="assets/img/cart.png" alt="">
+				</div>
+			</a>
+			<a href="#">
+				<div class="nav-responsive__content">
+					<img src="assets/img/whatsapp.png" alt="">
+				</div>
+			</a>
+			<a href="#">
+				<div class="nav-responsive__content">
+					<img src="assets/img/user.png" alt="">
+				</div>
+			</a>
+		</div>
+	</div>
+</header>
+
+<section class="pb-5">
+	<div class="banner">
+		<div class="main-banner">
+			<div class="main-banner__content main-banner-category__content">
+				<div class="main-banner__item">
+					<div class="main-banner__text">
+						<div class="main-banner__title title-general">
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
+					</div>
+					<div class="main-banner__img">
+						<div class="main-banner__img--content main-banner-category__img--content">
+							<img class="" src="assets/img/Grupo 339.png" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="main-banner__item">
+					<div class="main-banner__text">
+						<div class="main-banner__title title-general">
+							<p>Lorem ipsum dolor sit amet</p>
+						</div>
+						
+					</div>
+					<div class="main-banner__img">
+						<div class="main-banner__img--content main-banner-category__img--content">
+							<img class="" src="assets/img/Grupo 339.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="dropdown-banner-category">
+				<div class="dropdown-regresar">
+					<a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+				</div>
+				<div class="dropdown">
+					<img src="assets/img/restaurantes.png" alt="">
+					<a class=" dropdown-toggle" href="#" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Restaurantes
+					</a>
+
+					<div class="dropdown-menu" aria-labelledby="dropdowncategory1">
+						<div class="dropdown-menu__content">
+							<img src="assets/img/bodegones.png" alt="">
+							<a class="dropdown-item" href="#">Bodegones</a>
+						</div>
+					    <div class="dropdown-menu__content">
+					    	<img src="assets/img/viveres.png" alt="">
+					    	<a class="dropdown-item" href="#">Viveres</a>
+					    </div>
+					    <div class="dropdown-menu__content">
+					    	<img src="assets/img/farmacias.png" alt="">
+					    	<a class="dropdown-item" href="#">Farmacias</a>
+					    </div>
+					    <div class="dropdown-menu__content">
+					    	<img src="assets/img/shopping.png" alt="">
+					    	<a class="dropdown-item" href="#">Shopping</a>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="subanner-category padding-rl fadeInUp wow"  >
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/pizza.svg" alt="">
+				<p>Pizza</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/burguer.svg" alt="">
+				<p>Hamburguesa</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/parrilla.svg" alt="">
+				<p>Parrilla</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/gourmet.svg" alt="">
+				<p>Gourmet</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/asiatica.svg" alt="">
+				<p>Asiatica</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/pastas.svg" alt="">
+				<p>Pastas</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/postres.svg" alt="">
+				<p>Postres</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/sushi.svg" alt="">
+				<p>Sushi</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/pollo.svg" alt="">
+				<p>Pollo</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/criolla.svg" alt="">
+				<p>Criolla</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/mexicana.svg" alt="">
+				<p>Mexicana</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/saludable.svg" alt="">
+				<p>Saludable</p>
+			</a>
+			<a class="subanner-content-category" href="#">
+				<img src="assets/img/desayuno.svg" alt="">
+				<p>Desayuno</p>
+			</a>
+	</div>
+	<div class="search-content">
+		
+		<button class="" type="submit"><img src="assets/img/serch bottom.png" alt=""></button>
+	    <input class="form-control mr-sm-2" type="search" placeholder="Busca tus productos o tiendas favoritas" aria-label="Search">
+	    <button class="btn btn-outline btn-search" type="submit">Buscar</button>
+	    
+    </div>
+</section>
+
+<section class="pb-5">
+	<div class="cards-dropdown padding-rl">
+		<div class="dropdown">
+		  <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Ubicación
+		  </a>
+
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
+		</div>
+		<div class="dropdown">
+		  <a class=" dropdown-toggle" href="#" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Order por
+		  </a>
+
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		    <a class="dropdown-item" href="#">Action</a>
+		    <a class="dropdown-item" href="#">Another action</a>
+		    <a class="dropdown-item" href="#">Something else here</a>
+		  </div>
+		</div>
+	</div>
+	<div class="cards">
+		<div class="main-cards main-cards__category">
+			<div class="subtitle-general">
+				<p>Cerca de tí</p>
+			</div>
+			<div class="subtitle-cards-category">
+				<span>Lo que desees en minutos</span>
+			</div>
+			<div class="main-cards--category__slider">
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cards">
+		<div class="main-cards main-cards__category">
+			<div class="subtitle-general">
+				<p>Tiendas destacadas</p>
+			</div>
+			<div class="subtitle-cards-category">
+				<span>Recomendados para ti</span>
+			</div>
+			<div class="main-cards--category__slider">
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="main-cards__slider--content">
+					<a href="">
+						<div class="slider-card__img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</div>
+						<div class="slider-card__content">
+							<div class="slider-card__content--title">
+								<p>Nombre del producto</p>
+								<small>valoración</small>
+								<span>3 pts</span>
+							</div>
+							<div class="slider-card__content--etiqueta">
+								<div class="content--etiqueta__color"></div>
+								<p>Abierto</p>
+							</div>
+							<div class="slider-card__content--text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<div class="content--text__logo">
+									<img src="" alt="">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+	<div class="footer footer-envios">
+		<div class="main-footer padding-rl">
+			<div class="main-footer__text">
+				<p>¿Quisieras tener tu tienda favorita en Dasher?</p>
+			</div>
+			<div class="main-footer__afiliar">
+				<div class="main-footer__afiliar--input">
+				    <input class="" type="email" placeholder="Email">
+				    <button class="btn btn-afiliar" >Sugiérela aquí</button>
+				</div>			
+				<div class="main-footer__afiliar--link">
+					<a href="">Rastrea tu pedido</a>
+					<a href="">Deseo vender con Dasher</a>
+					<a href="">Quiero ser repartidor</a>
+					<a href="">Términos y condiciones</a>
+					<a data-toggle="modal" data-target="#modal-form">Contáctanos</a>
+				</div>
+			</div>
+			<div class="main-footer__copy">
+				<div class="main-footer__copy--copy">©2020 <a target="_blank" href="http://wecan.company">We can! Company</a></div>
+				<div class="main-footer__copy--redes"></div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+	
+<script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/setting-slick.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+</body>
+</html>
+
+
+<div class="modal fade bd-example-modal-xl" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="content-modal">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="content-modal__title subtitle-general">
+					<p>Crea tu cuenta y accede a las mejores tiendas</p>
+				</div>
+				<div class="formulario-modal">
+					<input type="text" placeholder="Nombre y Apellido">
+					<input type="email" placeholder="Correo">
+				    <input type="text" placeholder="Clave de Seguridad">
+				    <button class="btn-formulario">Registrarse</button>
+					<a href="#" class="boton-google">
+						Accede con tu cuenta <span>Google</span>
+					</a>
+				</div>
+				<div class="fondo-modal">
+					<img src="assets/img/Enmascarar grupo 28.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

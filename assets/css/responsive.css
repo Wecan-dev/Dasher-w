@@ -53,7 +53,7 @@
 		font-size: .6rem;
 	}
 	.slider-card__content--title small{
-		font-size: .6rem;
+		font-size: .5rem;
 	}
 	.slider-card__content--text p{
 		font-size: 8px;
@@ -121,6 +121,14 @@
 	.slick-list.draggable{
 		padding-left: 0 !important;
 	}
+	.slider-card__content--title span{
+		font-size: 8px;
+	}
+
+
+	/*--- envios ---*/
+
+
 	.banner-envios__text{
 		padding-left: 1rem;
 		font-size: 2.4rem;
@@ -210,6 +218,34 @@
 		padding: .2rem;
 	}
 
+	
+	/*--- category ---*/
+
+
+	.main-banner-category__img--content img{
+		object-fit: contain;
+		object-position: 50% 85%;
+	}
+	.subanner-category{
+		flex-wrap: wrap;
+		margin-top: 0;
+	}
+	.subanner-content-category{
+		padding: .5rem;
+	}
+	.main-banner-category__img--content{
+		height: 80vh;
+	}
+	.subanner-content-category:after{
+		right: -.5rem;
+	}
+	.main-cards__category, .main-cards--category__slider{
+		padding-left: 1rem;
+	}
+	.dropdown-banner-category{
+		margin-left: 1rem;
+	}
+	
 }
 
 @media (min-width: 767px) and (max-width: 991px){
@@ -258,7 +294,12 @@
 	.formulario-modal{
 		margin: 0 7rem;
 		top: 35%;
-	}	
+	}
+
+
+	/*--- envios ---*/
+
+
 	.category-envios__text{
 		padding-right: 0;
 	}
@@ -294,6 +335,25 @@
 	.form-envios__content--form{
 		padding: 0 2rem;
 	}
+	
+
+	/*--- category ---*/
+
+
+	.subanner-category{
+		flex-wrap: wrap;
+		margin-top: 0;
+	}
+	.subanner-content-category{
+		padding: .5rem;
+	}
+	.main-cards--category__slider{
+		padding-left: 0;
+	}
+	.main-banner-category__img--content img{
+		object-fit: contain;
+	    object-position: 50% 100%;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -304,7 +364,10 @@
 		font-size: .9rem;
 	}
 	.slider-card__content--title p{
-		font-size: .9rem
+		font-size: .8rem
+	}
+	.slider-card__content--title small{
+		font-size: .6rem;
 	}
 	.main-publicidad{
 		height: 60vh;
@@ -318,5 +381,16 @@
 	.formulario-modal{
 		margin: 0 6.5rem;
 		top: 35%;
+	}
+
+
+	/*--- category ---*/
+
+
+	.subanner-category{
+		margin-top: -25px;
+	}
+	.subanner-content-category{
+		font-size: .6rem;
 	}
 }
