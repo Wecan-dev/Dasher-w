@@ -259,6 +259,41 @@
 		margin: 0 7rem;
 		top: 35%;
 	}	
+	.category-envios__text{
+		padding-right: 0;
+	}
+	.subanner-envios{
+		flex-wrap: wrap;
+	}
+	.subanner-envios .subanner-content{
+		width: 24%;
+		margin: .5rem;
+	}
+	.pasos-card__content{
+		width: 45%;
+		margin: .5rem;
+		padding: .5rem;
+	}
+	.pasos-card__content--title{
+		padding: .5rem 0;
+		font-size: 1rem;
+	}
+	.pasos-card__content--text{
+		font-size: .6rem;
+	}
+	.pasos-card__content--img{
+		width: 70px;
+		height: 70px;
+	}
+	.pasos-envios__img h3{
+		padding-bottom: 0;
+	}
+	.btn-ruta-envios{
+		font-size: .9rem;
+	}
+	.form-envios__content--form{
+		padding: 0 2rem;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
