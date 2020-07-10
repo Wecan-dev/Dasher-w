@@ -6,6 +6,48 @@ $(function () {
   })
 })
 
+$(function () {
+  'use strict'
+
+  $('.nav-link__mobile').on('click', function () {
+    $('.offcanvas-collapse').removeClass('open')
+    $('.hamburger').removeClass("is-active");
+  })
+})
+
+// menu hambuger
+
+$(".hamburger").on("click", function () {
+  if (!$(this).hasClass("is-active")) {
+    $(this).addClass("is-active")
+    $('.navbar-fixed-js').addClass('fixed');
+    $('.hamburger-inner').addClass('js-hamburger');
+    $('.nav-link').addClass('fixed-color');
+  } else {
+    $(this).removeClass("is-active")
+    if ($(document).scrollTop() <= 70 && ($(window).width() >= 0)) {
+      $('.navbar-fixed-js').removeClass('fixed');
+      $('.hamburger-inner').removeClass('js-hamburger');
+      $('.nav-link').removeClass('fixed-color');
+
+    }
+  }
+});
+let ubicationP = window.pageYOffset;
+window.onscroll = function(){
+  let ScrollA = window.pageYOffset;
+  if(ubicationP >= ScrollA){
+    document.getElementById('navbar').style.top = '0';
+    document.getElementById('nav-responsive').style.bottom = '0';
+  }
+  else{
+    document.getElementById('navbar').style.top = '-100px';
+    document.getElementById('nav-responsive').style.bottom = '-100px';
+  }
+  ubicationP = ScrollA;
+}
+
+
 
 
 
