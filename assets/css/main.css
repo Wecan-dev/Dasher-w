@@ -1160,7 +1160,7 @@ button:focus{
 .banner-tienda__item--destacar{
     position: absolute;
     top: 18%;
-    right: 15%;
+    right: 3rem;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -1195,11 +1195,18 @@ button:focus{
 }
 .main-tienda-perfil__content{
     display: grid;
-    grid-template-columns: 26% 40% 30%;
+    grid-template-columns: 26% 40% 34%;
 }
 .tienda-perfil__content--item{
     display: flex;
     align-items: center
+}
+.perfil-content__item--img{
+    height: 300px;
+    width: 300px;
+    background: #f1ac00;
+    border-radius: 50%;
+    border: 1rem solid #fff;
 }
 .perfil-content__item--img{
     margin-top: -100px;
@@ -1207,9 +1214,11 @@ button:focus{
 .content-item__info--services{
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 1.5rem;
 }
 .content-item__info--ubica{
     display: flex;
+    justify-content: flex-end;
 }
 .perfil-content__item--content{
     color: #525252;
@@ -1226,4 +1235,27 @@ button:focus{
 .perfil-content__item--content p{
     font-size: .8rem;
     margin-top: .6rem;
+}
+.item-info__services--content{
+    display: flex;
+    color: #525252;
+    border: 2px solid #cb6120;
+    border-radius: 25px;
+    padding: .1rem .2rem;
+    margin-left:.4rem;
+}
+.item-info__services--content img{
+    height: 20px ;
+    width: 20px;
+    object-fit: contain;
+    padding-right: .2rem;
+}
+.item-info__info--content{
+    box-shadow: 0px 0px 4px 0px rgba(112,112,112,0.44);
+    border-radius: 5px;
+    display: flex;
+    font-size: .8rem;
+    color: #525252;
+    margin-left: 1rem;
+    padding: .1rem .2rem;
 }
