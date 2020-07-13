@@ -18,61 +18,53 @@
 </head>
 <body>
 	
-<header class="header">
+<header id="home">
+    <nav class="navbar navbar-expand-lg " id="navbar">
+      <div class="main-brand">
+        <a itemprop="url" class="navbar-brand" href="/">
+			<img id="iso" src="assets/img/logo dasher narvbar.png" alt="" />
+        </a>
+        <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas"
+          type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div class="navbar-collapse offcanvas-collapse">
+        <ul class="navbar-nav ml-auto">
+			<li class="nav-item ">
+				<a class="nav-link  " href="<?php bloginfo('url'); ?>">Home</a>
+			</li>
 
-    <nav class="navbar navbar-expand-lg ">
-    	<div class="navbar-content padding-rl">
-			<div class="main-brand">
-				<a class="navbar-brand" href="<?php bloginfo('url'); ?>">
-					<img id="iso" src="assets/img/logo dasher narvbar.png" alt="" />
-				</a>
-			</div>  
-			<button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="collapse" type="button"
-			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="hamburger-box">
-				<span class="hamburger-inner"></span>
-			</span>
-			</button>
+			<li class="nav-item ">
+				<a class="nav-link  " href="#about">Afilia tu negocio</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="<?php bloginfo('url'); ?>/news">Como funciona</a>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#">Promos Dasher</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link nav-registrar" data-toggle="modal" data-target="#modal-form">Registrate</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link nav-ingresar"href="#">Ingresar</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#">Contacto</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#"><img src="assets/img/carrito.png" alt=""></a>
+			</li>
 
-				<div class="navbar-collapse offcanvas-collapse">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item ">
-							<a class="nav-link  " href="<?php bloginfo('url'); ?>">Home</a>
-						</li>
-
-						<li class="nav-item ">
-							<a class="nav-link  " href="#about">Afilia tu negocio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " href="<?php bloginfo('url'); ?>/news">Como funciona</a>
-
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#">Promos Dasher</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav-registrar" data-toggle="modal" data-target="#modal-form">Registrate</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav-ingresar"href="#">Ingresar</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#">Contacto</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#"><img src="assets/img/carrito.png" alt=""></a>
-						</li>
-
-						
-					</ul>
-				</div>
 			
-			</div>
-		</div>
+		</ul>
+      </div>
 	</nav>
-	<div class="nav-responsive d-block d-md-none">
+	<div id="nav-responsive" class="nav-responsive d-block d-md-none">
 		<div class="nav-responsive__main">
 			<a href="#">
 				<div class="nav-responsive__content">
@@ -160,7 +152,7 @@
 					</div>
 				</div>
 				<div class="category-envios__img">
-					<img src="assets/img/Grupo 522.png" height="938" width="642" alt="">
+					<img src="assets/img/Grupo 522.png" alt="">
 				</div>
 			</div>
 		</div>

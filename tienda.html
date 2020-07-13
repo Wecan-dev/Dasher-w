@@ -18,61 +18,53 @@
 </head>
 <body>
 	
-<header class="header">
+<header id="home">
+    <nav class="navbar navbar-expand-lg " id="navbar">
+      <div class="main-brand">
+        <a itemprop="url" class="navbar-brand" href="/">
+			<img id="iso" src="assets/img/logo dasher narvbar.png" alt="" />
+        </a>
+        <button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="offcanvas"
+          type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <div class="navbar-collapse offcanvas-collapse">
+        <ul class="navbar-nav ml-auto">
+			<li class="nav-item ">
+				<a class="nav-link  " href="<?php bloginfo('url'); ?>">Home</a>
+			</li>
 
-    <nav class="navbar navbar-expand-lg ">
-    	<div class="navbar-content padding-rl">
-			<div class="main-brand">
-				<a class="navbar-brand" href="<?php bloginfo('url'); ?>">
-					<img id="iso" src="assets/img/logo dasher narvbar.png" alt="" />
-				</a>
-			</div>  
-			<button class="navbar-toggler p-2 border-0 hamburger hamburger--elastic ml-autos" data-toggle="collapse" type="button"
-			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="hamburger-box">
-				<span class="hamburger-inner"></span>
-			</span>
-			</button>
+			<li class="nav-item ">
+				<a class="nav-link  " href="#about">Afilia tu negocio</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="<?php bloginfo('url'); ?>/news">Como funciona</a>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#">Promos Dasher</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link nav-registrar" data-toggle="modal" data-target="#modal-form">Registrate</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link nav-ingresar"href="#">Ingresar</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#">Contacto</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link "href="#"><img src="assets/img/carrito.png" alt=""></a>
+			</li>
 
-				<div class="navbar-collapse offcanvas-collapse">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item ">
-							<a class="nav-link  " href="<?php bloginfo('url'); ?>">Home</a>
-						</li>
-
-						<li class="nav-item ">
-							<a class="nav-link  " href="#about">Afilia tu negocio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " href="<?php bloginfo('url'); ?>/news">Como funciona</a>
-
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#">Promos Dasher</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav-registrar" data-toggle="modal" data-target="#modal-form">Registrate</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link nav-ingresar"href="#">Ingresar</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#">Contacto</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link "href="#"><img src="assets/img/carrito.png" alt=""></a>
-						</li>
-
-						
-					</ul>
-				</div>
 			
-			</div>
-		</div>
+		</ul>
+      </div>
 	</nav>
-	<div class="nav-responsive d-block d-md-none">
+	<div id="nav-responsive" class="nav-responsive d-block d-md-none">
 		<div class="nav-responsive__main">
 			<a href="#">
 				<div class="nav-responsive__content">
@@ -112,7 +104,7 @@
 					<img src="assets/img/" alt="">
 				</div>
 				<a href="#" class="banner-tienda__item--destacar">
-					<p>Destacar tienda</p>
+					<p class="d-none d-md-block">Destacar tienda</p>
 					<div class="tienda-item__destacar--content">
 						<i class="fa fa-star" aria-hidden="true"></i>
 					</div>
@@ -149,11 +141,30 @@
 					</div>
 				</div>
 			</div>
+			<div class="dropdown-banner-category__resposive d-block d-md-none">
+				<div class="dropdown-category__responsive-content">
+					<div class="dropdown-menu__content--resposive">
+						<a href="#">Bodegones</a>
+						<a href="#">Viveres</a>
+						<a href="#">Farmacias</a>
+						<a href="#">Shopping</a>
+					</div>
+					<div class="dropdown-responsive">
+						<div class="dropdown-regresar">
+							<a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+						</div>
+						<a href="#" class="dropdown-responsive__content">
+							<img src="assets/img/restaurantes.png" alt="">
+							Restaurantes
+						</a>
+					</div>
+				</div>
+			</div>
 	</div>
 </div>
 
 
-<div class="tienda-perfil">
+<div class="tienda-perfil pb-4">
 	<div class="main-tienda-perfil">
 		<div class="main-tienda-perfil__content padding-rl">
 			<div class="tienda-perfil__content--item">
@@ -189,6 +200,168 @@
 							<img src="assets/img/location.svg" alt="">
 							<p>Ubicación del local 2, calle 1</p>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="tienda-menu pb-5">
+	<div class="main-tienda-menu">
+		<div class="main-tienda-menu__content">
+			<div class="tienda-menu__content--item">
+				<div class="tienda-menu--item__menu">
+					<p>Menú</p>
+					<ul>
+						<li>
+							<img src="assets/img/burguer.svg" alt="">
+							<a class="active" href="">Comida rápida</a>
+						</li>
+						<li>
+							<img src="assets/img/parrilla.svg" alt="">
+							<a href="">Carnes</a>
+						</li>
+						<li>
+							<img src="assets/img/pastas.svg" alt="">
+							<a href="">Almuerzos</a>
+						</li>
+						<li>
+							<img src="assets/img/postres.svg" alt="">
+							<a href="">Postres</a>
+						</li>
+						<li>
+							<img src="assets/img/saludable.svg" alt="">
+							<a href="">Ensaladas</a>
+						</li>
+						<li>
+							<img src="assets/img/desayuno.svg" alt="">
+							<a href="">Desayunos</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="tienda-menu__content--item">
+				<div class="tienda-menu--item__products">
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+						<div class="card-oferta">
+							<img src="assets/img/Grupo 1694.png" alt="">
+						</div>
+					</div>
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+					</div>
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+					</div>
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+					</div>
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+					</div>
+					<div class="menu--item__products--content">
+						<a href="#" class="menu-products__content--img">
+							<img src="assets/img/card-product.jpeg" alt="">
+						</a>
+						<a href="#" class="menu-products__content--content">
+							<div class="menu-products--content__title">
+								<p>Articulo o alimento</p>
+								<span>4,00</span>
+							</div>
+							<div class="menu-products--content__text">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							</div>
+							<a href="" class="menu-products--content--boton">
+								 Agregar
+								<img src="assets/img/carrito.png" alt="">
+							</a>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="tienda-menu__content--item">
+				<div class="tienda-menu--item__promo">
+					<p>Promociones Dasher</p>
+					<div class="menu-item__promo--content">
+						
 					</div>
 				</div>
 			</div>

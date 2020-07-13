@@ -198,21 +198,21 @@ button:focus{
     transition: .3s;
 }
 .nav-item a.nav-link:hover, .nav-item a.nav-link.nav-ingresar:hover{
-    color: #cb6120;
+    color: #cb6120 !important;
     transition: .3s;
 }
 .nav-item a.nav-link.nav-registrar{
-    color: #cb6120;
+    color: #cb6120 !important;
     font-weight: 900;
     transition: .3s;
     cursor: pointer;
 }
 .nav-item a.nav-link.nav-registrar:hover{
-    color: #f1ac00;
+    color: #f1ac00 !important;
     transition: .3s;
 }
 .nav-item a.nav-link.nav-ingresar{
-    color: #f1ac00;
+    color: #f1ac00 !important;
     font-weight: 900;
     transition: .3s;
 }
@@ -1127,6 +1127,11 @@ button:focus{
 .perfil-content__item--img{
     margin-top: -100px;
 }
+..perfil-content__item--img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
 .content-item__info--services{
     display: flex;
     justify-content: flex-end;
@@ -1177,10 +1182,142 @@ button:focus{
     padding: .1rem .2rem;
 }
 
-
-
-
-
+.main-tienda-menu__content{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+.tienda-menu--item__menu{
+    background: #f6f6f6;
+    padding: 1rem;
+    border-radius: 0 25px 25px 0;
+}
+.tienda-menu--item__menu p{
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #707070;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.tienda-menu--item__menu ul{
+    list-style: none;
+    padding: 0;
+    padding-left: 2.5rem
+}
+.tienda-menu--item__menu ul li{
+    position: relative;
+    padding: .4rem 0;
+    display: flex;
+    align-items: center;
+}
+.tienda-menu--item__menu ul li:before{
+    position: absolute;
+    content: '';
+    height: 60%;
+    width: 2px;
+    background: #ccc;
+    top: .4rem;
+    left: -.5rem;
+}
+.tienda-menu--item__menu ul li a{
+    color: #484848;
+    transition: .3s ease-in-out;
+    padding-left: .4rem
+}
+.tienda-menu--item__menu ul li a:hover{
+    color: #cb6120;
+    transition: .3s ease-in-out;
+}
+.tienda-menu--item__menu ul li a.active{
+    font-weight: 900;
+}
+.tienda-menu--item__products{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+.menu--item__products--content{
+    width: 42%;
+    display: flex;
+    box-shadow: 0px 0px 4px 0px rgba(112,112,112,0.44);
+    margin: 0.5rem 1.5rem;
+    border-radius: 12px;
+    position: relative;
+    height: 100px;
+    transition: .3s ease-in-out;
+    position: relative;
+}
+.menu--item__products--content:hover{
+    transition: .3s ease-in-out;
+    transform: translateY(-5px)
+}
+.menu-products__content--img{
+    width: 50%;
+}
+.menu-products__content--img img{
+    width: 100% ;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+}
+.menu-products__content--content{
+    padding: .5rem 1rem;
+}
+.menu-products--content__title{
+    display: flex;
+    font-size: .8rem;
+    justify-content: space-between;
+    align-items: center;
+    color: #707070;
+    margin-bottom: .5rem;
+}
+.menu-products--content__title span{
+    background: #f1ac00;
+    padding: 0 .5rem;
+    color: #fff;
+    font-size: .6rem;
+    font-weight: 600;
+    border-radius: 50px;
+}
+.menu-products--content__text{
+    font-size: .6rem;
+    color: #cb6120;
+}
+.menu-products--content--boton{
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.21);
+    font-size: .6rem;
+    position: absolute;
+    bottom: 5px;
+    right: 1rem;
+    padding: .1rem .4rem;
+    border-radius: 50px;
+    color: #707070;
+    font-weight: 500;
+    transition: .3s ease-in-out;
+}
+.menu-products--content--boton:hover{
+    color: #cb6120;
+    transition: .3s ease-in-out;
+}
+.menu-products--content--boton img{
+    width: 20px;
+}
+.card-oferta{
+    position: absolute;
+    top: -20px;
+    left: -14px;
+}
+.card-oferta img{
+    width: 85px;
+}
+.tienda-menu--item__promo{
+    margin-top: -20px;
+}
+.tienda-menu--item__promo p{
+    color: #707070;
+    font-weight: 600;
+}
+.menu-item__promo--content{
+    background: #f6f6f6;
+}
 
 
 
@@ -1324,7 +1461,7 @@ button:focus{
   }
   
   .navbar {
-    background-color: #fff;
+    background-color: #f5f5f5;
     transition: 0.3s ease-in-out;
     display: flex;
     padding: 0.5rem 3rem;
@@ -1344,7 +1481,7 @@ button:focus{
   
   .navbar.fixed {
     height: 85px;
-    background-color: #fff;
+    background-color: #f5f5f5;
     transition: 0.3s ease-in-out;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.21);
   }
@@ -1357,22 +1494,15 @@ button:focus{
   .nav-link {
     color: #000;
     transition: 0.3s ease-in-out;
-    font-weight: 700 !important;
-    font-size: 14px;
     text-transform: capitalize;
-    font-family: "Montserrat", sans-serif;
   }
   
-  .nav-item.active .nav-link{
-    color: #00012e;
-  }
   .nav-link--btn {
     color: #fff;
     transition: 0.3s ease-in-out;
     font-weight: 600;
     font-size: 14px;
     text-transform: capitalize;
-    font-family: "Montserrat", sans-serif;
         background-color: #e7ad44;
     border-radius: 8px;
     text-align: center;
@@ -1389,9 +1519,6 @@ button:focus{
   }
   
   
-  .nav-link:hover {
-        color: #e7ad44!important;
-  }
 
   
 
