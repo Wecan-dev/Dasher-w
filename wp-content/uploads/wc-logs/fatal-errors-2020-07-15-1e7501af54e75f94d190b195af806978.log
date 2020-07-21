@@ -1,0 +1,12 @@
+2020-07-15T16:41:22+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
+2020-07-15T16:41:23+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
+2020-07-15T16:41:32+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
+2020-07-15T16:41:32+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
+2020-07-15T16:41:41+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
+2020-07-15T16:41:44+00:00 CRITICAL syntax error, unexpected 'id' (T_STRING), expecting ']' en /var/www/html/Dasher/wp-content/themes/Dasher/footer.php en la línea 55
+
