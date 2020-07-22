@@ -697,7 +697,9 @@ button:focus{
 .nav-box{
     box-shadow: 0px 0px 8px 0px rgba(112,112,112,0.57);
 }
-
+.main-cards__slider .slick-dots{
+  right: -1%;
+}
 
 /*--- envios ---*/
 
