@@ -2,64 +2,31 @@
 	<div class="banner">
 		<div class="main-banner">
 			<div class="main-banner__content">
+			<?php for ($i=1; $i <=3 ; $i++) { ?>
 				<div class="main-banner__item">
 					<div class="main-banner__text">
 						<div class="main-banner__title title-general">
-							<p>Lorem ipsum dolor sit amet</p>
+							<p><?php echo str_replace("\n", '<br>', get_theme_mod('home_banner'.$i.'_title')); ?></p>
 						</div>
 						<div class="subtitle-general">
-							<p>El mejor delivery de tu ciudad</p>
+							<p><?php echo str_replace("\n", '<br>', get_theme_mod('home_banner'.$i.'_subtitle')); ?></p>
 						</div>
 						<div class="boton-banner">
-							<a class="btn btn-banner boton-general" href="#">Llama ya</a>
+							<a class="btn btn-banner boton-general" href="<?php echo get_theme_mod('home_banner'.$i.'_urlbutton'); ?>"><?php echo get_theme_mod('home_banner'.$i.'_button'); ?></a>
 						</div>
 					</div>
 					<div class="main-banner__img">
 						<div class="main-banner__img--content">
-							<img class="d-none d-md-block" src="<?php echo get_template_directory_uri();?>/assets/img/banner home.png" alt="">
-							<img class="d-block d-md-none" src="<?php echo get_template_directory_uri();?>/assets/img/banner respon.png" alt="">
+						    <?php if (wp_is_mobile() ) : ?>
+						    	<img class="d-block d-md-none" src="<?php echo get_theme_mod('home_banner1_image_responsive'); ?>" alt="">
+								
+							<?php else: ?>
+							    <img class="d-none d-md-block" src="<?php echo get_theme_mod('home_banner'.$i.'_image_desktop'); ?>" alt="">
+							<?php endif; ?>    
 						</div>
 					</div>
 				</div>
-				<div class="main-banner__item">
-					<div class="main-banner__text">
-						<div class="main-banner__title title-general">
-							<p>xxxxxx</p>
-						</div>
-						<div class="subtitle-general">
-							<p>El mejor delivery de tu ciudad</p>
-						</div>
-						<div class="boton-banner">
-							<a class="btn btn-banner boton-general" href="#">Llama ya</a>
-						</div>
-					</div>
-					<div class="main-banner__img">
-						<div class="main-banner__img--content">
-							<img class="d-none d-md-block" src="<?php echo get_template_directory_uri();?>/assets/img/banner home.png" alt="">
-							<img class="d-block d-md-none" src="<?php echo get_template_directory_uri();?>/assets/img/banner respon.png" alt="">
-						</div>
-					</div>
-				</div>
-
-				<div class="main-banner__item">
-					<div class="main-banner__text">
-						<div class="main-banner__title title-general">
-							<p>hhhhhh</p>
-						</div>
-						<div class="subtitle-general">
-							<p>El mejor delivery de tu ciudad</p>
-						</div>
-						<div class="boton-banner">
-							<a class="btn btn-banner boton-general" href="#">Llama ya</a>
-						</div>
-					</div>
-					<div class="main-banner__img">
-						<div class="main-banner__img--content">
-							<img class="d-none d-md-block" src="<?php echo get_template_directory_uri();?>/assets/img/banner home.png" alt="">
-							<img class="d-block d-md-none" src="<?php echo get_template_directory_uri();?>/assets/img/banner respon.png" alt="">
-						</div>
-					</div>
-				</div>
+			<?php } ?>	
 
 			</div>
 		</div>

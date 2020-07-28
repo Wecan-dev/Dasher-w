@@ -1,15 +1,4 @@
 <?php 
-the_post_thumbnail();
-the_post_thumbnail('thumbnail');       
-the_post_thumbnail('medium');          
-the_post_thumbnail('large');           
-the_post_thumbnail('full');            
-
-add_theme_support( 'post-thumbnails' );
-the_post_thumbnail( array(100,100) ); 
-set_post_thumbnail_size( 1568, 9999 );
-
-
 
 /****************** Styles *****************/
 function dasher_styles(){
@@ -48,8 +37,10 @@ function theme_customize_register($wp_customize){
             'priority' => 1,
             )
         );
-  require_once trailingslashit( get_template_directory() ) . 'inc/customizer-home-banner.php';
+  require_once trailingslashit( get_template_directory() ) . 'inc/home/customizer-home-banner.php';
+  require_once trailingslashit( get_template_directory() ) . 'inc/home/customizer-home-publicidad.php';
   
+ 
 
 } 
 add_action('customize_register','theme_customize_register');
@@ -57,5 +48,4 @@ add_action('customize_register','theme_customize_register');
 /***************** FNT General ************/
 
 require_once trailingslashit( get_template_directory() ) . 'inc/fnt/fnt.php';
-
 

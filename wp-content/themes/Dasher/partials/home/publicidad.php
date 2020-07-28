@@ -2,12 +2,15 @@
 	<div class="publicidad" >
 		<div class="main-publicidad mb-5">
 			<div class="main-publicidad__text padding-rl">
-				<p class="title-general title-publicidad">No decides que <br> comprar?</p>
-				<p class="subtitle-general subtitle-publicidad">Te ofrecemos las mejores tiendas <br> con el mejor servicio.</p>
+				<p class="title-general title-publicidad"><?php echo str_replace("\n", '<br>', get_theme_mod('home_publicidad_title'));?></p>
+				<p class="subtitle-general subtitle-publicidad"><?php echo str_replace("\n", '<br>', get_theme_mod('home_publicidad_subtitle'));?></p>
 			</div>
 			<div class="main-publicidad__bg">
-				<img class="" src="<?php echo get_template_directory_uri();?>/assets/img/publicidad home.png" alt="">
-				
+				<?php if (wp_is_mobile() ) : ?>
+				   <img class="" src="<?php echo get_theme_mod('home_publicidad_image_responsive'); ?>" alt="">
+                <?php else: ?>
+				    <img class="" src="<?php echo get_theme_mod('home_publicidad_image_desktop'); ?>" alt="">
+			    <?php endif; ?>   				   
 			</div>
 		</div>
 	</div>
