@@ -1,5 +1,3 @@
-
-
 <footer>
 	<div class="footer footer-envios">
 		<div class="main-footer padding-rl">
@@ -53,17 +51,7 @@
 	</div>
 </div>
 
-	
-<script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-<script src="<?php echo get_template_directory_uri();?>/assets/js/jquery-3.3.1.slim.min.js"></script>
-<script src="<?php echo get_template_directory_uri();?>/assets/js/bootstrap.min.js"></script>
-<script src="<?php echo get_template_directory_uri();?>/assets/js/popper.min.js"></script>
-<script src="<?php echo get_template_directory_uri();?>/assets/js/slick.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/assets/js/setting-slick.js"></script>
-<script src="<?php echo get_template_directory_uri();?>/assets/js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 </body>
 <?php wp_footer(); ?>
 

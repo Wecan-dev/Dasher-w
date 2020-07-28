@@ -1,20 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?php bloginfo('language'); ?>">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Dasher</title>
-  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <link href="<?php echo get_template_directory_uri();?>/assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri();?>/assets/css/font-awesome.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri();?>/assets/css/slick-theme.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri();?>/assets/css/slick.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri();?>/assets/css/main.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri();?>/assets/css/responsive.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri();?>/assets/img/favicon-32x32.png">
+  <title><?php wp_title('|', true, 'right'); ?></title>
 <?php wp_head(); ?>
 
 </head>
