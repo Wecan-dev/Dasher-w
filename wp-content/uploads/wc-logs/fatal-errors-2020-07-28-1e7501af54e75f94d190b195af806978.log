@@ -10,3 +10,9 @@ Stack trace:
 #7 {main}
   thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\banner.php en la línea 9
 
+2020-07-28T19:44:26+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 163
+
+2020-07-28T19:49:18+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 463
+
+2020-07-28T19:54:25+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 463
+

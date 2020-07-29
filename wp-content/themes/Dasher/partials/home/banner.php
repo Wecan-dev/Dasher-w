@@ -32,36 +32,21 @@
 		</div>
 	</div>
 	<div class="subanner padding-rl fadeInUp wow"  >
-		<div class="subanner-content">
-			<a href="<?php the_permalink(); ?>"> 
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
-				<p>Resturantes</p>
-			</a>
-		</div>
-		<div class="subanner-content">
-			<a href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/bodegones.png" alt="">
-				<p>Bodegón</p>
-			</a>
-		</div>
-		<div class="subanner-content">
-			<a href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/farmacias.png" alt="">
-				<p>Viveres</p>
-			</a>
-		</div>
-		<div class="subanner-content">
-			<a href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/viveres.png" alt="">
-				<p>Farmacias</p>
-			</a>
-		</div>
-		<div class="subanner-content">
-			<a href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/shopping.png" alt="">
-				<p>Shopping</p>
-			</a>
-		</div>
+        <?php             
+         $product_categories = get_categories( array( 'taxonomy' => 'product_cat',  'orderby' => 'menu_order', 'order' => 'asc' ));  
+         foreach($product_categories as $category): 
+            $categoria = $category->name; $category_id = $category->term_id; $category_link = get_category_link( $category_id );
+            $thumbnail_id = get_woocommerce_term_meta(  $category_id, 'thumbnail_id', true );
+            $image = wp_get_attachment_url( $thumbnail_id );
+             ?>     
+		    <div class="subanner-content">
+			    <a href="<?php echo $category_link; ?>"> 
+				    <img src="<?php echo $image; ?>" alt="">
+				    <p><?= $categoria ?></p>
+			    </a>
+		    </div>      
+         <?php endforeach; ?> 		
+		
 	</div>
 	<div class="search-content">
 		
