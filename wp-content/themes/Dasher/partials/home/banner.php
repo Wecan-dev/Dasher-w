@@ -33,7 +33,7 @@
 	</div>
 	<div class="subanner padding-rl fadeInUp wow"  >
         <?php             
-         $product_categories = get_categories( array( 'taxonomy' => 'product_cat',  'orderby' => 'menu_order', 'order' => 'asc' ));  
+         $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
          foreach($product_categories as $category): 
             $categoria = $category->name; $category_id = $category->term_id; $category_link = get_category_link( $category_id );
             $thumbnail_id = get_woocommerce_term_meta(  $category_id, 'thumbnail_id', true );

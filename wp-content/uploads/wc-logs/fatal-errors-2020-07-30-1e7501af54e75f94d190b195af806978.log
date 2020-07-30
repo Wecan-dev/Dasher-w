@@ -14,3 +14,27 @@ Stack trace:
 
 2020-07-30T13:26:13+00:00 CRITICAL Object of class WeDevs\Dokan\Vendor\Vendor could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\plugins\dokan-lite\templates\store-header.php en la línea 19
 
+2020-07-30T15:01:06+00:00 CRITICAL syntax error, unexpected end of file en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 246
+
+2020-07-30T15:41:23+00:00 CRITICAL syntax error, unexpected '}', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 250
+
+2020-07-30T18:06:19+00:00 CRITICAL Object of class WP_Term could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 115
+
+2020-07-30T18:07:28+00:00 CRITICAL Object of class WP_Term could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 115
+
+2020-07-30T18:07:54+00:00 CRITICAL Object of class WP_Term could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 92
+
+2020-07-30T18:08:37+00:00 CRITICAL Object of class WP_Term could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\plugins\advanced-custom-fields\includes\api\api-template.php en la línea 89
+
+2020-07-30T18:12:32+00:00 CRITICAL syntax error, unexpected ';', expecting ',' or ')' en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 116
+
+2020-07-30T18:12:52+00:00 CRITICAL Uncaught Error: Call to undefined function meta_value_img() in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php:116
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include()
+#1 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\page.php en la línea 116
+
+2020-07-30T18:13:16+00:00 CRITICAL Object of class WP_Term could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\plugins\advanced-custom-fields\includes\api\api-template.php en la línea 89
+

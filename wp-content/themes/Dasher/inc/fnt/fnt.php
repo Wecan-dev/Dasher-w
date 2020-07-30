@@ -103,4 +103,30 @@ function content($id,$type){
     }  
 }
 
+/***************** Meta *****************/
+function meta_value( $meta_key, $post_id ){
+            global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."postmeta WHERE meta_key = '$meta_key' and post_id = '$post_id'"); 
+              foreach($result_link as $r)
+              {
+                      $value = $r->meta_value;                      
+              }
+              $value = str_replace("\n", "<br>", $value); 
+              return $value;
+
+}
+
+/***************** Termmeta *****************/
+function termmeta_value( $meta_key, $post_id ){
+            global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."termmeta WHERE meta_key = '$meta_key' and term_id = '$post_id'"); 
+              foreach($result_link as $r)
+              {
+                      $value = $r->meta_value;                      
+              }
+              $value = str_replace("\n", "<br>", $value); 
+              return $value;
+
+}
+
 ?>
