@@ -60,7 +60,7 @@
 							<div class="slider-card__content--text">
 								<p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),20));?></p>
 								<div class="content--text__logo">
-									<img src="" alt="">
+									<?php echo get_avatar(get_the_author_email(), '50'); ?>
 								</div>
 							</div>
 						</div>
@@ -101,7 +101,7 @@
 							<div class="slider-card__content--text">
 								<p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),20));?></p>
 								<div class="content--text__logo">
-									<img src="" alt="">
+									<?php echo get_avatar(get_the_author_email(), '50'); ?>
 								</div>
 							</div>
 						</div>

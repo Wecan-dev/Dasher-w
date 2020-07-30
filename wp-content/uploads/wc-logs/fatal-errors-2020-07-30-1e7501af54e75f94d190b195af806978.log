@@ -1,0 +1,16 @@
+2020-07-30T13:24:43+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function get_avatar(), 0 passed in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php on line 63 and at least 1 expected in C:\xampp\htdocs\Dasher\wp-includes\pluggable.php:2555
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php(63): get_avatar()
+#1 C:\xampp\htdocs\Dasher\wp-includes\template.php(724): require('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Dasher\wp-includes\template.php(671): load_template('C:\\xampp\\htdocs...', false)
+#3 C:\xampp\htdocs\Dasher\wp-includes\general-template.php(168): locate_template(Array, true, false)
+#4 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\home.php(4): get_template_part('partials/home/c...')
+#5 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+ en C:\xampp\htdocs\Dasher\wp-includes\pluggable.php en la línea 2555
+
+2020-07-30T13:25:37+00:00 CRITICAL Object of class WeDevs\Dokan\Vendor\Vendor could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\plugins\dokan-lite\templates\store-header.php en la línea 2
+
+2020-07-30T13:26:13+00:00 CRITICAL Object of class WeDevs\Dokan\Vendor\Vendor could not be converted to string en C:\xampp\htdocs\Dasher\wp-content\plugins\dokan-lite\templates\store-header.php en la línea 19
+
