@@ -49,9 +49,13 @@
 						</div>
 						<div class="slider-card__content">
 							<div class="slider-card__content--title">
-								<p><?php the_title(); ?></p>
-								<small>valoración</small>
-								<span>3 pts</span>
+								<div class="slider-card__conenttitle">
+									<p><?php the_title(); ?></p>
+								</div>
+								<div class="slider-card__conentvalue">
+									<small>valoración</small>
+									<span>3 pts</span>
+								</div>
 							</div>
 							<div class="slider-card__content--etiqueta">
 								<div class="content--etiqueta__color"></div>
@@ -90,9 +94,13 @@
 						</div>
 						<div class="slider-card__content">
 							<div class="slider-card__content--title">
-								<p><?php the_title(); ?></p>
-								<small>valoración</small>
-								<span>3 pts</span>
+								<div class="slider-card__conenttitle">
+									<p><?php the_title(); ?></p>
+								</div>
+								<div class="slider-card__conentvalue">
+									<small>valoración</small>
+									<span>3 pts</span>
+								</div>
 							</div>
 							<div class="slider-card__content--etiqueta">
 								<div class="content--etiqueta__color"></div>
