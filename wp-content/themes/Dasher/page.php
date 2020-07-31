@@ -159,43 +159,27 @@
 		<div class="main-category-envios">
 			<div class="category-envios__content padding-rl">
 				<div class="category-envios__text">
-					<h3>Escoge la categoría de lo que buscas</h3>
-					<p>Queremos hacerte la vida más fácil, por eso reunimos una variedad de opciones para que tengas todo lo que necesitas en un solo logar.</p>
+					<h3><?php the_field('title-category-envios'); ?></h3>
+					<p><?php the_field('subtitle-category-envios'); echo meta_value_img('image-category-envios', get_the_ID() );?></p>
 					<div class="subanner subanner-envios  fadeInUp wow"  >
+                    <?php             
+                    $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
+                    foreach($product_categories as $category): 
+                        $categoria = $category->name; $category_id = $category->term_id; $category_link = get_category_link( $category_id );
+                        $thumbnail_id = get_woocommerce_term_meta(  $category_id, 'thumbnail_id', true );
+                        $image = wp_get_attachment_url( $thumbnail_id );
+                    ?> 						
 						<div class="subanner-content">
-							<a href="#">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
-								<p>Resturantes</p>
+							<a href="<?php echo $category_link; ?>">
+								<img src="<?php echo $image; ?>" alt="">
+								<p><?= $categoria ?></p>
 							</a>
 						</div>
-						<div class="subanner-content">
-							<a href="#">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/bodegones.png" alt="">
-								<p>Bodegón</p>
-							</a>
-						</div>
-						<div class="subanner-content">
-							<a href="#">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/farmacias.png" alt="">
-								<p>Viveres</p>
-							</a>
-						</div>
-						<div class="subanner-content">
-							<a href="#">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/viveres.png" alt="">
-								<p>Farmacias</p>
-							</a>
-						</div>
-						<div class="subanner-content">
-							<a href="#">
-								<img src="<?php echo get_template_directory_uri();?>/assets/img/shopping.png" alt="">
-								<p>Shopping</p>
-							</a>
-						</div>
+					<?php endforeach; ?> 
 					</div>
 				</div>
 				<div class="category-envios__img">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 522.png" height="938" width="642" alt="">
+					<img src="<?php echo meta_value_img('image-category-envios', get_the_ID() ); ?>" height="938" width="642" alt="">
 				</div>
 			</div>
 		</div>
