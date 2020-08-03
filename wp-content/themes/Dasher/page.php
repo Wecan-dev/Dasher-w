@@ -192,54 +192,33 @@
 		<div class="main-pasos-envios padding-rl">
 			<div class="pasos-envios__content">
 				<div class="pasos-envios__img">
-					<h3>Cómpralo todo en 4 sencillos pasos</h3>
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 581.png" alt="">
+					<h3><?php the_field('title-pasos-envios'); ?></h3>
+					<img src="<?php the_field('image-pasos-envios'); ?>" alt="">
 				</div>
 				<div class="pasos-envios__card">
+				      <?php 
+                      $argsc = array(
+                          'post_type' => 'items_envios',
+					      'posts_per_page' => 4,        
+					      'post_status' => 'publish',
+     
+                      );
+				       ?>        
+				      <?php $loop = new WP_Query( $argsc ); ?>
+				      <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>					
 					<div class="pasos-card__content">
 						<div class="pasos-card__content--img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/Flat.png" alt="">
+							<img src="<?php echo meta_value_img('image-items-envios', get_the_ID() ); ?>" alt="">
 						</div>
 						<div class="pasos-card__content--title">
-							<p>Elige</p>
+							<p><?php the_field('title-items-envios'); ?></p>
 						</div>
 						<div class="pasos-card__content--text">
-							<p>Navega por el catálago para pedir justo lo que deseas.</p>
+							<p><?php the_field('subtitle-items-envios'); ?></p>
 						</div>
 					</div>
-					<div class="pasos-card__content">
-						<div class="pasos-card__content--img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/password.png" alt="">
-						</div>
-						<div class="pasos-card__content--title">
-							<p>Regístrate</p>
-						</div>
-						<div class="pasos-card__content--text">
-							<p>Ingresa tus datos</p>
-						</div>
-					</div>
-					<div class="pasos-card__content">
-						<div class="pasos-card__content--img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/surface1.png" alt="">
-						</div>
-						<div class="pasos-card__content--title">
-							<p>Confirma tus datos</p>
-						</div>
-						<div class="pasos-card__content--text">
-							<p>Rápido y seguro para tu comodidad</p>
-						</div>
-					</div>
-					<div class="pasos-card__content">
-						<div class="pasos-card__content--img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/Flat-1.png" alt="">
-						</div>
-						<div class="pasos-card__content--title">
-							<p>Disfruta</p>
-						</div>
-						<div class="pasos-card__content--text">
-							<p>Recibe en tu puerta en tiempo record</p>
-						</div>
-					</div>
+
+				 <?php endwhile; ?>
 				</div>
 			</div>
 		</div>
