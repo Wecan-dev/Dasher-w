@@ -133,7 +133,7 @@
 <?php } ?>
 
 
-<?php if(get_field('template_dasher') == 'Envíos'){ ?> 
+<?php if(get_field('template_dasher') == 'Envíos'){ $id11 = get_the_ID();?> 
 <section>
 	<div class="banner-envios">
 		<div class="main-banner-envios">
@@ -160,7 +160,7 @@
 			<div class="category-envios__content padding-rl">
 				<div class="category-envios__text">
 					<h3><?php the_field('title-category-envios'); ?></h3>
-					<p><?php the_field('subtitle-category-envios'); echo meta_value_img('image-category-envios', get_the_ID() );?></p>
+					<p><?php the_field('subtitle-category-envios'); ?></p>
 					<div class="subanner subanner-envios  fadeInUp wow"  >
                     <?php             
                     $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
@@ -232,17 +232,17 @@
 			<div class="ruta-envios__content">
 				<div class="ruta-envios__text">
 					<div class="ruta-envios__text--title">
-						<h3>Envía o recibe todo lo que necesites con ruta personalizada</h3>
+						<h3><?php echo meta_value('title-ruta-envios', $id11 ); ?></h3>
 					</div>
 					<div class="ruta-envios__text--text">
-						<p>Pide todo lo que necesites, incluso fuera de nuestros aliados, también puedes enviar personalmente lo que desees a un amigo o familiar dentro de tu cuidad.</p>
+						<p><?php echo meta_value('subtitle-ruta-envios', $id11); ?></p>
 					</div>
 					<div class="ruta-envios__text--boton">
-						<a class="btn-ruta-envios" href="#">Hacer mi ruta de envío</a>
+						<a class="btn-ruta-envios" href="<?php echo meta_value('urlbuttom-ruta-envios', $id11); ?>"><?php echo meta_value('buttom-ruta-envios', $id11); ?></a>
 					</div>
 				</div>
 				<div class="ruta-envios__img">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 808.png" alt="">
+					<img src="<?php echo meta_value_img('image-ruta-envios', $id11 ); ?>" alt="">
 				</div>
 			</div>
 		</div>
@@ -256,18 +256,18 @@
 			<div class="negocio-envios__content">
 				<div class="negocio-envios__text">
 					<div class="negocio-envios__text--title ">
-						<h3>Haz crecer tu negocio con tu propia tienda en Dasher</h3>
+						<h3><?php echo meta_value('title-negocios-envios', $id11 ); ?></h3>
 					</div>
 					<div class="negocio-envios__text--text">
-						<p>Crea tu propia tienda online y se parte del mall online más grande de Venezuela. Logística, atención al cliente y delivery incluido.</p>
-						<span>Únete y descubre la gran cantidad de beneficios que tenemos para tu negocio.</span>
+						<?php // echo meta_value_img('subtitle-negocios-envios', $id11 ); ?>
+						<?php echo str_replace("\n", '<br>', meta_value('subtitle-negocios-envios', $id11 )); ?>
 					</div>
 					<div class="negocio-envios__text--boton">
-						<a class="btn-ruta-envios" href="#">Comienzo ahora es GRATIS por 30 días</a>
+						<a class="btn-ruta-envios" href="<?php echo meta_value('urlbuttom-negocios-envios', $id11 ); ?>"><?php echo meta_value('buttom-negocios-envios', $id11 ); ?></a>
 					</div>
 				</div>
 				<div class="negocio-envios__img">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Enmascarar grupo 30.png" alt="">
+					<img src="<?php echo meta_value_img('image-negocios-envios', $id11 ); ?>" alt="">
 				</div>
 			</div>
 		</div>

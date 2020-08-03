@@ -162,7 +162,7 @@
 						<span>Únete y descubre la gran cantidad de beneficios que tenemos para tu negocio.</span>
 					</div>
 					<div class="negocio-envios__text--boton">
-						<a class="btn-ruta-envios" href="#">Comienzo ahora es GRATIS por 30 días</a>
+						<a class="btn-ruta-envios" href="#">Comienzo ahora es GRATIS por 30 días.</a>
 					</div>
 				</div>
 				<div class="negocio-envios__img">
