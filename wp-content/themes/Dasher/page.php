@@ -259,7 +259,6 @@
 						<h3><?php echo meta_value('title-negocios-envios', $id11 ); ?></h3>
 					</div>
 					<div class="negocio-envios__text--text">
-						<?php // echo meta_value_img('subtitle-negocios-envios', $id11 ); ?>
 						<?php echo str_replace("\n", '<br>', meta_value('subtitle-negocios-envios', $id11 )); ?>
 					</div>
 					<div class="negocio-envios__text--boton">
@@ -280,18 +279,17 @@
 		<div class="main-negocio-envios">
 			<div class="negocio-envios__content">
 				<div class="negocio-envios__img repartir-envios__img">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 850.png" alt="">
+					<img src="<?php echo meta_value_img('image-negocios2-envios', $id11 ); ?>" alt="">
 				</div>
 				<div class="negocio-envios__text repartir-envios__text">
 					<div class="negocio-envios__text--title ">
-						<h3>Genera ingresos entregando pedidos</h3>
+						<h3><?php echo meta_value('title-negocios2-envios', $id11 ); ?></h3>
 					</div>
 					<div class="negocio-envios__text--text">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis aliquam error soluta dignissimos dolorem molestiae cum tempore sit, aspernatur ipsa optio saepe enim magni deserunt rem deleniti aperiam ad. Esse.</p>
-						<span>Gana dinero con cada entrega</span>
+						<?php echo str_replace("\n", '<br>', meta_value('subtitle-negocios2-envios', $id11 )); ?>
 					</div>
 					<div class="negocio-envios__text--boton">
-						<a class="btn-ruta-envios" href="#">Ser repartidor Dasher</a>
+						<a class="btn-ruta-envios" href="<?php echo meta_value('urlbuttom-negocioss-envios', $id11 ); ?>"><?php echo meta_value('buttom-negocios2-envios', $id11 ); ?></a>
 					</div>
 				</div>
 			</div>
