@@ -303,16 +303,13 @@
 		<div class="main-form-envios padding-rl">
 			<div class="form-envios__content">
 				<div class="form-envios__content--content">
-					<h3>Contacto Dasher</h3>
+					<h3><?php echo meta_value('title-form-envios', $id11 ); ?></h3>
 					<div class="form-envios__content--form">
-						<input type="text" placeholder="Nombre y Apellido *">
-						<input type="email" placeholder="Correo *">
-					    <textarea name="" placeholder="Mensaje *" rows="4"></textarea>
-					    <button class="btn-formulario btn-form-envios">Registrarse</button>
+						<?php echo do_shortcode('[formidable id=1]'); ?>
 					</div>
 				</div>
 				<div class="form-envios__content--img">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/Enmascarar grupo 31.png" alt="">
+					<img src="<?php echo meta_value_img('image-form-envios', $id11 ); ?>" alt="">
 				</div>
 			</div>
 		</div>
