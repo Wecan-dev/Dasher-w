@@ -40,7 +40,13 @@ function theme_customize_register($wp_customize){
   require_once trailingslashit( get_template_directory() ) . 'inc/home/customizer-home-banner.php';
   require_once trailingslashit( get_template_directory() ) . 'inc/home/customizer-home-publicidad.php';
   
- 
+  $wp_customize->add_panel('panel2',
+        array(
+            'title' => 'Categorías',
+            'priority' => 1,
+            )
+        );
+  require_once trailingslashit( get_template_directory() ) . 'inc/categorias/customizer-categorias-banner.php'; 
 
 } 
 add_action('customize_register','theme_customize_register');
