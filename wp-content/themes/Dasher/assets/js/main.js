@@ -38,11 +38,9 @@ window.onscroll = function(){
   let ScrollA = window.pageYOffset;
   if(ubicationP >= ScrollA){
     document.getElementById('navbar').style.top = '0';
-    document.getElementById('nav-responsive').style.bottom = '0';
   }
   else{
     document.getElementById('navbar').style.top = '-100px';
-    document.getElementById('nav-responsive').style.bottom = '-100px';
   }
   ubicationP = ScrollA;
 }
