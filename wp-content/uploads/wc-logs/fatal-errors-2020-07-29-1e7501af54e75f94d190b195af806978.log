@@ -1,0 +1,40 @@
+2020-07-29T15:08:42+00:00 CRITICAL syntax error, unexpected ';', expecting ',' or ')' en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\banner.php en la línea 40
+
+2020-07-29T15:09:32+00:00 CRITICAL syntax error, unexpected ';', expecting ',' or ')' en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\banner.php en la línea 40
+
+2020-07-29T17:30:35+00:00 CRITICAL Uncaught Error: Call to undefined function content() in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php:61
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-includes\template.php(724): require()
+#1 C:\xampp\htdocs\Dasher\wp-includes\template.php(671): load_template('C:\\xampp\\htdocs...', false)
+#2 C:\xampp\htdocs\Dasher\wp-includes\general-template.php(168): locate_template(Array, true, false)
+#3 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\home.php(4): get_template_part('partials/home/c...')
+#4 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php en la línea 61
+
+2020-07-29T17:35:00+00:00 CRITICAL Uncaught Error: Call to undefined function content() in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php:61
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-includes\template.php(724): require()
+#1 C:\xampp\htdocs\Dasher\wp-includes\template.php(671): load_template('C:\\xampp\\htdocs...', false)
+#2 C:\xampp\htdocs\Dasher\wp-includes\general-template.php(168): locate_template(Array, true, false)
+#3 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\home.php(4): get_template_part('partials/home/c...')
+#4 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php en la línea 61
+
+2020-07-29T17:38:49+00:00 CRITICAL Uncaught Error: Call to undefined function content() in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php:61
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-includes\template.php(724): require()
+#1 C:\xampp\htdocs\Dasher\wp-includes\template.php(671): load_template('C:\\xampp\\htdocs...', false)
+#2 C:\xampp\htdocs\Dasher\wp-includes\general-template.php(168): locate_template(Array, true, false)
+#3 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\home.php(4): get_template_part('partials/home/c...')
+#4 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\cards-products.php en la línea 61
+

@@ -1,0 +1,18 @@
+2020-07-28T18:32:29+00:00 CRITICAL Uncaught Error: Call to undefined function echostr_replace() in C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\banner.php:9
+Stack trace:
+#0 C:\xampp\htdocs\Dasher\wp-includes\template.php(724): require()
+#1 C:\xampp\htdocs\Dasher\wp-includes\template.php(671): load_template('C:\\xampp\\htdocs...', false)
+#2 C:\xampp\htdocs\Dasher\wp-includes\general-template.php(168): locate_template(Array, true, false)
+#3 C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\home.php(3): get_template_part('partials/home/b...')
+#4 C:\xampp\htdocs\Dasher\wp-includes\template-loader.php(78): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Dasher\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Dasher\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown en C:\xampp\htdocs\Dasher\wp-content\themes\Dasher\partials\home\banner.php en la línea 9
+
+2020-07-28T19:44:26+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 163
+
+2020-07-28T19:49:18+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 463
+
+2020-07-28T19:54:25+00:00 CRITICAL Maximum execution time of 120 seconds exceeded en C:\xampp\htdocs\Dasher\wp-includes\Requests\Transport\cURL.php en la línea 463
+
