@@ -8,6 +8,7 @@ function dasher_styles(){
   wp_enqueue_style('slick-theme', get_stylesheet_directory_uri() . '/assets/css/slick-theme.css' );  
   wp_enqueue_style('slick', get_stylesheet_directory_uri() . '/assets/css/slick.css' ); 
   wp_enqueue_style('main', get_stylesheet_directory_uri() . '/assets/css/main.css' ); 
+  wp_enqueue_style('main', get_stylesheet_directory_uri() . '/assets/css/woocommerce.css' ); 
   wp_enqueue_style('responsive', get_stylesheet_directory_uri() . '/assets/css/responsive.css' );
   wp_enqueue_style('animate', "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" );  
   wp_enqueue_style('font-awesome-min', "path/to/font-awesome/css/font-awesome.min.css" );
@@ -166,3 +167,17 @@ function custom_post_type_Items_envios() {
 
 }
 add_action( 'init', 'custom_post_type_Items_envios', 0 );
+
+
+function my_theme_setup() {
+	add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'my_theme_setup' );
+
+add_action( 'after_setup_theme', 'yourtheme_setup' );
+
+function yourtheme_setup() {
+
+
+add_theme_support( 'wc-product-gallery-slider' );
+} 

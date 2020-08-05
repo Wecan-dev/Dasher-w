@@ -144,9 +144,11 @@ $category_image = wp_get_attachment_url( $category_thumbnail_id );
 		<?php foreach($product_categories as $categor): ?>
 			<?php $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id ); ?> 
 			<?php $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true ); $image = wp_get_attachment_url( $thumbnail_id ); ?>
-				<a class="subanner-content-category" href="<?php echo $categor_link; ?>">
+				<a class="subanner-content-category  <?php if ($categoria == single_cat_title("", false)) { echo ' active-sub';} ?>" href="<?php echo $categor_link; ?>">
 					<img src="<?php echo $image; ?>" alt="">
 					<p><?= $categoria ?></p>
+					
+					
 				</a>
 			<?php endforeach; ?>
 	</div>
