@@ -47,7 +47,18 @@ get_header( 'shop' );
 
    global $wpdb;  
 $category_id = $cat_id = get_queried_object_id();
+$category_child = category_child( $category_id );
 $category_name = single_cat_title("", false);
+if ($category_child > 0) {
+	global $wpdb;  
+	$result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."terms WHERE term_id = '$category_child'"); 
+	foreach($result_link as $r)
+	{
+		$category_name = $r->name;
+		$category_id = $r->term_id;                    
+	}
+}
+//$category_name = single_cat_title("", false);
 $category_thumbnail_id = get_woocommerce_term_meta(  $category_id, 'thumbnail_id', true );
 $category_image = wp_get_attachment_url( $category_thumbnail_id );
 ?>
@@ -182,15 +193,22 @@ $category_image = wp_get_attachment_url( $category_thumbnail_id );
 				<span>Lo que desees en minutos</span>
 			</div>
 			<div class="main-cards--category__slider">
-			<?php $args = 
+			<?php 
+                if ($category_child > 0) { $category_id = get_queried_object_id(); }
+			    $args = 
 				array(
 					'post_type' => 'product',
 					'paged' => $paged,
 					'posts_per_page' => 100,        
 					'post_status' => 'publish',
-                    'orderby' => 'meta_value', // orderby the meta_value of the following meta_key
-                    'meta_key' => 'total_sales', // the custom meta_key name
-                    'order'=> 'DESC' // sort descending
+					'tax_query' => array(
+                    'relation'=>'AND', // 'AND' 'OR' ...
+                    array(
+      	              'taxonomy'        => 'product_cat',
+      	              'field'           => 'term_id',
+      	              'terms'           => $category_id,
+      	              'operator'        => 'IN',
+      	              )),
                 );
             ?>
             <?php $loop = new WP_Query( $args ); ?>

@@ -65,7 +65,7 @@ add_image_size('pop-thumb',542, 340, true );
 add_theme_support('woocommerce');
 add_theme_support( 'wc-product-gallery-lightbox' );
 
-/**Excerpt general***/
+/****************Excerpt general****************/
 
 function excerpt($limit) {
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
@@ -142,6 +142,18 @@ function termmeta_value( $meta_key, $post_id ){
                       $value = $r->meta_value;                      
               }
               $value = str_replace("\n", "<br>", $value); 
+              return $value;
+
+}
+
+/***************** Category Child *****************/
+function category_child( $term_id ){
+            global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."term_taxonomy WHERE term_id = '$term_id'"); 
+              foreach($result_link as $r)
+              {
+                      $value = $r->parent;                      
+              }
               return $value;
 
 }
