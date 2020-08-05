@@ -33,9 +33,9 @@ get_header( 'shop' );
 <?php
 
 
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
+	//if ( wc_get_loop_prop( 'total' ) ) {
+		//while ( have_posts() ) {
+			//the_post();
 
 			/**
 			 * Hook: woocommerce_shop_loop.
@@ -45,7 +45,7 @@ get_header( 'shop' );
 
 			//wc_get_template_part( 'content', 'product' );
 
-   global $wpdb;  
+global $wpdb;  
 $category_id = $cat_id = get_queried_object_id();
 $category_child = category_child( $category_id );
 $category_name = single_cat_title("", false);
@@ -255,55 +255,50 @@ $category_image = wp_get_attachment_url( $category_thumbnail_id );
 				<span>Recomendados para ti</span>
 			</div>
 			<div class="main-cards--category__slider">
+			<?php 
+                if ($category_child > 0) { $category_id = get_queried_object_id(); }
+			    $args = 
+				array(
+					'post_type' => 'product',
+					'paged' => $paged,
+					'posts_per_page' => 100,        
+					'post_status' => 'publish',
+                    'orderby' => 'meta_value', // orderby the meta_value of the following meta_key
+                    'meta_key' => '_wc_average_rating', // the custom meta_key name
+                    'order'=> 'DESC' // sort descending
+                );
+            ?>
+            <?php $loop = new WP_Query( $args ); ?>
+            <?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>					
 				<div class="main-cards__slider--content">
-					<a href="">
+					<a href="<?php the_permalink(); ?>">
 						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
+							<img src="<?php the_post_thumbnail_url('full'); ?>" alt="">
 						</div>
 						<div class="slider-card__content">
 							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
+								<div class="slider-card__conenttitle">
+									<p><?php the_title(); ?></p>
+								</div>
+								<div class="slider-card__conentvalue">
+									<small>valoración</small>
+									<span>3 pts</span>
+								</div>
 							</div>
 							<div class="slider-card__content--etiqueta">
 								<div class="content--etiqueta__color"></div>
 								<p>Abierto</p>
 							</div>
 							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),20));?></p>
 								<div class="content--text__logo">
-									<img src="" alt="">
+									<?php echo get_avatar(get_the_author_email(), '50'); ?>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				
+			 <?php endwhile; ?>				
 			</div>
 		</div>
 	</div>
@@ -314,8 +309,8 @@ $category_image = wp_get_attachment_url( $category_thumbnail_id );
 
 //////////////////////////////////////
 
-		}
-	}
+		//}
+	//}
 
 
 /**
