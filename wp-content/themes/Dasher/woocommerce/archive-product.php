@@ -33,9 +33,9 @@ get_header( 'shop' );
 <?php
 
 
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
+	//if ( wc_get_loop_prop( 'total' ) ) {
+		//while ( have_posts() ) {
+			//the_post();
 
 			/**
 			 * Hook: woocommerce_shop_loop.
@@ -45,83 +45,93 @@ get_header( 'shop' );
 
 			//wc_get_template_part( 'content', 'product' );
 
+global $wpdb;  
+$category_id = $cat_id = get_queried_object_id();
+$category_child = category_child( $category_id );
+$category_name = single_cat_title("", false);
+if ($category_child > 0) {
+	global $wpdb;  
+	$result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."terms WHERE term_id = '$category_child'"); 
+	foreach($result_link as $r)
+	{
+		$category_name = $r->name;
+		$category_id = $r->term_id;                    
+	}
+}
+//$category_name = single_cat_title("", false);
+$category_thumbnail_id = get_woocommerce_term_meta(  $category_id, 'thumbnail_id', true );
+$category_image = wp_get_attachment_url( $category_thumbnail_id );
 ?>
 
 <section class="pb-5">
 	<div class="banner banner-category">
 		<div class="main-banner">
 			<div class="main-banner__content main-banner-category__content">
+			<?php for ($i=1; $i <=3 ; $i++) { ?>
+			  <?php if (get_theme_mod('category_banner'.$i.'_title') != NULL) { ?>
 				<div class="main-banner__item">
 					<div class="main-banner__text">
 						<div class="main-banner__title title-general">
-							<p>Lorem ipsum dolor sit amet</p>
+							<p><p><?php echo str_replace("\n", '<br>', get_theme_mod('category_banner'.$i.'_title')); ?></p>
 						</div>
 					</div>
 					<div class="main-banner__img">
-						<div class="main-banner__img--content main-banner-category__img--content">
-							<img class="" src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 339.png" alt="">
+						<div class="main-banner__img--content main-banner-category__img--content">						
+							<img class="" src="<?php echo get_theme_mod('category_banner'.$i.'_image_desktop'); ?>" alt="">	    
 						</div>
 					</div>
 				</div>
-				<div class="main-banner__item">
-					<div class="main-banner__text">
-						<div class="main-banner__title title-general">
-							<p>Lorem ipsum dolor sit amet</p>
-						</div>
-						
-					</div>
-					<div class="main-banner__img">
-						<div class="main-banner__img--content main-banner-category__img--content">
-							<img class="" src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 339.png" alt="">
-						</div>
-					</div>
-				</div>
+		      <?php } ?>		
+			<?php } ?>		
 			</div>
 			<div class="dropdown-banner-category d-none d-md-flex">
 				<div class="dropdown-regresar">
 					<a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 				</div>
 				<div class="dropdown">
-					<img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
+					<img src="<?php echo $category_image; ?>" alt="">
 					<a class=" dropdown-toggle" href="#" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    Restaurantes
+					    <?= $category_name ?>
 					</a>
 
 					<div class="dropdown-menu" aria-labelledby="dropdowncategory1">
-						<div class="dropdown-menu__content">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/bodegones.png" alt="">
-							<a class="dropdown-item" href="#">Bodegones</a>
-						</div>
-					    <div class="dropdown-menu__content">
-					    	<img src="<?php echo get_template_directory_uri();?>/assets/img/viveres.png" alt="">
-					    	<a class="dropdown-item" href="#">Viveres</a>
-					    </div>
-					    <div class="dropdown-menu__content">
-					    	<img src="<?php echo get_template_directory_uri();?>/assets/img/farmacias.png" alt="">
-					    	<a class="dropdown-item" href="#">Farmacias</a>
-					    </div>
-					    <div class="dropdown-menu__content">
-					    	<img src="<?php echo get_template_directory_uri();?>/assets/img/shopping.png" alt="">
-					    	<a class="dropdown-item" href="#">Shopping</a>
-					    </div>
+						<?php             
+						$product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
+						foreach($product_categories as $categor): 
+							$categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
+						$thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
+						$image = wp_get_attachment_url( $thumbnail_id );
+						if ($category_id != $categor_id) {
+						?> 					
+						    <div class="dropdown-menu__content">
+							    <img src="<?php echo $image; ?>" alt="">
+							    <a class="dropdown-item" href="<?php echo $categor_link; ?>"><?= $categoria ?></a>
+						    </div>
+                        <?php } endforeach; ?> 	
 					</div>
 				</div>
 			</div>
 			<div class="dropdown-banner-category__resposive d-block d-md-none">
 				<div class="dropdown-category__responsive-content">
 					<div class="dropdown-menu__content--resposive">
-						<a href="#">Bodegones</a>
-						<a href="#">Viveres</a>
-						<a href="#">Farmacias</a>
-						<a href="#">Shopping</a>
+						<?php             
+						$product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
+						foreach($product_categories as $categor): 
+							$categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
+						$thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
+						$image = wp_get_attachment_url( $thumbnail_id );
+						if ($category_id != $categor_id) {
+						?>					
+						   <a href="<?php echo $categor_link; ?>"><?= $categoria ?></a>
+						<?php } endforeach; ?> 
 					</div>
 					<div class="dropdown-responsive">
 						<div class="dropdown-regresar">
 							<a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 						</div>
 						<a href="#" class="dropdown-responsive__content">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
-							Restaurantes
+							<img src="<?php echo $category_image; ?>" alt="">
+							<?= $category_name ?>
 						</a>
 					</div>
 				</div>
@@ -129,58 +139,18 @@ get_header( 'shop' );
 		</div>
 	</div>
 	<div class="subanner-category padding-rl fadeInUp wow"  >
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/pizza.svg" alt="">
-				<p>Pizza</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/burguer.svg" alt="">
-				<p>Hamburguesa</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/parrilla.svg" alt="">
-				<p>Parrilla</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/gourmet.svg" alt="">
-				<p>Gourmet</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/asiatica.svg" alt="">
-				<p>Asiatica</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/pastas.svg" alt="">
-				<p>Pastas</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/postres.svg" alt="">
-				<p>Postres</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/sushi.svg" alt="">
-				<p>Sushi</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/pollo.svg" alt="">
-				<p>Pollo</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/criolla.svg" alt="">
-				<p>Criolla</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/mexicana.svg" alt="">
-				<p>Mexicana</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/saludable.svg" alt="">
-				<p>Saludable</p>
-			</a>
-			<a class="subanner-content-category" href="#">
-				<img src="<?php echo get_template_directory_uri();?>/assets/img/desayuno.svg" alt="">
-				<p>Desayuno</p>
-			</a>
+		<?php $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'child_of' => $category_id, 'orderby' => 'menu_order', 'order' => 'asc' ));?>
+
+		<?php foreach($product_categories as $categor): ?>
+			<?php $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id ); ?> 
+			<?php $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true ); $image = wp_get_attachment_url( $thumbnail_id ); ?>
+				<a class="subanner-content-category  <?php if ($categoria == single_cat_title("", false)) { echo ' active-sub';} ?>" href="<?php echo $categor_link; ?>">
+					<img src="<?php echo $image; ?>" alt="">
+					<p><?= $categoria ?></p>
+					
+					
+				</a>
+			<?php endforeach; ?>
 	</div>
 	<div class="search-content search-content-category">
 		
@@ -225,102 +195,56 @@ get_header( 'shop' );
 				<span>Lo que desees en minutos</span>
 			</div>
 			<div class="main-cards--category__slider">
+			<?php 
+                if ($category_child > 0) { $category_id = get_queried_object_id(); }
+			    $args = 
+				array(
+					'post_type' => 'product',
+					'paged' => $paged,
+					'posts_per_page' => 100,        
+					'post_status' => 'publish',
+					'tax_query' => array(
+                    'relation'=>'AND', // 'AND' 'OR' ...
+                    array(
+      	              'taxonomy'        => 'product_cat',
+      	              'field'           => 'term_id',
+      	              'terms'           => $category_id,
+      	              'operator'        => 'IN',
+      	              )),
+                );
+            ?>
+            <?php $loop = new WP_Query( $args ); ?>
+            <?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>				
 				<div class="main-cards__slider--content">
-					<a href="">
+					<a href="<?php the_permalink(); ?>">
 						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
+							<img src="<?php the_post_thumbnail_url('full'); ?>" alt="">
 						</div>
 						<div class="slider-card__content">
 							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
+								<div class="slider-card__conenttitle">
+									<p><?php the_title(); ?></p>
+								</div>
+								<div class="slider-card__conentvalue">
+									<small>valoración</small>
+									<span>3 pts</span>
+								</div>
 							</div>
 							<div class="slider-card__content--etiqueta">
 								<div class="content--etiqueta__color"></div>
 								<p>Abierto</p>
 							</div>
 							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),20));?></p>
 								<div class="content--text__logo">
-									<img src="" alt="">
+									<?php echo get_avatar(get_the_author_email(), '50'); ?>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
+		    <?php endwhile; ?> 		
+				
 			</div>
 		</div>
 	</div>
@@ -333,102 +257,50 @@ get_header( 'shop' );
 				<span>Recomendados para ti</span>
 			</div>
 			<div class="main-cards--category__slider">
+			<?php 
+                if ($category_child > 0) { $category_id = get_queried_object_id(); }
+			    $args = 
+				array(
+					'post_type' => 'product',
+					'paged' => $paged,
+					'posts_per_page' => 100,        
+					'post_status' => 'publish',
+                    'orderby' => 'meta_value', // orderby the meta_value of the following meta_key
+                    'meta_key' => '_wc_average_rating', // the custom meta_key name
+                    'order'=> 'DESC' // sort descending
+                );
+            ?>
+            <?php $loop = new WP_Query( $args ); ?>
+            <?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>					
 				<div class="main-cards__slider--content">
-					<a href="">
+					<a href="<?php the_permalink(); ?>">
 						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
+							<img src="<?php the_post_thumbnail_url('full'); ?>" alt="">
 						</div>
 						<div class="slider-card__content">
 							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
+								<div class="slider-card__conenttitle">
+									<p><?php the_title(); ?></p>
+								</div>
+								<div class="slider-card__conentvalue">
+									<small>valoración</small>
+									<span>3 pts</span>
+								</div>
 							</div>
 							<div class="slider-card__content--etiqueta">
 								<div class="content--etiqueta__color"></div>
 								<p>Abierto</p>
 							</div>
 							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
+								<p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),20));?></p>
 								<div class="content--text__logo">
-									<img src="" alt="">
+									<?php echo get_avatar(get_the_author_email(), '50'); ?>
 								</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="main-cards__slider--content">
-					<a href="">
-						<div class="slider-card__img">
-							<img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-						</div>
-						<div class="slider-card__content">
-							<div class="slider-card__content--title">
-								<p>Nombre del producto</p>
-								<small>valoración</small>
-								<span>3 pts</span>
-							</div>
-							<div class="slider-card__content--etiqueta">
-								<div class="content--etiqueta__color"></div>
-								<p>Abierto</p>
-							</div>
-							<div class="slider-card__content--text">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem velit magni magnam eius officia quaerat quae reiciendis aut ratione sit.</p>
-								<div class="content--text__logo">
-									<img src="" alt="">
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
+			 <?php endwhile; ?>				
 			</div>
 		</div>
 	</div>
@@ -439,8 +311,8 @@ get_header( 'shop' );
 
 //////////////////////////////////////
 
-		}
-	}
+		//}
+	//}
 
 
 /**

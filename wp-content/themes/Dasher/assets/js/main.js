@@ -200,4 +200,3 @@ wow.init();
 var bLazy = new Blazy({
   selector: 'img' // all images
 });
-

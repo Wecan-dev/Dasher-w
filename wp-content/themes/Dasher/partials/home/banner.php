@@ -3,6 +3,7 @@
 		<div class="main-banner">
 			<div class="main-banner__content">
 			<?php for ($i=1; $i <=3 ; $i++) { ?>
+			  <?php if (get_theme_mod('home_banner'.$i.'_title') != NULL) { ?>
 				<div class="main-banner__item">
 					<div class="main-banner__text">
 						<div class="main-banner__title title-general">
@@ -18,7 +19,7 @@
 					<div class="main-banner__img">
 						<div class="main-banner__img--content">
 						    <?php if (wp_is_mobile() ) : ?>
-						    	<img class="d-block d-md-none" src="<?php echo get_theme_mod('home_banner1_image_responsive'); ?>" alt="">
+						    	<img class="d-block d-md-none" src="<?php echo get_theme_mod('home_banner'.$i.'_image_responsive'); ?>" alt="">
 								
 							<?php else: ?>
 							    <img class="d-none d-md-block" src="<?php echo get_theme_mod('home_banner'.$i.'_image_desktop'); ?>" alt="">
@@ -26,6 +27,7 @@
 						</div>
 					</div>
 				</div>
+			  <?php } ?>	
 			<?php } ?>	
 
 			</div>
