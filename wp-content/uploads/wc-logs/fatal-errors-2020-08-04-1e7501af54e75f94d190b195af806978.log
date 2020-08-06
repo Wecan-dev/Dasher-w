@@ -1,0 +1,20 @@
+2020-08-04T15:56:57+00:00 CRITICAL Uncaught Error: Call to undefined function the_name() in /var/www/html/Dasher/wp-content/themes/Dasher/woocommerce/archive-product.php:87
+Stack trace:
+#0 /var/www/html/Dasher/wp-content/plugins/woocommerce/includes/wc-core-functions.php(344): include()
+#1 /var/www/html/Dasher/wp-content/plugins/woocommerce/templates/taxonomy-product_cat.php(22): wc_get_template('archive-product...')
+#2 /var/www/html/Dasher/wp-includes/template-loader.php(78): include('/var/www/html/D...')
+#3 /var/www/html/Dasher/wp-blog-header.php(19): require_once('/var/www/html/D...')
+#4 /var/www/html/Dasher/index.php(17): require('/var/www/html/D...')
+#5 {main}
+  thrown en /var/www/html/Dasher/wp-content/themes/Dasher/woocommerce/archive-product.php en la línea 87
+
+2020-08-04T15:56:57+00:00 CRITICAL Uncaught Error: Call to undefined function the_name() in /var/www/html/Dasher/wp-content/themes/Dasher/woocommerce/archive-product.php:87
+Stack trace:
+#0 /var/www/html/Dasher/wp-content/plugins/woocommerce/includes/wc-core-functions.php(344): include()
+#1 /var/www/html/Dasher/wp-content/plugins/woocommerce/templates/taxonomy-product_cat.php(22): wc_get_template('archive-product...')
+#2 /var/www/html/Dasher/wp-includes/template-loader.php(78): include('/var/www/html/D...')
+#3 /var/www/html/Dasher/wp-blog-header.php(19): require_once('/var/www/html/D...')
+#4 /var/www/html/Dasher/index.php(17): require('/var/www/html/D...')
+#5 {main}
+  thrown en /var/www/html/Dasher/wp-content/themes/Dasher/woocommerce/archive-product.php en la línea 87
+
