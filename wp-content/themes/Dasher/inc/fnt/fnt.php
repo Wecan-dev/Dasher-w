@@ -164,6 +164,18 @@ function termmeta_value( $meta_key, $post_id ){
 
 }
 
+/***************** User Meta *****************/
+function usermeta_value( $meta_key, $user_id ){
+            global $wpdb;  
+              $result_link = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."usermeta WHERE meta_key = '$meta_key' and user_id = '$user_id'"); 
+              foreach($result_link as $r)
+              {
+                      $value = $r->meta_value;                      
+              }
+              return $value;
+
+}
+
 /***************** Category Child *****************/
 function category_child( $term_id ){
             global $wpdb;  

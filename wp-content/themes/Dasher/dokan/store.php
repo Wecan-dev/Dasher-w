@@ -1,7 +1,37 @@
-<?php get_header(); ?>
-<?php
+<?php get_header(); 
+
 $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
+//if ($_GET['orderby'] == 'price-desc' ){ $selectpr_desc = 'selected="selected"';}    
+//$args = arg($_GET["cat"],$_GET["tax"],$_GET["lower"],$_GET["upper"],$_GET['orderby'],$paged); 
+$cat = $_GET["cat"];
 ?>
+                <?php if ($_GET["cat"] == NULL) { ?>
+                    <?php if ( have_posts() ) { ?>             
+                        <?php woocommerce_product_loop_start(); ?>
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php foreach((get_the_terms( get_the_ID(), 'product_cat' )) as $category) {               
+                               $cat_id = $category->term_id; $i = 0;   
+                               if ($array_cat[$cat_id] == NULL && $category->parent == '0' && $i == '0') {
+                                  $array_cat[$cat_id] = $cat_id;
+                                  $categoria_p = $category->name;
+                                  $categoria_id = $category->term_id;                                 
+                                  termmeta_value( 'thumbnail_id', $cat_id );
+                                  $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat_id ));
+                                  $img_cat = $queried_post->guid; $i = $i+1;
+
+                                } 
+                            } 
+                        endwhile; 
+                    } $cat = $categoria_id;
+                }  
+                if ($_GET["cat"] != NULL) { 
+                    $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat ));
+                    $img_cat = $queried_post->guid; $i = $i+1;
+                    $queried_cat = get_the_terms( $_GET["cat"], 'product_cat' );
+                    $categoria_p = $queried_cat->guid;
+                    $categoria_id = $queried_cat->term_id;  
+                } ?>
+
 
 
 <div class="banner-tienda">
@@ -9,7 +39,7 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
         <div class="main-banner-tienda__content">
             <div class="banner-tienda__item">
                 <div class="banner-tienda__item--img">
-                    <img src="<?php echo get_template_directory_uri();?>/assets/img/" alt="">
+                    <img src="<?php echo esc_url( $store_user->get_banner() ); ?>" alt="">
                 </div>
                 <a href="#" class="banner-tienda__item--destacar">
                     <p class="d-none d-md-block">Destacar tienda</p>
@@ -24,46 +54,52 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
                     <a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 </div>
                 <div class="dropdown">
-                    <img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
-                    <a class=" dropdown-toggle" href="#" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Restaurantes
+                 
+                    <img src="<?php echo  $img_cat; ?>" alt="">
+                    <a class=" dropdown-toggle" href="?cat=<?php echo $categoria_id; ?>" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= $categoria_p ?>
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdowncategory1">
-                        <div class="dropdown-menu__content">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/bodegones.png" alt="">
-                            <a class="dropdown-item" href="#">Bodegones</a>
-                        </div>
-                        <div class="dropdown-menu__content">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/viveres.png" alt="">
-                            <a class="dropdown-item" href="#">Viveres</a>
-                        </div>
-                        <div class="dropdown-menu__content">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/farmacias.png" alt="">
-                            <a class="dropdown-item" href="#">Farmacias</a>
-                        </div>
-                        <div class="dropdown-menu__content">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/shopping.png" alt="">
-                            <a class="dropdown-item" href="#">Shopping</a>
-                        </div>
+                        <?php             
+                        $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
+                        foreach($product_categories as $categor): 
+                            $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
+                        $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
+                        $image = wp_get_attachment_url( $thumbnail_id );
+                        if ($categoria_id != $categor_id &&  $array_cat[$categor_id] == $categor_id) {
+                        ?>                    
+                            <div class="dropdown-menu__content">
+                                <img src="<?php echo $image; ?>" alt="">
+                                <a class="dropdown-item" href="?cat=<?php echo $categor_id; ?>"><?= $categoria ?></a>
+                            </div>
+                        <?php } endforeach; ?>                       
+
                     </div>
                 </div>
             </div>
             <div class="dropdown-banner-category__resposive d-block d-md-none">
                 <div class="dropdown-category__responsive-content">
                     <div class="dropdown-menu__content--resposive">
-                        <a href="#">Bodegones</a>
-                        <a href="#">Viveres</a>
-                        <a href="#">Farmacias</a>
-                        <a href="#">Shopping</a>
+                        <?php             
+                        $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
+                        foreach($product_categories as $categor): 
+                            $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
+                        $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
+                        $image = wp_get_attachment_url( $thumbnail_id );
+                        if ($categoria_id != $categor_id &&  $array_cat[$categor_id] == $categor_id) {
+                        ?>                     
+                           <a href="?cat=<?php echo $categoria_id; ?>"><?= $categoria ?></a>
+                        <?php } endforeach; ?>
+
                     </div>
                     <div class="dropdown-responsive">
                         <div class="dropdown-regresar">
                             <a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                         </div>
-                        <a href="#" class="dropdown-responsive__content">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/restaurantes.png" alt="">
-                            Restaurantes
+                        <a href="?cat=<?php echo $categoria_id; ?>" class="dropdown-responsive__content">
+                            <img src="<?php echo  $img_cat; ?>" alt="">
+                           <?= $categoria_p ?>
                         </a>
                     </div>
                 </div>
@@ -77,14 +113,16 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
         <div class="main-tienda-perfil__content padding-rl">
             <div class="tienda-perfil__content--item">
                 <div class="perfil-content__item--img">
-                    <img src="<?php echo get_template_directory_uri();?>/assets/img/" alt="">
+                    <img src="<?php echo esc_url( $store_user->get_avatar() ) ?>" alt="">
                 </div>
             </div>
             <div class="tienda-perfil__content--item">
                 <div class="perfil-content__item--content">
-                    <h3>Nombre del local<?php echo $store_info   = $store_user->get_shop_info(); ?></h3>
+                    <h3><?php echo esc_attr( $store_user->get_shop_name() ); ?></h3>
                     <span>Horario: 0:00am a 0:00pm</span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa ut assumenda, minus iste velit officiis, voluptatum sapiente modi expedita facere vero consequatur</p>
+                    <p><?php echo usermeta_value( 'description', $store_user->get_id() ); ?></p>
+                    <p><i class="fa fa-mobile"></i><a href="tel:<?php echo esc_html( $store_user->get_phone() ); ?>"><?php echo esc_html( $store_user->get_phone() ); ?></a> <i class="fa fa-envelope-o"></i>
+                                <a href="mailto:<?php echo esc_attr( antispambot( $store_user->get_email() ) ); ?>"><?php echo esc_attr( antispambot( $store_user->get_email() ) ); ?></a></p>
                 </div>
             </div>
             <div class="tienda-perfil__content--item">
@@ -102,7 +140,7 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
                     <div class="content-item__info--ubica">
                         <div class="item-info__info--content">
                             <img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
-                            <p>Ubicación del local 1, calle 2</p>
+                            <p> <?php echo wp_kses_post( $store_address ); ?></p>
                         </div>
                         <div class="item-info__info--content">
                             <img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
@@ -121,32 +159,28 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
         <div class="main-tienda-menu__content">
             <div class="tienda-menu__content--item">
                 <div class="tienda-menu--item__menu">
-                    <p>Menú</p>
+                    <p>Menú</p><?php echo $cat; ?>
                     <ul>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/burguer.svg" alt="">
-                            <a class="active" href="">Comida rápida</a>
-                        </li>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/parrilla.svg" alt="">
-                            <a href="">Carnes</a>
-                        </li>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/pastas.svg" alt="">
-                            <a href="">Almuerzos</a>
-                        </li>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/postres.svg" alt="">
-                            <a href="">Postres</a>
-                        </li>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/saludable.svg" alt="">
-                            <a href="">Ensaladas</a>
-                        </li>
-                        <li>
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/desayuno.svg" alt="">
-                            <a href="">Desayunos</a>
-                        </li>
+                    <?php if ( have_posts() ) { ?>             
+                    <?php woocommerce_product_loop_start(); ?>
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php foreach((get_the_terms( get_the_ID(), 'product_cat' )) as $category) {               
+                               $cat_id = $category->term_id;    
+                               if ($array_cat[$cat_id] == NULL && $category->parent == $cat) {
+                                  $array_cat[$cat_id] = $cat_id;
+                                  $categoria_p = $category->name;
+                                  termmeta_value( 'thumbnail_id', $cat_id );
+                                  $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat_id ));
+                                  $queried_post->guid; ?>
+                                  <li>
+                                      <img src="<?php echo $queried_post->guid; ?>" alt="">
+                                      <a class="active" href="<?php echo $categor_link; ?>"><?= $categoria_p ?></a>
+                                  </li>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php endwhile; // end of the loop. ?>
+                    <?php } ?>      
+                       
                     </ul>
                 </div>
             </div>
