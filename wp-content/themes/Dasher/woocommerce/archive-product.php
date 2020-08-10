@@ -129,10 +129,12 @@ $category_image = wp_get_attachment_url( $category_thumbnail_id );
 						<div class="dropdown-regresar">
 							<a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 						</div>
+
 						<a href="#" class="dropdown-responsive__content">
 							<img src="<?php echo $category_image; ?>" alt="">
 							<?= $category_name ?>
 						</a>
+						
 					</div>
 				</div>
 			</div>
