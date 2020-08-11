@@ -4,33 +4,37 @@ $store_user   = dokan()->vendor->get( get_query_var( 'author' ) );
 //if ($_GET['orderby'] == 'price-desc' ){ $selectpr_desc = 'selected="selected"';}    
 //$args = arg($_GET["cat"],$_GET["tax"],$_GET["lower"],$_GET["upper"],$_GET['orderby'],$paged); 
 $cat = $_GET["cat"];
-?>
-                <?php if ($_GET["cat"] == NULL) { ?>
-                    <?php if ( have_posts() ) { ?>             
-                        <?php woocommerce_product_loop_start(); ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
-                            <?php foreach((get_the_terms( get_the_ID(), 'product_cat' )) as $category) {               
-                               $cat_id = $category->term_id; $i = 0;   
-                               if ($array_cat[$cat_id] == NULL && $category->parent == '0' && $i == '0') {
-                                  $array_cat[$cat_id] = $cat_id;
-                                  $categoria_p = $category->name;
-                                  $categoria_id = $category->term_id;                                 
-                                  termmeta_value( 'thumbnail_id', $cat_id );
-                                  $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat_id ));
-                                  $img_cat = $queried_post->guid; $i = $i+1;
 
-                                } 
-                            } 
-                        endwhile; 
-                    } $cat = $categoria_id;
-                }  
-                if ($_GET["cat"] != NULL) { 
-                    $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat ));
-                    $img_cat = $queried_post->guid; $i = $i+1;
-                    $queried_cat = get_the_terms( $_GET["cat"], 'product_cat' );
-                    $categoria_p = $queried_cat->guid;
-                    $categoria_id = $queried_cat->term_id;  
-                } ?>
+global $wpdb; 
+$seller_id  = (int) get_query_var( 'author' );
+$categories = $wpdb->get_results( $wpdb->prepare( "SELECT t.term_id,t.name, tt.parent FROM $wpdb->terms as t
+    LEFT JOIN $wpdb->term_taxonomy as tt on t.term_id = tt.term_id
+    LEFT JOIN $wpdb->term_relationships AS tr on tt.term_taxonomy_id = tr.term_taxonomy_id
+    LEFT JOIN $wpdb->posts AS p on tr.object_id = p.ID
+    WHERE tt.taxonomy = 'product_cat'
+    AND tt.parent = '0'
+    AND p.post_type = 'product'
+    AND p.post_status = 'publish'
+    AND p.post_author = %d GROUP BY t.term_id", $seller_id
+    ) );
+
+foreach($categories as $r)
+{
+  $cat_p[] = $r->term_id; 
+}
+
+if ($_GET["cat"] == NULL) {
+    $cat_just =  $cat_p[0];
+}
+if ($_GET["cat"] != NULL && get_term($_GET["cat"])->parent == 0) {
+    $cat_just =  $_GET["cat"];
+}
+if ($_GET["cat"] != NULL && get_term($_GET["cat"])->parent != 0) {
+    $cat_just =  get_term($_GET["cat"])->parent;
+    $subcat_just = $_GET["cat"];
+}
+
+?>
 
 
 
@@ -42,7 +46,7 @@ $cat = $_GET["cat"];
                     <img src="<?php echo esc_url( $store_user->get_banner() ); ?>" alt="">
                 </div>
                 <a href="#" class="banner-tienda__item--destacar">
-                    <p class="d-none d-md-block">Destacar tienda</p>
+                    <p class="d-none d-md-block"><?php echo wp_kses_post( dokan_get_readable_seller_rating( $store_user->get_id() ) ); ?></p>
                     <div class="tienda-item__destacar--content">
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
@@ -55,51 +59,42 @@ $cat = $_GET["cat"];
                 </div>
                 <div class="dropdown">
                  
-                    <img src="<?php echo  $img_cat; ?>" alt="">
-                    <a class=" dropdown-toggle" href="?cat=<?php echo $categoria_id; ?>" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?= $categoria_p ?>
+                    <img src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $cat_just, 'thumbnail_id', true ) ) ?>" alt="">
+                    <a class=" dropdown-toggle" href="?cat=<?php echo $cat_just; ?>" role="button" id="dropdowncategory1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo get_term($cat_just)->name; ?>
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdowncategory1">
-                        <?php             
-                        $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
-                        foreach($product_categories as $categor): 
-                            $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
-                        $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
-                        $image = wp_get_attachment_url( $thumbnail_id );
-                        if ($categoria_id != $categor_id &&  $array_cat[$categor_id] == $categor_id) {
-                        ?>                    
-                            <div class="dropdown-menu__content">
-                                <img src="<?php echo $image; ?>" alt="">
-                                <a class="dropdown-item" href="?cat=<?php echo $categor_id; ?>"><?= $categoria ?></a>
-                            </div>
-                        <?php } endforeach; ?>                       
-
+                        <?php        
+                        $count_cat_p=count($cat_p);
+                        for ($i=0; $i < $count_cat_p; $i++) { 
+                            if ($cat_p[$i] != $cat_just) { ?>                   
+                                <div class="dropdown-menu__content">
+                                    <img src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $cat_p[$i], 'thumbnail_id', true ) ); ?>" alt="">
+                                    <a class="dropdown-item" href="?cat=<?php echo $cat_p[$i]; ?>"><?= get_term($cat_p[$i])->name; ?></a>
+                                </div>
+                        <?php }} ?>                  
                     </div>
                 </div>
             </div>
             <div class="dropdown-banner-category__resposive d-block d-md-none">
                 <div class="dropdown-category__responsive-content">
                     <div class="dropdown-menu__content--resposive">
-                        <?php             
-                        $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => '0', 'orderby' => 'menu_order', 'order' => 'asc' ));  
-                        foreach($product_categories as $categor): 
-                            $categoria = $categor->name; $categor_id = $categor->term_id; $categor_link = get_category_link( $categor_id );
-                        $thumbnail_id = get_woocommerce_term_meta(  $categor_id, 'thumbnail_id', true );
-                        $image = wp_get_attachment_url( $thumbnail_id );
-                        if ($categoria_id != $categor_id &&  $array_cat[$categor_id] == $categor_id) {
-                        ?>                     
-                           <a href="?cat=<?php echo $categoria_id; ?>"><?= $categoria ?></a>
-                        <?php } endforeach; ?>
+                        <?php        
+                        $count_cat_p=count($cat_p);
+                        for ($i=0; $i < $count_cat_p; $i++) { 
+                            if ($cat_p[$i] != $cat_just) { ?>                     
+                               <a href="?cat=<?php echo $cat_p[$i]; ?>"><?= get_term($cat_p[$i])->name; ?></a>
+                        <?php }} ?> 
 
                     </div>
                     <div class="dropdown-responsive">
                         <div class="dropdown-regresar">
                             <a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                         </div>
-                        <a href="?cat=<?php echo $categoria_id; ?>" class="dropdown-responsive__content">
-                            <img src="<?php echo  $img_cat; ?>" alt="">
-                           <?= $categoria_p ?>
+                        <a href="?cat=<?php echo $cat_just; ?>" class="dropdown-responsive__content">
+                            <img src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta( $cat_just, 'thumbnail_id', true ) ) ?>" alt="">
+                          <?php echo get_term($cat_just)->name; ?>
                         </a>
                     </div>
                 </div>
@@ -140,11 +135,11 @@ $cat = $_GET["cat"];
                     <div class="content-item__info--ubica">
                         <div class="item-info__info--content">
                             <img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
-                            <p> <?php echo wp_kses_post( $store_address ); ?></p>
+                            <p> <?php echo wp_kses_post(dokan_get_seller_short_address( $store_user->get_id(), false )); ?></p>
                         </div>
                         <div class="item-info__info--content">
                             <img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
-                            <p>Ubicación del local 2, calle 1</p>
+                            <p> <?php echo wp_kses_post(dokan_get_seller_short_address( $store_user->get_id(), false )); ?></p>
                         </div>
                     </div>
                 </div>
@@ -159,151 +154,81 @@ $cat = $_GET["cat"];
         <div class="main-tienda-menu__content">
             <div class="tienda-menu__content--item">
                 <div class="tienda-menu--item__menu">
-                    <p>Menú</p><?php echo $cat; ?>
+                    <p>Menú</p>
                     <ul>
-                    <?php if ( have_posts() ) { ?>             
-                    <?php woocommerce_product_loop_start(); ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
-                            <?php foreach((get_the_terms( get_the_ID(), 'product_cat' )) as $category) {               
-                               $cat_id = $category->term_id;    
-                               if ($array_cat[$cat_id] == NULL && $category->parent == $cat) {
-                                  $array_cat[$cat_id] = $cat_id;
-                                  $categoria_p = $category->name;
-                                  termmeta_value( 'thumbnail_id', $cat_id );
-                                  $queried_post = get_post(termmeta_value( 'thumbnail_id', $cat_id ));
-                                  $queried_post->guid; ?>
-                                  <li>
-                                      <img src="<?php echo $queried_post->guid; ?>" alt="">
-                                      <a class="active" href="<?php echo $categor_link; ?>"><?= $categoria_p ?></a>
-                                  </li>
-                                <?php } ?>
-                            <?php } ?>
-                        <?php endwhile; // end of the loop. ?>
-                    <?php } ?>      
-                       
+                        <?php       
+                        $product_categories = get_categories( array( 'taxonomy' => 'product_cat', 'parent' => $cat_just, 'orderby' => 'menu_order', 'order' => 'asc' ));  
+                        foreach($product_categories as $category): ?>
+                            <li>
+                                <img src="<?php echo wp_get_attachment_url( get_woocommerce_term_meta(  $category->term_id, 'thumbnail_id', true ) ); ?>" alt="">
+                                <a class="<?php if( $subcat_just == $category->term_id) { echo 'active'; } ?>" href="?cat=<?php echo $category->term_id; ?>"><?= $category->name ?></a>
+                            </li>
+                        <?php endforeach; ?>      
                     </ul>
                 </div>
             </div>
             <div class="tienda-menu__content--item">
                 <div class="tienda-menu--item__products">
+                   <?php 
+                   if ($_GET["cat"] != NULL) {
+                     $args = 
+                     array(
+                       'post_type' => 'product',
+                       'paged' => $paged,
+                       'posts_per_page' => 9,        
+                       'post_status' => 'publish',
+                       'tax_query' => array(
+                       'relation'=>'AND', // 'AND' 'OR' ...
+                         array(
+                         'taxonomy'        => 'product_cat',
+                         'field'           => 'term_id',
+                         'terms'           => array($cat),
+                         'operator'        => 'IN',
+                         )),
+                     );
+                   } 
+        
+                   if ($_GET["cat"] == NULL) {
+                     $args = 
+                     array(
+                                        'post_type' => 'product',
+                       'paged' => $paged,
+                       'posts_per_page' =>9,
+                     );
+                   } ?>
+                   <?php $loop = new WP_Query( $args ); ?>
+                   <?php while ( $loop->have_posts() ) : $loop->the_post(); global $product;?>                 
                     <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
+                        <a href="<?php the_permalink(); ?>" class="menu-products__content--img">
+                            <img src="<?php the_post_thumbnail_url('full'); ?>" alt="">
                         </a>
                         <a href="#" class="menu-products__content--content">
                             <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
+                                <p><?php the_title(); ?></p>
+                                <span><?php echo $product->get_price_html(); ?></span>
                             </div>
                             <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                                <p><?php  echo strip_tags(cut_text(content(get_the_ID(),'product'),10));?></p>
                             </div>
-                            <a href="" class="menu-products--content--boton">
+                            <a href="?add-to-cart=<?php echo get_the_ID(); ?>" class="menu-products--content--boton">
                                  Agregar
                                 <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
                             </a>
                         </a>
-                        <div class="card-oferta">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 1694.png" alt="">
-                        </div>
+                        <?php if ($sale = get_post_meta( get_the_ID(), '_sale_price', true) != NULL){ ?>
+                            <div class="card-oferta">
+                                <img src="<?php echo get_template_directory_uri();?>/assets/img/Grupo 1694.png" alt="">
+                            </div>
+                        <?php } ?>
                     </div>
-                    <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-                        </a>
-                        <a href="#" class="menu-products__content--content">
-                            <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
-                            </div>
-                            <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            </div>
-                            <a href="" class="menu-products--content--boton">
-                                 Agregar
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
-                            </a>
-                        </a>
-                    </div>
-                    <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-                        </a>
-                        <a href="#" class="menu-products__content--content">
-                            <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
-                            </div>
-                            <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            </div>
-                            <a href="" class="menu-products--content--boton">
-                                 Agregar
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
-                            </a>
-                        </a>
-                    </div>
-                    <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-                        </a>
-                        <a href="#" class="menu-products__content--content">
-                            <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
-                            </div>
-                            <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            </div>
-                            <a href="" class="menu-products--content--boton">
-                                 Agregar
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
-                            </a>
-                        </a>
-                    </div>
-                    <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-                        </a>
-                        <a href="#" class="menu-products__content--content">
-                            <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
-                            </div>
-                            <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            </div>
-                            <a href="" class="menu-products--content--boton">
-                                 Agregar
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
-                            </a>
-                        </a>
-                    </div>
-                    <div class="menu--item__products--content">
-                        <a href="#" class="menu-products__content--img">
-                            <img src="<?php echo get_template_directory_uri();?>/assets/img/card-product.jpeg" alt="">
-                        </a>
-                        <a href="#" class="menu-products__content--content">
-                            <div class="menu-products--content__title">
-                                <p>Articulo o alimento</p>
-                                <span>4,00</span>
-                            </div>
-                            <div class="menu-products--content__text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-                            </div>
-                            <a href="" class="menu-products--content--boton">
-                                 Agregar
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/carrito.png" alt="">
-                            </a>
-                        </a>
-                    </div>
+                   <?php endwhile; ?>          
                 </div>
             </div>
             <div class="tienda-menu__content--item">
                 <div class="tienda-menu--item__promo">
                     <p>Promociones Dasher</p>
                     <div class="menu-item__promo--content">
-                        
+                        <img src="<?php echo get_theme_mod('promo_tienda_image'); ?>" alt="">
                     </div>
                 </div>
             </div>
