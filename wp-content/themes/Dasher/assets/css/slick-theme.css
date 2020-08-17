@@ -264,12 +264,12 @@
   opacity: 1;
 }
 .main-cards__slider .slick-dots li button:before, .main-banner__content .slick-dots li button:before,
-.main-cards--category__slider .slick-dots .slick-active button:before {
+.main-cards--category__slider .slick-dots .slick-active button:before, .slider-cliente-afilia .slick-dots li button:before {
   background: #ffffff !important;
   margin-left: -10px!important;
 }
 .main-cards__slider .slick-dots .slick-active button:before, .main-banner__content .slick-dots .slick-active button:before,
-.main-cards--category__slider .slick-dots .slick-active button:before {
+.main-cards--category__slider .slick-dots .slick-active button:before, .slider-cliente-afilia .slick-dots .slick-active button:before {
   opacity: 1 !important;
   margin-left: -12px!important;
   background: #f2933e !important;

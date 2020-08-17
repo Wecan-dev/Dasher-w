@@ -1,3 +1,39 @@
+$('.slider-cliente-afilia').slick({
+  infinite: true,
+  autoplay: false,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  dots: true,
+  autoplaySpeed:3000,
+  arrows: true,
+  responsive: [{
+    breakpoint: 1200,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+    }
+  },
+  {
+    breakpoint: 900,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1
+    }
+  },
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: false,
+
+    }
+  }
+  ]
+});
+
 $('.main-banner__content').slick({
   infinite: true,
   autoplay: false,
