@@ -47,7 +47,15 @@ function theme_customize_register($wp_customize){
             'priority' => 1,
             )
         );
-  require_once trailingslashit( get_template_directory() ) . 'inc/categorias/customizer-categorias-banner.php'; 
+  require_once trailingslashit( get_template_directory() ) . 'inc/categorias/customizer-categorias-banner.php';
+
+  $wp_customize->add_panel('panel3',
+        array(
+            'title' => 'Promociones Dasher',
+            'priority' => 1,
+            )
+        );
+  require_once trailingslashit( get_template_directory() ) . 'inc/promo/customizer-promo-tienda.php';   
 
 } 
 add_action('customize_register','theme_customize_register');
