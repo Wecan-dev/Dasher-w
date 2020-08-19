@@ -431,9 +431,95 @@
 	.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active .subanner-promos-content{
 		transform: translateY(-5px);
 	}
+
+
+	/*--- registro de afiliados ---*/
+
+
+	.banner-afiliado{
+		padding-top: 30px;
+	}
+	.main-banner-afiliado, .main-potencia-afilia{
+		grid-template-columns: 100%;
+	}
+	.img-banner-afiliado__text{
+		top: 12%;
+	}
+	.img-banner-afiliado__text--title{
+		padding: 0 2rem;
+	}
+	.img-banner-afiliado__text--img{
+		padding: 2rem 0;
+	}	
+	.form-banner-afiliado__title{
+		padding: 3rem .2rem 0;
+		text-align: center;
+	}
+	.main-modelo-afiliado{
+		display: flex;
+		flex-direction: column-reverse
+	}
+	.text-modelo-afiliado__title{
+		text-align: center;
+		padding: 0 .5rem 1rem;
+	}
+	.text-modelo-afiliado__items--item{
+		padding: 0.5rem 0;
+	}
+	.items-modelo-afiliado__item--text{
+		font-size: .8rem;
+	}
+	.img-pontecia-afilia{
+		padding-top: 1rem;
+	}
+	.title-pasos-afilia{
+		text-align: center;
+		padding-bottom: 2rem;
+	}
+	.content-pasos-afilia{
+		flex-direction: column;
+		padding: 0;
+	}
+	.content-pasos-afilia__items{
+		width: 100%;
+		height: 50vh;
+	}
+	.content-pasos-afilia__items--img, .content-pasos-afilia__items--mask{
+		height: 90%;
+	}
+	.content-pasos-afilia__bg, .content-pasos-afilia__bg1{
+		display: none;
+	}
+	.cliente-afilia{
+		padding-top: 3rem;
+	}
+	.text-potencia-afilia__title, .title-pasos-afilia, .title-cliente-afilia p, .content-preguntas-afilia__title, .title-cliente-afilia{
+		text-align: center;
+	}
+	.content-cliente-afilia{
+		padding: 0 3rem;
+	}
+	.items-cliente-afilia__text{
+		height: auto;
+	}
+	.items-cliente-afilia__cliente{
+		flex-direction: column
+	}
+	.preguntas-afilia{
+		padding: 3rem 0;
+	}
+	.panel-heading a::before{
+		float: left;
+	}
+	.content-preguntas-afilia__title{
+		padding-bottom: 1rem;
+	}
 }
 
 @media (min-width: 767px) and (max-width: 991px){
+	.padding-rl{
+		padding: 0 3rem;
+	}
 	.main-banner__text{
 		top: 25%;
 	}
@@ -612,6 +698,63 @@
 	.subanner-promos-content{
 		width: 100%;
 	}
+
+
+	/*--- registro de afiliados ---*/
+
+
+	.form-banner-afiliado__title{
+		padding-top: 0;
+	}
+	.text-modelo-afiliado__title{
+		padding-right: .5rem;
+		padding-bottom: 0;
+	}
+	.text-modelo-afiliado__items--item{
+		padding: .5rem 0;
+	}
+	.img-banner-afiliado__text--title{
+		padding: 0 2rem;
+	}
+	.img-banner-afiliado__text--img{
+		padding: 2rem 0;
+	}
+	.content-pasos-afilia{
+		padding: 0;
+	}
+	.content-pasos-afilia__items{
+		width: 32%;
+		height: 50vh;
+	}
+	.content-pasos-afilia__items--text{
+		padding: 0 .5rem;
+		font-size: 1.2rem;
+	}
+	.content-pasos-afilia__bg{
+		left: -10%;
+	}
+	.content-pasos-afilia__bg1{
+		right: -10%;
+	}
+	.cliente-afilia{
+		padding-top: 4rem;
+	}
+	.content-cliente-afilia{
+		padding: 0 4rem;
+	}
+	.items-cliente-afilia__text{
+		height: auto;
+	}
+	.items-cliente-afilia__cliente{
+		flex-direction: column
+	}
+	.preguntas-afilia{
+		padding: 3rem 0;
+	}
+	.content-preguntas-afilia__title{
+		padding-bottom: 1rem;
+	}
+
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -681,5 +824,12 @@
 	.nav-tabs{
 		padding: 0 3rem;
 	}
+	
 
+	/*--- registro de afiliados ---*/
+
+
+	.items-cliente-afilia__text{
+		height: 130px;
+	}
 }
