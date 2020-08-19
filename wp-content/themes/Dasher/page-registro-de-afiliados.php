@@ -71,24 +71,67 @@
 													</ul>
 												</div>
 												<div class="tab-pane" role="tabpanel" id="step2">
-													<h4 class="text-center">¿Donde y cuando?</h4>
+													<h4 class="">Mi Tienda</h4>
 													<div>
-														<h3 class="text-start">Donde se realizara la tarea</h3>
-														<div class="content-row">
-															<div class="col-md-6 step-content ">
-																<p class="p-0 m-0 color-blue"><i
-																		class="fa fa-map-marker" aria-hidden="true"></i>
-																	En persona </p>
-																<span>Lorem ipsum dolor sit amet consectetur
-																</span>
+														<h3 class="text-start">¿Que deseas vender?</h3>
+														<div class="form-step2-afiliar">
+															<div class="form-step2-afiliar__content">
+																<p>Comesribles y Víveres</p>
+																<div class="form-step2-afiliar__content--items button-group-pills" data-toggle="buttons">
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox">
+																			<div>
+																				Licores
+																			</div>
+																	</label>
+																	<a href="#">
+																		Comida rápida
+																	</a>
+																	<a href="#">
+																		Frutas o vegetales
+																	</a>
+																	<a href="#">
+																		Lácteos
+																	</a>
+																	<a href="#">
+																		Carnes
+																	</a>
+																	<a href="#">
+																		víveres
+																	</a>
+																	<a href="#">
+																		Snaks
+																	</a>
+																</div>
 															</div>
-															<div class="col-md-6 step-content">
-																<p class="p-0 m-0 "> <i class="fa fa-globe"
-																		aria-hidden="true"></i>
-																	En linea </p>
-																<span>Lorem ipsum dolor sit amet consectetur
-																</span>
-															</div>
+															<div class="form-step2-afiliar__content">
+																<p>Fármacos o suplementos</p>
+																<div class="form-step2-afiliar__content--items">
+																	<a href="#">
+																		Tecnología
+																	</a>
+																	<a href="#">
+																		Ropa
+																	</a>
+																	<a href="#">
+																		Mascotas
+																	</a>
+																	<a href="#">
+																		Hogar
+																	</a>
+																	<a href="#">
+																		Moda
+																	</a>
+																	<a href="#">
+																		Juguetería
+																	</a>
+																	<a href="#">
+																		Deportes
+																	</a>
+																	<a href="#">
+																		Belleza
+																	</a>
+																</div>
 														</div>
 													</div>
 													<div class="form-group start">
@@ -129,7 +172,7 @@
 																class="default-btn next-step skip-btn">Skip</button>
 														</li> -->
 														<li class="btn-line"><button type="button"
-																class="default-btn next-step">Siguiente</button></li>
+																class="default-btn next-step btn-afiliar btn-form-afiliar">Enviar</button></li>
 													</ul>
 												</div>
 

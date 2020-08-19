@@ -2545,3 +2545,23 @@ span.round-tab i {
 .btn-form-afiliar{
   padding: .4rem 3rem;
 }
+.button-group-pills .btn {
+  border-radius: 20px;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  border-color: #bbbbbb;
+  background-color: #fff;
+  color: #14a4be;
+}
+.button-group-pills .btn.active {
+  border-color: #14a4be;
+  background-color: #14a4be;
+  color: #fff;
+  box-shadow: none;
+}
+.button-group-pills .btn:hover {
+  border-color: #158b9f;
+  background-color: #158b9f;
+  color: #fff;
+}
