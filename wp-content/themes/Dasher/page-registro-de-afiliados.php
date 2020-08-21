@@ -34,11 +34,11 @@
 										<div class="wizard-inner">
 											<div class="connecting-line"></div>
 											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active">
+												<li role="presentation" class="active tab-step1">
 													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
-														aria-expanded="true"><span class="round-tab">1</span> <i></i></a>
+														aria-expanded="true"><span class="round-tab">1</span> <i class="fa fa-check" aria-hidden="true"></i></a>
 												</li>
-												<li role="presentation" class="disabled">
+												<li role="presentation" class="disabled tab-step2">
 													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
 														aria-expanded="false"><span class="round-tab">2</span>
 														<i></i></a>
@@ -597,7 +597,13 @@ function prevTab(elem) {
 $(".nav-tabs").on("click", "li", function () {
 	$(".nav-tabs li.active").removeClass("active");
 	$(this).addClass("active");
+	if(".tab-step2.active"){
+		$(".tab-step1").addClass("check-tab");
+	}else{
+		
+	}
 });
+
 
 
 	$('.panel-collapse').on('show.bs.collapse', function () {

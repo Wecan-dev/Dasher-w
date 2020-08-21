@@ -551,8 +551,16 @@
 	.form-group-afiliar{
 		margin-bottom: 0;
 	}
+	.wizard li.tab-step2.active:after{
+		width: 125px;
+		right: 50%;
+	}
 }
-
+@media (min-width: 0px) and (max-width: 350px){
+	.wizard li.tab-step2.active:after{
+		width: 80px;
+	}
+}
 @media (min-width: 767px) and (max-width: 991px){
 	.padding-rl{
 		padding: 0 3rem;
@@ -809,6 +817,9 @@
 	.form-group-afiliar{
 		margin-bottom: 0;
 	}
+	.wizard li.tab-step2.active:after{
+		width: 80px;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -892,5 +903,8 @@
 	}
 	.img-banner-afiliado__text--text{
 		padding: 0 2rem;
+	}
+	.wizard li.tab-step2.active:after{
+		width: 160px;
 	}
 }

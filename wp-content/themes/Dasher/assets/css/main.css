@@ -2339,36 +2339,62 @@ span.round-tab {
   align-items: center;
   font-size: 1.4rem;
   font-weight: 700;
+  transition: .3s ease-in-out;
 }
 span.round-tab i {
   color: #555555;
+}
+.wizard li.check-tab span.round-tab{
+  background: #f1ac00;
+  transition: .3s ease-in-out;
 }
 .wizard li.active span.round-tab {
   background: #004857;
   color: #fff;
   font-size: 1.5rem;
+  transition: .3s ease-in-out;
 }
+
 .wizard li.active span.round-tab i {
   color: #5bc0de;
 }
-.wizard .nav-tabs > li.active > a i {
-  color: #0db02b;
+
+.wizard .nav-tabs > li a i {
+  position: absolute;
+    top: 8px;
+    left: 7px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f3f3f3;
+    z-index: 2;
+    opacity: 0;
+    transition: .4s ease-in-out;
 }
+.wizard .nav-tabs > li.check-tab a i{
+  opacity: 1;
+  transition: .4s ease-in-out;
+}
+.wizard .nav-tabs > li.active a i{
+  opacity: 0;
+  transition: .4s ease-in-out;
+}
+
 
 .wizard .nav-tabs > li {
   width: 25%;
+  position: relative;
+  transition: .3s ease-in-out;
 }
-
-.wizard li:after {
+.wizard li.tab-step2.active:after {
   content: " ";
   position: absolute;
-  left: 46%;
-  opacity: 0;
-  margin: 0 auto;
-  bottom: 0px;
-  border: 5px solid transparent;
-  border-bottom-color: red;
-  transition: 0.1s ease-in-out;
+  transition: 1s ease-in-out;
+  width: 170px;
+  height: 4px;
+  background: #f1ac00;
+  right: 60%;
+  top: 18px;
 }
 
 .wizard .nav-tabs > li a {
@@ -2381,18 +2407,7 @@ span.round-tab i {
   position: relative;
   top: 0;
 }
-.wizard .nav-tabs > li a i {
-  position: absolute;
-  top: -15px;
-  font-style: normal;
-  font-weight: 400;
-  white-space: nowrap;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  font-weight: 700;
-  color: #000;
-}
+
 
 .wizard .nav-tabs > li a:hover {
   background: transparent;
