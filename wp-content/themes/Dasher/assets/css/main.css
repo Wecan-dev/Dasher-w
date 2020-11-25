@@ -1513,32 +1513,37 @@ button:focus{
 .content-banner-afiliado{
   position: relative;
 }
+.img-banner-afiliado__img{
+  height: 100%;
+}
 .img-banner-afiliado__img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 .img-banner-afiliado__text{
   position: absolute;
   top: 10%;
 }
 .img-banner-afiliado__text--title{
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   font-weight: 900;
   text-align: center;
   color: #fff;
-  padding: 0 4rem;
+  padding: 0 5rem;
 }
 .img-banner-afiliado__text--img{
   text-align: center;
   padding: 6rem 0;
 }
 .img-banner-afiliado__text--img img{
-  width: 60px;
+  width: 80px;
 }
 .img-banner-afiliado__text--text{
   color: #fff;
-  padding: 0 3rem;
+  padding: 0 5rem;
   text-align: center;
+  font-size: 1.2rem
 }
 .form-banner-afiliado__title{
   padding-top: 3rem;
@@ -2408,36 +2413,62 @@ span.round-tab {
   align-items: center;
   font-size: 1.4rem;
   font-weight: 700;
+  transition: .3s ease-in-out;
 }
 span.round-tab i {
   color: #555555;
+}
+.wizard li.check-tab span.round-tab{
+  background: #f1ac00;
+  transition: .3s ease-in-out;
 }
 .wizard li.active span.round-tab {
   background: #004857;
   color: #fff;
   font-size: 1.5rem;
+  transition: .3s ease-in-out;
 }
+
 .wizard li.active span.round-tab i {
   color: #5bc0de;
 }
-.wizard .nav-tabs > li.active > a i {
-  color: #0db02b;
+
+.wizard .nav-tabs > li a i {
+  position: absolute;
+    top: 8px;
+    left: 7px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f3f3f3;
+    z-index: 2;
+    opacity: 0;
+    transition: .4s ease-in-out;
 }
+.wizard .nav-tabs > li.check-tab a i{
+  opacity: 1;
+  transition: .4s ease-in-out;
+}
+.wizard .nav-tabs > li.active a i{
+  opacity: 0;
+  transition: .4s ease-in-out;
+}
+
 
 .wizard .nav-tabs > li {
   width: 25%;
+  position: relative;
+  transition: .3s ease-in-out;
 }
-
-.wizard li:after {
+.wizard li.tab-step2.active:after {
   content: " ";
   position: absolute;
-  left: 46%;
-  opacity: 0;
-  margin: 0 auto;
-  bottom: 0px;
-  border: 5px solid transparent;
-  border-bottom-color: red;
-  transition: 0.1s ease-in-out;
+  transition: 1s ease-in-out;
+  width: 170px;
+  height: 4px;
+  background: #f1ac00;
+  right: 60%;
+  top: 18px;
 }
 
 .wizard .nav-tabs > li a {
@@ -2450,18 +2481,7 @@ span.round-tab i {
   position: relative;
   top: 0;
 }
-.wizard .nav-tabs > li a i {
-  position: absolute;
-  top: -15px;
-  font-style: normal;
-  font-weight: 400;
-  white-space: nowrap;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  font-weight: 700;
-  color: #000;
-}
+
 
 .wizard .nav-tabs > li a:hover {
   background: transparent;
@@ -2475,6 +2495,8 @@ span.round-tab i {
 .wizard h3 {
   margin-top: 0;
   font-size: 18px;
+  color: #004857;
+  font-weight: 700;
 }
 .step-content {
   background: #ececec;
@@ -2615,6 +2637,12 @@ span.round-tab i {
   margin-right: 1rem;
   font-size: .8rem;
   color: #004857;
+  transition: .3s ease-in-out;
+}
+.form-afiliar__type--btn a:hover, .form-afiliar__type--btn a:focus{
+  background: #f1ac00;
+  color: #fff;
+  transition: .3s ease-in-out;
 }
 .btn-form-afiliar{
   padding: .4rem 3rem;
@@ -2622,20 +2650,48 @@ span.round-tab i {
 .button-group-pills .btn {
   border-radius: 20px;
   line-height: 1.2;
-  margin-bottom: 15px;
-  margin-left: 10px;
-  border-color: #bbbbbb;
-  background-color: #fff;
-  color: #14a4be;
+  margin:1rem 0;
+  background-color: #dfdddd;
+  color: #707070;
+  font-size: .9rem;
+  transition: .2s ease-in-out;
+  cursor: pointer;
 }
 .button-group-pills .btn.active {
-  border-color: #14a4be;
-  background-color: #14a4be;
+  border-color: #f1ac00;
+  background-color: #f1ac00;
   color: #fff;
   box-shadow: none;
 }
 .button-group-pills .btn:hover {
-  border-color: #158b9f;
-  background-color: #158b9f;
+  border-color: #f1ac00;
+  background-color: #f1ac00;
   color: #fff;
+  transition: .2s ease-in-out;
+}
+.btn-check-afiliar input[type="checkbox"]{
+  display: none;
+}
+.form-step2-afiliar__content p{
+  color: #004857;
+  padding-left: 2rem;
+}
+.content-form-step2 input{
+  background: transparent !important;
+    border: 2px solid #cb6120 !important;
+    border-radius: 20px !important;
+    padding: .3rem .8rem !important;
+    margin: .5rem 0 !important;
+    transition: .3s ease-in-out !important;
+    resize: none !important;
+    overflow: hidden;
+    width: 100%;
+    outline: none;
+}
+.content-form-step2{
+  padding-top: 1rem;
+}
+.content-form-step2__title{
+  color: #004857;
+  font-weight: 700;
 }

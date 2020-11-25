@@ -436,21 +436,26 @@
 	/*--- registro de afiliados ---*/
 
 
-	.banner-afiliado{
-		padding-top: 30px;
-	}
 	.main-banner-afiliado, .main-potencia-afilia{
 		grid-template-columns: 100%;
 	}
 	.img-banner-afiliado__text{
-		top: 12%;
+		top: 15%;
 	}
 	.img-banner-afiliado__text--title{
 		padding: 0 2rem;
+		font-size: 1.5rem
 	}
 	.img-banner-afiliado__text--img{
 		padding: 2rem 0;
 	}	
+	.img-banner-afiliado__text--img img{
+		width: 60px;
+	}
+	.img-banner-afiliado__text--text{
+		font-size: 1rem;
+		padding: 0 2rem;
+	}
 	.form-banner-afiliado__title{
 		padding: 3rem .2rem 0;
 		text-align: center;
@@ -514,8 +519,48 @@
 	.content-preguntas-afilia__title{
 		padding-bottom: 1rem;
 	}
+	.row{
+		width: 100% !important;
+		margin: 0 !important;
+	}
+	.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto{
+		padding: 0 !important;
+	}
+	.slider-cliente-afilia .slick-next{
+		right: -30px;
+	}
+	.slider-cliente-afilia .slick-prev{
+		left: -30px;
+	}
+	.wizard .tab-pane{
+		padding: 4rem 1rem 0;
+	}
+	.wizard-inner .nav-tabs{
+		padding: 0 4rem;
+	}
+	.form-step2-afiliar__content--items{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.button-group-pills .btn{
+		margin: .4rem;
+	}
+	.form-step2-afiliar__content{
+		margin-bottom: 1rem;
+	}
+	.form-group-afiliar{
+		margin-bottom: 0;
+	}
+	.wizard li.tab-step2.active:after{
+		width: 125px;
+		right: 50%;
+	}
 }
-
+@media (min-width: 0px) and (max-width: 350px){
+	.wizard li.tab-step2.active:after{
+		width: 80px;
+	}
+}
 @media (min-width: 767px) and (max-width: 991px){
 	.padding-rl{
 		padding: 0 3rem;
@@ -715,9 +760,14 @@
 	}
 	.img-banner-afiliado__text--title{
 		padding: 0 2rem;
+		font-size: 1.5rem
 	}
 	.img-banner-afiliado__text--img{
-		padding: 2rem 0;
+		padding: 4rem 0;
+	}
+	.img-banner-afiliado__text--text{
+		font-size: 1rem;
+		padding: 0 2rem;
 	}
 	.content-pasos-afilia{
 		padding: 0;
@@ -754,7 +804,22 @@
 	.content-preguntas-afilia__title{
 		padding-bottom: 1rem;
 	}
-
+	.wizard .tab-pane{
+		padding-top: 2rem;
+	}
+	.form-banner-afiliado__title p{
+		font-size: 1.2rem;
+	}
+	.button-group-pills .btn{
+		font-size: .8rem;
+		margin: .4rem 0;
+	}
+	.form-group-afiliar{
+		margin-bottom: 0;
+	}
+	.wizard li.tab-step2.active:after{
+		width: 80px;
+	}
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -831,5 +896,15 @@
 
 	.items-cliente-afilia__text{
 		height: 130px;
+	}
+	.img-banner-afiliado__text--title{
+		font-size: 2rem;
+		padding: 0 2rem;
+	}
+	.img-banner-afiliado__text--text{
+		padding: 0 2rem;
+	}
+	.wizard li.tab-step2.active:after{
+		width: 160px;
 	}
 }

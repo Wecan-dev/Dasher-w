@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<section>
+ <section>
 	<div class="banner-afiliado">
 		<div class="main-banner-afiliado">
 			<div class="content-banner-afiliado">
@@ -28,17 +28,17 @@
 						<div class="signup-step-container">
 						<div class="">
 							<div class="row d-flex justify-content-center">
-								<div class="col-md-9">
+								<div class="col-md-10">
 
 									<div class="wizard">
 										<div class="wizard-inner">
 											<div class="connecting-line"></div>
 											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active">
+												<li role="presentation" class="active tab-step1">
 													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
-														aria-expanded="true"><span class="round-tab">1</span> <i></i></a>
+														aria-expanded="true"><span class="round-tab">1</span> <i class="fa fa-check" aria-hidden="true"></i></a>
 												</li>
-												<li role="presentation" class="disabled">
+												<li role="presentation" class="disabled tab-step2">
 													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
 														aria-expanded="false"><span class="round-tab">2</span>
 														<i></i></a>
@@ -79,17 +79,21 @@
 																<p>Comesribles y Víveres</p>
 																<div class="form-step2-afiliar__content--items button-group-pills" data-toggle="buttons">
 																	<label class="btn btn-default btn-check-afiliar">
-																		<input type="checkbox">
+																		<input type="checkbox" name="options">
 																			<div>
 																				Licores
 																			</div>
 																	</label>
 																	<label class="btn btn-default btn-check-afiliar">
 																		<input type="checkbox">
+
+																		<input type="checkbox" name="options">
+
 																			<div>
 																				Comida rápida
 																			</div>
 																	</label>
+
 																	<a href="#">
 																		
 																	</a>
@@ -108,75 +112,115 @@
 																	<a href="#">
 																		Snaks
 																	</a>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Frutas o vegetales
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Lácteos
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Carnes
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Víveres
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Snaks
+																			</div>
+																	</label>
 																</div>
 															</div>
 															<div class="form-step2-afiliar__content">
 																<p>Fármacos o suplementos</p>
-																<div class="form-step2-afiliar__content--items">
-																	<a href="#">
-																		Tecnología
-																	</a>
-																	<a href="#">
-																		Ropa
-																	</a>
-																	<a href="#">
-																		Mascotas
-																	</a>
-																	<a href="#">
-																		Hogar
-																	</a>
-																	<a href="#">
-																		Moda
-																	</a>
-																	<a href="#">
-																		Juguetería
-																	</a>
-																	<a href="#">
-																		Deportes
-																	</a>
-																	<a href="#">
-																		Belleza
-																	</a>
+																<div class="form-step2-afiliar__content--items button-group-pills" data-toggle="buttons">
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Tecnología
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Ropa
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Mascotas
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Hogar
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Moda
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Juguetería
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Deportes
+																			</div>
+																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox" name="options">
+																			<div>
+																				Belleza
+																			</div>
+																	</label>
 																</div>
 														</div>
 													</div>
-													<div class="form-group start">
-
-														<select class="form-control" id="exampleFormControlSelect1">
-															<option>Selecciona tu región</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</div>
-													<div class="row mb-3">
-														<div class="col-md-6">
-
-															<input type="text" name="fname" placeholder="Ciudad" />
+													<div class="content-form-step2">
+														<div class="form-group start form-group-afiliar">
+															<div class="row">
+																<div class="col-md-8">
+																	<p class="content-form-step2__title">Sucursales</p>
+																	<input type="text" name="fname" placeholder="Numero de sucursales*" />
+																</div>
+																<div class="col-md-4">
+																	<p class="content-form-step2__title">Horariros</p>
+																	<input type="text" name="fname" placeholder="Agregar tu horario" />
+																</div>
+															</div>
 														</div>
-														<div class="col-md-6">
+														
+														<div class="form-group start">
+															<p class="content-form-step2__title">Derección del negocio</p>
+															<input type="text" name="fname"
+																placeholder="Descripción breve del negocio" />
 
-															<input type="text" name="fname" placeholder="Comuna" />
 														</div>
 													</div>
-													<div class="form-group start">
-														<input type="text" name="fname"
-															placeholder="Dirección y numero" />
-
-													</div>
-													<div class="start">
-														<label for="">Cuando necesitas las tareas?</label>
-														<input type="text" name="fname"
-															placeholder="seleciona una fecha" />
-													</div>
-
 													<ul class="list-inline text-center">
-														<!-- <li><button type="button"
-																class="default-btn prev-step">Back</button></li>
-														<li><button type="button"
-																class="default-btn next-step skip-btn">Skip</button>
-														</li> -->
+														 
 														<li class="btn-line"><button type="button"
 																class="default-btn next-step btn-afiliar btn-form-afiliar">Enviar</button></li>
 													</ul>
@@ -195,9 +239,9 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
 
-<section>
+ <section>
 	<div class="modelo-afiliado">
 		<div class="main-modelo-afiliado">
 			<div class="content-modelo-afiliado">
@@ -240,7 +284,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
 
 <section>
 	<div class="potencia-afilia">
@@ -267,9 +311,9 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
 
-<section>
+ <section>
 	<div class="pasos-afilia">
 		<div class="main-pasos-afilia padding-rl">
 			<div class="title-pasos-afilia">
@@ -327,7 +371,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
 
 <section>
 	<div class="cliente-afilia">
@@ -374,7 +418,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> 
 
 
 <section>
@@ -534,6 +578,9 @@
 		</div>
 	</div>
 </section>	
+
+<?php get_footer(); ?>	
+
 <script>
 	
 	/*-- multistep form --*/
@@ -572,7 +619,13 @@ function prevTab(elem) {
 $(".nav-tabs").on("click", "li", function () {
 	$(".nav-tabs li.active").removeClass("active");
 	$(this).addClass("active");
+	if(".tab-step2.active"){
+		$(".tab-step1").addClass("check-tab");
+	}else{
+		
+	}
 });
+
 
 
 	$('.panel-collapse').on('show.bs.collapse', function () {
@@ -583,4 +636,3 @@ $('.panel-collapse').on('hide.bs.collapse', function () {
   $(this).siblings('.panel-heading').removeClass('active');
 });
 </script>
-<?php get_footer(); ?>	
