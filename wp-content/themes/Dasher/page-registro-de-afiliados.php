@@ -85,11 +85,33 @@
 																			</div>
 																	</label>
 																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox">
+
 																		<input type="checkbox" name="options">
+
 																			<div>
 																				Comida rápida
 																			</div>
 																	</label>
+
+																	<a href="#">
+																		
+																	</a>
+																	<a href="#">
+																		Frutas o vegetales
+																	</a>
+																	<a href="#">
+																		Lácteos
+																	</a>
+																	<a href="#">
+																		Carnes
+																	</a>
+																	<a href="#">
+																		víveres
+																	</a>
+																	<a href="#">
+																		Snaks
+																	</a>
 																	<label class="btn btn-default btn-check-afiliar">
 																		<input type="checkbox" name="options">
 																			<div>
