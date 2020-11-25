@@ -2314,6 +2314,80 @@ button:focus{
 
 
 
+.banner_product .banner-tienda__item--img{
+  height: 30vh;
+}
+.banner_product .tienda-perfil__content--item {
+  justify-content: center;
+}
+.content__product{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.img__product--product{
+  width: 100%;
+  height: 400px;
+}
+.img__product--product img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.adicionales-content{
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  overflow-y: scroll;
+}
+.adicionales-content__icon{
+  color: #cb6120;
+}
+.adicionales-content .adicionales-content--items:first-child{
+  border-radius: 10px 10px 0 0;
+}
+.adicionales-content .adicionales-content--items:last-child{
+  border-radius: 0 0 10px 10px;
+}
+.adicionales-content .adicionales-content--items:nth-child(odd){
+  background: #cb6120;
+  color: #fff
+}
+.adicionales-content .adicionales-content--items:nth-child(odd) .adicionales-content__icon{
+  color: #fff;
+}
+.adicionales-content--items{
+  display: flex;
+  justify-content: space-around;
+  padding: .5rem;
+  color: #585858;
+  font-weight: 900;
+}
+.adicionales-content--items:hover{
+  color: #585858
+}
+.adicionales-content__price{
+  color: #f1ac00;
+}
+/*SCROLLBAR*/
+.adicionales-content::-webkit-scrollbar
+{
+  width: 6px;  /* for vertical scrollbars */
+  height: 2px; /* for horizontal scrollbars */
+}
+
+.adicionales-content::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.adicionales-content::-webkit-scrollbar-thumb
+{
+  background: #f1ac00;
+  border-radius: 10px;
+}
+
+
+
 /*-- multistep form --*/
 
 

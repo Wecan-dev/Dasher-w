@@ -21,6 +21,89 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header( 'shop' ); ?>
 
+
+<div class="banner-tienda banner_product">
+	<div class="main-banner-tienda">
+		<div class="main-banner-tienda__content">
+			<div class="banner-tienda__item">
+				<div class="banner-tienda__item--img">
+					<img src="<?php echo get_template_directory_uri();?>/assets/img/" alt="">
+				</div>
+				<a href="#" class="banner-tienda__item--destacar">
+					<p class="d-none d-md-block">Destacar tienda</p>
+					<div class="tienda-item__destacar--content">
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="tienda-perfil__content--item">
+			<div class="perfil-content__item--img">
+				<img src="<?php echo get_template_directory_uri();?>/assets/img/" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content__product padding-rl">
+	<div class="content__product--product">
+		<div class="title__product--product">
+			Nombre del Producto
+		</div>
+		<div class="img__product--product">
+			<img src="http://localhost/Dasher/wp-content/uploads/2020/07/Cocinillas_104501450_116245541_1024x576.jpg" alt="">
+		</div>
+	</div>
+	<div class="content__product--info">
+		<div class="text__product--info">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae non ex repellendus placeat, amet.</p>
+		</div>
+		<div class="size__product--info">
+			<p>escuge tu tamaño</p>
+		</div>
+		<div class="zona__product--info">
+			<p>Escoge tu sede más cerca</p>
+		</div>
+		<div class="adicional__product--info">
+			<p>Adicionales</p>
+			<div class="adicionales-content">
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+				<a href="#" class="adicionales-content--items">
+					<span class="adicionales-content__name">Mostaza</span>
+					<span class="adicionales-content__price">32.000</span>
+					<span class="adicionales-content__icon">+</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="content__product--resumen"></div>
+</div>
+
+
 	<?php
 		/**
 		 * woocommerce_before_main_content hook.

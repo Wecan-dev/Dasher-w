@@ -84,8 +84,14 @@
 																				Licores
 																			</div>
 																	</label>
+																	<label class="btn btn-default btn-check-afiliar">
+																		<input type="checkbox">
+																			<div>
+																				Comida rápida
+																			</div>
+																	</label>
 																	<a href="#">
-																		Comida rápida
+																		
 																	</a>
 																	<a href="#">
 																		Frutas o vegetales
