@@ -59,10 +59,40 @@ get_header( 'shop' ); ?>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae non ex repellendus placeat, amet.</p>
 		</div>
 		<div class="size__product--info">
-			<p>escuge tu tamaño</p>
+			<p>Escoge tu tamaño</p>
+			<div class="size__product--info-check">
+				<label class="btn btn-check-product">
+					<input type="radio" checked="true" name="options">
+						<div>
+							Pequeño
+						</div>
+				</label>
+				<label class="btn btn-check-product">
+					<input type="radio" name="options">
+						<div>
+							Mediano
+						</div>
+				</label>
+				<label class="btn btn-check-product">
+					<input type="radio" name="options">
+						<div>
+							Grande
+						</div>
+				</label>
+			</div>
 		</div>
 		<div class="zona__product--info">
 			<p>Escoge tu sede más cerca</p>
+			<div class="content-item__info--ubica">
+				<div class="item-info__info--content active">
+					<img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
+					<p>Ubicación del local 1, calle 2</p>
+				</div>
+				<div class="item-info__info--content">
+					<img src="<?php echo get_template_directory_uri();?>/assets/img/location.svg" alt="">
+					<p>Ubicación del local 2, calle 1</p>
+				</div>
+			</div>
 		</div>
 		<div class="adicional__product--info">
 			<p>Adicionales</p>
@@ -99,8 +129,61 @@ get_header( 'shop' ); ?>
 				</a>
 			</div>
 		</div>
+		<div class="adicional__product--extra">
+			<p>Indicaciones extras</p>
+			<input type="text" placeholder="Comentanos algun detalle extra">
+		</div>
 	</div>
-	<div class="content__product--resumen"></div>
+	<div class="content__product--resumen">
+		<div class="tabla-product__resumen">
+			<div class="tabla-resumen__title">
+				<div class="tabla-resumen__title--resu">
+					<p>Resumen</p>
+				</div>
+				<div class="tabla-resumen__title--price">
+					<p>Precio</p>
+				</div>
+			</div>
+			<div class="tabla-resumen__content">
+				<div class="tabla-resumen__content--item">
+					<div class="tabla-resumen__item--text">
+						<p>Nombre de articulo - adicional mas pus</p>
+					</div>
+					<div class="tabla-resumen__item--price">
+						bsf <br>
+						10.000
+					</div>
+				</div>
+				<div class="tabla-resumen__content--item">
+					<div class="tabla-resumen__item--text">
+						<p>Nombre de articulo - adicional</p>
+					</div>
+					<div class="tabla-resumen__item--price">
+						bsf <br>
+						10.000
+					</div>
+				</div>
+				<div class="tabla-resumen__content--item">
+					<div class="tabla-resumen__item--text">
+						<p>Nombre de articulo - adicional</p>
+					</div>
+					<div class="tabla-resumen__item--price">
+						bsf <br>
+						10.000
+					</div>
+				</div>
+			</div>
+			<div class="tabla-resumen__total">
+				<p>Total</p>
+				<span> bsf <br> 30.000</span>
+			</div>
+		</div>
+		<div class="btn-quantity">
+			<div class="btn-quantity__mas">+</div>
+			<div class="btn-quantity__number">1</div>
+			<div class="btn-quantity__menos">-</div>
+		</div>
+	</div>
 </div>
 
 

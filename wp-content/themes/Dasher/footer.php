@@ -2,11 +2,11 @@
 	<div class="footer footer-envios">
 		<div class="main-footer padding-rl">
 			<div class="main-footer__text">
-				<p>¿Quisieras tener tu tienda favorita en Dasher?</p>
+				<p>¿Quisieras tener tu tienda favorita o un nuevo servicio en Dasher?</p>
 			</div>
 			<div class="main-footer__afiliar">
 				<div class="main-footer__afiliar--input">
-				    <input class="" type="email" placeholder="Email">
+				    <input class="" type="text" placeholder="Algún ejemplo">
 				    <button class="btn btn-afiliar" >Sugiérela aquí</button>
 				</div>			
 				<div class="main-footer__afiliar--link">

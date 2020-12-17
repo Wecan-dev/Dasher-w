@@ -227,3 +227,84 @@ $('.main-team__slider').slick({
   ]
 });
 
+
+
+$('.main-banner-blog__content').slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  dots: false,
+  arrows: false,
+  autoplay:false,
+  centerMode: true,
+  centerPadding: '400px',
+  responsive: [{
+    breakpoint: 1200,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: false
+    }
+  },
+  {
+    breakpoint: 900,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows:false,
+    }
+  },
+  {
+    breakpoint: 320,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: false,
+       autoplay:false ,
+      autoplaySpeed: 1000
+    }
+  }
+  ]
+});
+
+
+$('.category-blog__items').slick({
+  infinite: true,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  dots: false,
+  arrows: false,
+  autoplay:false,
+  centerMode: true,
+  centerPadding: '20px',
+  responsive: [{
+    breakpoint: 1200,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: false
+    }
+  },
+  {
+    breakpoint: 900,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows:false,
+      centerMode: false,
+    }
+  },
+  {
+    breakpoint: 320,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: false,
+       autoplay:false ,
+      autoplaySpeed: 1000
+    }
+  }
+  ]
+});
