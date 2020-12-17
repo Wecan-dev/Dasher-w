@@ -1,8 +1,0 @@
-2020-08-06T15:51:40+00:00 CRITICAL Uncaught RuntimeException: Error al guardar la acción: Duplicate entry '0' for key 'PRIMARY' in /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:75
-Stack trace:
-#0 /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/action-scheduler/classes/ActionScheduler_ActionFactory.php(177): ActionScheduler_DBStore->save_action(Object(ActionScheduler_Action))
-#1 /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/action-scheduler/classes/ActionScheduler_ActionFactory.php(105): ActionScheduler_ActionFactory->store(Object(ActionScheduler_Action))
-#2 /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/action-scheduler/functions.php(54): ActionScheduler_ActionFactory->recurring('woocommerce_cle...', Array, false, 86400, '')
-#3 /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/woocommerce-blocks/src/Installer.php(129): as_schedule_recurring_action(false, 86400, 'woocommerce_cle...')
-#4 /var/www/html/Dasher/wp-co en /var/www/html/Dasher/wp-content/plugins/woocommerce/packages/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php en la línea 75
-
