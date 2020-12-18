@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 /**
  * Class FrmDeprecated
@@ -161,6 +164,27 @@ class FrmDeprecated {
 		_deprecated_function( __FUNCTION__, '3.06', 'FrmFormApi::get_pro_updater' );
 		$api = new FrmFormApi();
 		return $api->get_pro_updater();
+	}
+
+	/**
+	 * @since 3.04.02
+	 * @deprecated 4.09.01
+	 */
+	public static function ajax_install_addon() {
+		_deprecated_function( __FUNCTION__, '4.09.01', 'FrmProAddonsController::' . __METHOD__ );
+		echo json_encode( __( 'Your plugin has been not been installed. Please update Formidable Pro to get downloads.', 'formidable' ) );
+		wp_die();
+	}
+
+	/**
+	 * @since 4.06.02
+	 * @deprecated 4.09.01
+	 * @codeCoverageIgnore
+	 */
+	public static function ajax_multiple_addons() {
+		_deprecated_function( __FUNCTION__, '4.09.01', 'FrmProAddonsController::' . __METHOD__ );
+		echo json_encode( __( 'Your plugin has been not been installed. Please update Formidable Pro to get downloads.', 'formidable' ) );
+		wp_die();
 	}
 
 	/**

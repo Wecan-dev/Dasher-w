@@ -25,9 +25,11 @@ define( 'DB_NAME', 'db_dasher' );
 
 /** MySQL database username */
 define( 'DB_USER', 'adminwecan' );
+//define( 'DB_USER', 'admin' );
 
 /** MySQL database password */
 define( 'DB_PASSWORD', '_*8gTYWqM9FHU' );
+//define( 'DB_PASSWORD', '123456' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );

@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
+
 if ( empty( $values ) || ! isset( $values['fields'] ) || empty( $values['fields'] ) ) { ?>
 <div class="frm_forms <?php echo esc_attr( FrmFormsHelper::get_form_style_class( $form ) ); ?>" id="frm_form_<?php echo esc_attr( $form->id ); ?>_container">
 	<div class="frm_error_style">
@@ -73,11 +77,24 @@ if ( isset( $frm_vars['collapse_div'] ) && $frm_vars['collapse_div'] ) {
 echo FrmFormsHelper::replace_shortcodes( $values['after_html'], $form ); // WPCS: XSS ok.
 
 if ( FrmForm::show_submit( $form ) ) {
-
 	$copy_values = $values;
 	unset( $copy_values['fields'] );
 
-	FrmFormsHelper::get_custom_submit( $copy_values['submit_html'], $form, $submit, $form_action, $copy_values );
+	if ( isset( $form->options['form_class'] ) && strpos( $form->options['form_class'], 'frm_inline_success' ) !== false ) {
+		ob_start();
+		ob_implicit_flush( false );
+		FrmFormsHelper::get_custom_submit( $copy_values['submit_html'], $form, $submit, $form_action, $copy_values );
+		$clip = ob_get_clean();
+
+		ob_start();
+		ob_implicit_flush( false );
+		include FrmAppHelper::plugin_path() . '/classes/views/frm-entries/errors.php';
+		$message = ob_get_clean();
+
+		echo preg_replace( '~\<\/div\>(?!.*\<\/div\>)~', $message . '</div>', $clip ); // WPCS: XSS ok.
+	} else {
+		FrmFormsHelper::get_custom_submit( $copy_values['submit_html'], $form, $submit, $form_action, $copy_values );
+	}
 }
 ?>
 <div class="frm_verify" aria-hidden="true">

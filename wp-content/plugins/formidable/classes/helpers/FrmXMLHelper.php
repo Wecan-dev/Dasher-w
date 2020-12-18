@@ -59,6 +59,10 @@ class FrmXMLHelper {
 	 * @return array The number of items imported
 	 */
 	public static function import_xml_now( $xml ) {
+		if ( ! defined( 'WP_IMPORTING' ) ) {
+			define( 'WP_IMPORTING', true );
+		}
+
 		$imported = self::pre_import_data();
 
 		foreach ( array( 'term', 'form', 'view' ) as $item_type ) {
@@ -70,7 +74,16 @@ class FrmXMLHelper {
 			}
 		}
 
-		return apply_filters( 'frm_importing_xml', $imported, $xml );
+		$imported = apply_filters( 'frm_importing_xml', $imported, $xml );
+
+		if ( ! isset( $imported['form_status'] ) || empty( $imported['form_status'] ) ) {
+			// Check for an error message in the XML.
+			if ( isset( $xml->Code ) && isset( $xml->Message ) ) { // phpcs:ignore WordPress.NamingConventions
+				$imported['error'] = reset( $xml->Message ); // phpcs:ignore WordPress.NamingConventions
+			}
+		}
+
+		return $imported;
 	}
 
 	/**
@@ -173,8 +186,11 @@ class FrmXMLHelper {
 
 					// Keep track of whether this specific form was updated or not.
 					$imported['form_status'][ $form_id ] = 'imported';
-					self::track_imported_child_forms( (int) $form_id, $form['parent_form_id'], $child_forms );
 				}
+			}
+
+			if ( $form_id ) {
+				self::track_imported_child_forms( (int) $form_id, $form['parent_form_id'], $child_forms );
 			}
 
 			self::import_xml_fields( $item->field, $form_id, $this_form, $form_fields, $imported );
@@ -327,12 +343,11 @@ class FrmXMLHelper {
 	 */
 	private static function maybe_update_child_form_parent_id( $imported_forms, $child_forms ) {
 		foreach ( $child_forms as $child_form_id => $old_parent_form_id ) {
-
-			if ( isset( $imported_forms[ $old_parent_form_id ] ) && $imported_forms[ $old_parent_form_id ] != $old_parent_form_id ) {
+			if ( isset( $imported_forms[ $old_parent_form_id ] ) && (int) $imported_forms[ $old_parent_form_id ] !== (int) $old_parent_form_id ) {
 				// Update all children with this old parent_form_id
 				$new_parent_form_id = (int) $imported_forms[ $old_parent_form_id ];
-
 				FrmForm::update( $child_form_id, array( 'parent_form_id' => $new_parent_form_id ) );
+				do_action( 'frm_update_child_form_parent_id', $child_form_id, $new_parent_form_id );
 			}
 		}
 	}
@@ -345,7 +360,8 @@ class FrmXMLHelper {
 	 * TODO: Cut down on params
 	 */
 	private static function import_xml_fields( $xml_fields, $form_id, $this_form, &$form_fields, &$imported ) {
-		$in_section = 0;
+		$in_section                = 0;
+		$keys_by_original_field_id = array();
 
 		foreach ( $xml_fields as $field ) {
 			$f = self::fill_field( $field, $form_id );
@@ -370,6 +386,8 @@ class FrmXMLHelper {
 						unset( $form_fields[ $f['field_key'] ] );
 					}
 				} elseif ( isset( $form_fields[ $f['field_key'] ] ) ) {
+					$keys_by_original_field_id[ $f['id'] ] = $f['field_key'];
+
 					// check for field to edit by field key
 					unset( $f['id'] );
 
@@ -386,6 +404,10 @@ class FrmXMLHelper {
 
 				self::create_imported_field( $f, $imported );
 			}
+		}
+
+		if ( $keys_by_original_field_id ) {
+			self::maybe_update_field_ids( $form_id, $keys_by_original_field_id );
 		}
 	}
 
@@ -443,10 +465,9 @@ class FrmXMLHelper {
 	}
 
 	/**
-	 * Update the current in_section value
+	 * Update the current in_section value at the beginning of the field loop
 	 *
 	 * @since 2.0.25
-	 *
 	 * @param int $in_section
 	 * @param array $f
 	 */
@@ -599,6 +620,46 @@ class FrmXMLHelper {
 			$imported['imported']['fields'] ++;
 			do_action( 'frm_after_field_is_imported', $f, $new_id );
 		}
+	}
+
+	/**
+	 * Fix field ids for fields that already exist prior to import.
+	 *
+	 * @since 4.07
+	 * @param int $form_id
+	 * @param array $keys_by_original_field_id
+	 */
+	protected static function maybe_update_field_ids( $form_id, $keys_by_original_field_id ) {
+		global $frm_duplicate_ids;
+
+		$former_duplicate_ids = $frm_duplicate_ids;
+		$where                = array(
+			array(
+				'or'                => 1,
+				'fi.form_id'        => $form_id,
+				'fr.parent_form_id' => $form_id,
+			),
+		);
+		$fields               = FrmField::getAll( $where, 'field_order' );
+		$field_id_by_key      = wp_list_pluck( $fields, 'id', 'field_key' );
+
+		foreach ( $fields as $field ) {
+			$before            = (array) clone $field;
+			$field             = (array) $field;
+			$frm_duplicate_ids = $keys_by_original_field_id;
+			$after             = FrmFieldsHelper::switch_field_ids( $field );
+
+			if ( $before['field_options'] !== $after['field_options'] ) {
+				$frm_duplicate_ids = $field_id_by_key;
+				$after             = FrmFieldsHelper::switch_field_ids( $after );
+
+				if ( $before['field_options'] !== $after['field_options'] ) {
+					FrmField::update( $field['id'], array( 'field_options' => $after['field_options'] ) );
+				}
+			}
+		}
+
+		$frm_duplicate_ids = $former_duplicate_ids;
 	}
 
 	/**

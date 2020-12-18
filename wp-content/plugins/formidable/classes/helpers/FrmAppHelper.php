@@ -11,7 +11,7 @@ class FrmAppHelper {
 	/**
 	 * @since 2.0
 	 */
-	public static $plug_version = '4.06';
+	public static $plug_version = '4.09.02';
 
 	/**
 	 * @since 1.07.02
@@ -82,6 +82,7 @@ class FrmAppHelper {
 		if ( empty( $page ) ) {
 			$page = 'https://formidableforms.com/lite-upgrade/';
 		} else {
+			$page = str_replace( 'https://formidableforms.com/', '', $page );
 			$page = 'https://formidableforms.com/' . $page;
 		}
 
@@ -199,6 +200,14 @@ class FrmAppHelper {
 
 	public static function pro_is_installed() {
 		return apply_filters( 'frm_pro_installed', false );
+	}
+
+	/**
+	 * @since 4.06.02
+	 */
+	public static function pro_is_connected() {
+		global $frm_vars;
+		return self::pro_is_installed() && $frm_vars['pro_is_authorized'];
 	}
 
 	/**
@@ -732,6 +741,10 @@ class FrmAppHelper {
 				'width'  => true,
 				'x'      => true,
 				'y'      => true,
+				'rx'     => true,
+				'stroke' => true,
+				'stroke-opacity' => true,
+				'stroke-width'   => true,
 			),
 			'section'    => $allow_class,
 			'span'       => array(
@@ -755,6 +768,7 @@ class FrmAppHelper {
 				'width'   => true,
 				'height'  => true,
 				'style'   => true,
+				'fill'    => true,
 			),
 			'use'        => array(
 				'href'   => true,
@@ -883,12 +897,23 @@ class FrmAppHelper {
 
 	/**
 	 * @since 3.0
+	 * @param array $atts
 	 */
 	public static function add_new_item_link( $atts ) {
-		if ( isset( $atts['new_link'] ) && ! empty( $atts['new_link'] ) ) { ?>
+		if ( ! empty( $atts['new_link'] ) ) {
+			?>
 			<a href="<?php echo esc_url( $atts['new_link'] ); ?>" class="button button-primary frm-button-primary frm-with-plus">
 				<?php self::icon_by_class( 'frmfont frm_plus_icon frm_svg15' ); ?>
 				<?php esc_html_e( 'Add New', 'formidable' ); ?>
+			</a>
+			<?php
+		} elseif ( ! empty( $atts['trigger_new_form_modal'] ) ) {
+			?>
+			<a href="#" class="button button-primary frm-button-primary frm-with-plus frm-trigger-new-form-modal">
+				<?php
+				self::icon_by_class( 'frmfont frm_plus_icon frm_svg15' );
+				esc_html_e( 'Add New', 'formidable' );
+				?>
 			</a>
 			<?php
 		} elseif ( isset( $atts['link_hook'] ) ) {
@@ -1128,6 +1153,11 @@ class FrmAppHelper {
 		return $link;
 	}
 
+	/**
+	 * @param string        $field_name
+	 * @param string|array  $capability
+	 * @param string        $multiple 'single' and 'multiple'
+	 */
 	public static function wp_roles_dropdown( $field_name, $capability, $multiple = 'single' ) {
 		?>
 		<select name="<?php echo esc_attr( $field_name ); ?>" id="<?php echo esc_attr( $field_name ); ?>"
@@ -1138,6 +1168,22 @@ class FrmAppHelper {
 		<?php
 	}
 
+	/**
+	 * @since 4.07
+	 * @param array|string $selected
+	 * @param string $current
+	 */
+	private static function selected( $selected, $current ) {
+		if ( is_callable( 'FrmProAppHelper::selected' ) ) {
+			FrmProAppHelper::selected( $selected, $current );
+		} else {
+			selected( in_array( $current, (array) $selected, true ) );
+		}
+	}
+
+	/**
+	 * @param string|array $capability
+	 */
 	public static function roles_options( $capability ) {
 		global $frm_vars;
 		if ( isset( $frm_vars['editable_roles'] ) ) {
@@ -1150,7 +1196,7 @@ class FrmAppHelper {
 		foreach ( $editable_roles as $role => $details ) {
 			$name = translate_user_role( $details['name'] );
 			?>
-			<option value="<?php echo esc_attr( $role ); ?>" <?php echo in_array( $role, (array) $capability ) ? ' selected="selected"' : ''; ?>><?php echo esc_attr( $name ); ?> </option>
+			<option value="<?php echo esc_attr( $role ); ?>" <?php self::selected( $capability, $role ); ?>><?php echo esc_attr( $name ); ?> </option>
 			<?php
 			unset( $role, $details );
 		}
@@ -1178,14 +1224,58 @@ class FrmAppHelper {
 		return $cap;
 	}
 
-	public static function user_has_permission( $needed_role ) {
-		if ( $needed_role == '-1' ) {
+	/**
+	 * Call the WordPress current_user_can but also validate empty strings as true for any logged in user
+	 *
+	 * @since 4.06.03
+	 *
+	 * @param string $role
+	 *
+	 * @return bool
+	 */
+	public static function current_user_can( $role ) {
+		if ( $role === '-1' ) {
 			return false;
 		}
 
-		// $needed_role will be equal to blank if "Logged-in users" is selected.
-		if ( ( $needed_role == '' && is_user_logged_in() ) || current_user_can( $needed_role ) ) {
-			return true;
+		if ( $role === 'loggedout' ) {
+			return ! is_user_logged_in();
+		}
+
+		if ( $role === 'loggedin' || ! $role ) {
+			return is_user_logged_in();
+		}
+
+		if ( $role == 1 ) {
+			$role = 'administrator';
+		}
+
+		if ( ! is_user_logged_in() ) {
+			return false;
+		}
+
+		return current_user_can( $role );
+	}
+
+	/**
+	 * @param string|array $needed_role
+	 * @return bool
+	 */
+	public static function user_has_permission( $needed_role ) {
+		if ( is_array( $needed_role ) ) {
+			foreach ( $needed_role as $role ) {
+				if ( self::current_user_can( $role ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		$can = self::current_user_can( $needed_role );
+
+		if ( $can || in_array( $needed_role, array( '-1', 'loggedout' ) ) ) {
+			return $can;
 		}
 
 		$roles = array( 'administrator', 'editor', 'author', 'contributor', 'subscriber' );
@@ -1446,7 +1536,7 @@ class FrmAppHelper {
 			return false;
 		}
 
-		extract( $atts );
+		extract( $atts ); // phpcs:ignore WordPress.PHP.DontExtract
 		ob_start();
 		include( $filename );
 		$contents = ob_get_contents();
@@ -2424,7 +2514,7 @@ class FrmAppHelper {
 			if ( empty( $expired ) ) {
 				echo ' Please <a href="' . esc_url( admin_url( 'plugins.php?s=formidable%20forms%20pro' ) ) . '">update now</a>.';
 			} else {
-				echo '<br/>Please <a href="https://formidableforms.com/account/downloads/?utm_source=WordPress&utm_medium=outdated">renew now</a> to get the latest Pro version or <a href="https://downloads.wordpress.org/plugin/formidable.<?php echo esc_attr( $pro_version ); ?>.zip">download the previous Lite version</a> to revert.';
+				echo '<br/>Please <a href="https://formidableforms.com/account/downloads/?utm_source=WordPress&utm_medium=outdated">renew now</a> to get the latest version.';
 			}
 			?>
 		</div>
@@ -2527,7 +2617,6 @@ class FrmAppHelper {
 			'sv'     => __( 'Swedish', 'formidable' ),
 			'ta'     => __( 'Tamil', 'formidable' ),
 			'th'     => __( 'Thai', 'formidable' ),
-			'tu'     => __( 'Turkish', 'formidable' ),
 			'tr'     => __( 'Turkish', 'formidable' ),
 			'uk'     => __( 'Ukranian', 'formidable' ),
 			'vi'     => __( 'Vietnamese', 'formidable' ),
@@ -2535,16 +2624,62 @@ class FrmAppHelper {
 
 		if ( $type === 'captcha' ) {
 			// remove the languages unavailable for the captcha
-			$unset = array( 'af', 'sq', 'hy', 'az', 'eu', 'bs', 'zh-HK', 'eo', 'et', 'fo', 'fr-CH', 'he', 'is', 'ms', 'sr-SR', 'ta', 'tu' );
+			$unset = array( 'af', 'sq', 'hy', 'az', 'eu', 'bs', 'zh-HK', 'eo', 'et', 'fo', 'fr-CH', 'he', 'is', 'ms', 'sr-SR', 'ta' );
 		} else {
 			// remove the languages unavailable for the datepicker
-			$unset = array( 'fil', 'fr-CA', 'de-AT', 'de-CH', 'iw', 'hi', 'pt', 'pt-PT', 'es-419', 'tr' );
+			$unset = array( 'fil', 'fr-CA', 'de-AT', 'de-CH', 'iw', 'hi', 'pt', 'pt-PT', 'es-419' );
 		}
 
 		$locales = array_diff_key( $locales, array_flip( $unset ) );
 		$locales = apply_filters( 'frm_locales', $locales );
 
 		return $locales;
+	}
+
+	/**
+	 * Output HTML containing reference text for accessibility
+	 */
+	public static function multiselect_accessibility() {
+		include_once self::plugin_path() . '/classes/views/frm-forms/multiselect-accessibility.php';
+	}
+
+	/**
+	 * @since 4.07
+	 * @deprecated 4.09.01
+	 */
+	public static function renewal_message() {
+		if ( is_callable( 'FrmProAddonsController::renewal_message' ) ) {
+			FrmProAddonsController::renewal_message();
+			return;
+		}
+
+		if ( ! FrmAddonsController::is_license_expired() ) {
+			return;
+		}
+
+		?>
+		<div class="frm_error_style" style="text-align:left">
+			<?php self::icon_by_class( 'frmfont frm_alert_icon' ); ?>
+			&nbsp;
+			<?php esc_html_e( 'Your account has expired', 'formidable' ); ?>
+			<div style="float:right">
+				<a href="<?php echo esc_url( self::admin_upgrade_link( 'form-expired', 'account/downloads/' ) ); ?>">
+					<?php esc_html_e( 'Renew Now', 'formidable' ); ?>
+				</a>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * @since 4.08
+	 * @deprecated 4.09.01
+	 */
+	public static function expiring_message() {
+		_deprecated_function( __METHOD__, '4.09.01', 'FrmProAddonsController::expiring_message' );
+		if ( is_callable( 'FrmProAddonsController::expiring_message' ) ) {
+			FrmProAddonsController::expiring_message();
+		}
 	}
 
 	/**

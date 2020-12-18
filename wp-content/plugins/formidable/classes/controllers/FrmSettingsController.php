@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmSettingsController {
 
@@ -63,6 +66,15 @@ class FrmSettingsController {
 					'upgrade' => __( 'White labeling options', 'formidable' ),
 				),
 			),
+			'inbox' => array(
+				'name'       => __( 'Inbox', 'formidable' ),
+				'icon'       => 'frm_icon_font frm_email_icon',
+				'html_class' => 'frm_show_upgrade frm_noallow',
+				'data'       => array(
+					'medium'  => 'inbox-settings',
+					'upgrade' => __( 'Inbox settings', 'formidable' ),
+				),
+			),
 		);
 
 		if ( apply_filters( 'frm_include_addon_page', false ) ) {
@@ -70,7 +82,7 @@ class FrmSettingsController {
 			$show_licenses    = false;
 			$installed_addons = apply_filters( 'frm_installed_addons', array() );
 			foreach ( $installed_addons as $installed_addon ) {
-				if ( ! $installed_addon->is_parent_licence && $installed_addon->plugin_name != 'Formidable Pro' ) {
+				if ( ! $installed_addon->is_parent_licence && $installed_addon->plugin_name != 'Formidable Pro' && $installed_addon->needs_license ) {
 					$show_licenses = true;
 					break;
 				}

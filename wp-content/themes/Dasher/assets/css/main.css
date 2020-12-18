@@ -2822,6 +2822,197 @@ input:focus{
 }
 
 
+/*-- Interna Blog --*/
+
+.main-blogInterna{
+  height: 100vh;
+  position: relative;
+}
+.main-blogInterna img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.main-blogInterna::before{
+  position: absolute;
+  left: 0;
+  content: '';
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(0,212,255,0) 100%);
+  top: 0;
+  z-index: 1;
+  width: 50%;
+  height: 100%;
+}
+.main-blogInterna::after{
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 0;
+  background: rgb(255,255,255);
+  background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(0,212,255,0) 100%);
+  width: 50%;
+  height: 100%;
+}
+.content-blogInterna__tags{
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 4rem;
+}
+.content-blogInterna__tags p{
+  border-radius: 15px;
+  border: 1px solid #17596bcf;
+  padding: .1rem 1rem;
+  margin: 0 1rem;
+  color: #585858;
+}
+.content-blogInterna__title{
+  color: #124857;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+.content-blogInterna__content{
+  color: #585858;
+  text-align: center;
+}
+.content-blogInterna__posted{
+  padding: 2rem 0 ;
+}
+.content-blogInterna__share{
+  display: flex;
+  justify-content: center;
+}
+.content-blogInterna__share a{
+  background: #cb6120;
+  padding: .1rem 1rem .1rem .15rem;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  margin: 0 .2rem;
+}
+.content-blogInterna__share a i{
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  color: #cb6120;
+  border-radius: 50%;
+  padding: .1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-blogInterna__form--content{
+  box-shadow: 0px 2px 5px 0px rgba(177, 177, 177, 0.5);
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+}
+.content-blogInterna__form--title{
+  color: #cb6120;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: start;
+  padding-bottom: .5rem;
+}
+.content-blogInterna__inputs input, .content-blogInterna__inputs textarea{
+  width: 100% !important;
+  box-shadow: 0px 2px 5px 0px rgba(177, 177, 177, 0.5);
+  margin: .5rem 0;
+  border: none;
+  border-radius: 20px;
+  resize: none;
+  padding: .5rem 1.5rem;
+  outline: none;
+}
+.content-blogInterna__inputs textarea{
+  padding: 1.5rem;
+}
+.content-blogInterna__inputs button{
+  background: #b73001 !important;
+  border-color: #b73001 !important;
+  padding: .1rem 4rem !important;
+  color: #fff !important;
+  font-size: 1.2rem !important;
+}
+.content-blogInterna__inputs .frm_submit{
+  text-align: start;
+}
+.interna-blog__recent{
+  padding: 3rem 0;
+}
+.interna-blog__recent .category-blog__recent--title{
+  font-size: 1.5rem;
+}
+.interna-blog__recent--content .blog-post__items{
+  margin: 0;
+  width: 30%;
+}
+.follow-blogInterna{
+  padding: 2rem 0 4rem;
+  display: flex;
+}
+.follow-blogInterna__cat{
+  width: 65%;
+  padding-right: 2rem;
+}
+.follow-blogInterna__cat--item{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  box-shadow: 0px 8px 10px 0px rgba(177, 177, 177, 0.5);
+  padding: 1rem 1.5rem 2.5rem;
+  border-radius: 15px;
+}
+.follow-blogInterna__cat--item a{
+  width: 46%;
+  padding: .4rem 0;
+  color: #585858;
+  border-bottom: 1px solid #ccc;
+  transition: .3s ease-in-out;
+}
+.follow-blogInterna__cat--item a:hover{
+  transition: .2s ease-in-out;
+  color: #b73001;
+}
+.follow-blogInterna__cat--title{
+  color: #b73001;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding-bottom: .5rem;
+}
+.follow-blogInterna__rrss{
+  width: 35%;
+}
+.follow-blogInterna__rrss--item{
+  box-shadow: 0px 8px 10px 0px rgba(177, 177, 177, 0.5);
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+}
+.follow-blogInterna__rrss--item a{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #525252;
+  border-radius: 50%;
+  transition: .3s ease-in-out;
+}
+.follow-blogInterna__rrss--item a:hover{
+  transition: .2s ease-in-out;
+  background: #b73001;
+}
+.follow-blogInterna__rrss--item a i{
+  color: #fff;
+  font-size: 1.3rem;
+}
+.content-blogInterna__share a i{
+  margin-right: .5rem;
+}
 
 
 

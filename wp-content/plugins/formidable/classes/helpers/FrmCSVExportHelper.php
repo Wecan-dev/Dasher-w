@@ -1,19 +1,23 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmCSVExportHelper {
 
-	protected static $separator = ', ';
+	protected static $separator        = ', ';
 	protected static $column_separator = ',';
-	protected static $line_break = 'return';
-	protected static $charset = 'UTF-8';
-	protected static $to_encoding = 'UTF-8';
-	protected static $wp_date_format = 'Y-m-d H:i:s';
-	protected static $comment_count = 0;
-	protected static $form_id = 0;
-	protected static $headings = array();
-	protected static $fields = array();
+	protected static $line_break       = 'return';
+	protected static $charset          = 'UTF-8';
+	protected static $to_encoding      = 'UTF-8';
+	protected static $wp_date_format   = 'Y-m-d H:i:s';
+	protected static $comment_count    = 0;
+	protected static $form_id          = 0;
+	protected static $headings         = array();
+	protected static $fields           = array();
 	protected static $entry;
 	protected static $has_parent_id;
+	protected static $fields_by_repeater_id;
 
 	public static function csv_format_options() {
 		$formats = array( 'UTF-8', 'ISO-8859-1', 'windows-1256', 'windows-1251', 'macintosh' );
@@ -116,24 +120,88 @@ class FrmCSVExportHelper {
 		self::print_csv_row( $headings );
 	}
 
+	private static function field_headings( $col ) {
+		$field_headings  = array();
+		$separate_values = array( 'user_id', 'file', 'data', 'date' );
+		if ( isset( $col->field_options['separate_value'] ) && $col->field_options['separate_value'] && ! in_array( $col->type, $separate_values, true ) ) {
+			$field_headings[ $col->id . '_label' ] = strip_tags( $col->name . ' ' . __( '(label)', 'formidable' ) );
+		}
+
+		$field_headings[ $col->id ] = strip_tags( $col->name );
+		$field_headings             = apply_filters(
+			'frm_csv_field_columns',
+			$field_headings,
+			array(
+				'field' => $col,
+			)
+		);
+
+		return $field_headings;
+	}
+
 	private static function csv_headings( &$headings ) {
+		$fields_by_repeater_id = array();
+		$repeater_ids          = array();
+
 		foreach ( self::$fields as $col ) {
-			$field_headings = array();
-			$separate_values = array( 'user_id', 'file', 'data', 'date' );
-			if ( isset( $col->field_options['separate_value'] ) && $col->field_options['separate_value'] && ! in_array( $col->type, $separate_values, true ) ) {
-				$field_headings[ $col->id . '_label' ] = strip_tags( $col->name . ' ' . __( '(label)', 'formidable' ) );
+			if ( self::is_the_child_of_a_repeater( $col ) ) {
+				$repeater_id                           = $col->field_options['in_section'];
+				$headings[ 'repeater' . $repeater_id ] = array(); // set a placeholder to maintain order for repeater fields
+
+				if ( ! isset( $fields_by_repeater_id[ $repeater_id ] ) ) {
+					$fields_by_repeater_id[ $repeater_id ] = array();
+					$repeater_ids[]                        = $repeater_id;
+				}
+
+				$fields_by_repeater_id[ $repeater_id ][] = $col;
+			} else {
+				$headings += self::field_headings( $col );
+			}
+		}
+		unset( $repeater_id, $col );
+
+		if ( $repeater_ids ) {
+			$where         = array( 'field_id' => $repeater_ids );
+			$repeater_meta = FrmDb::get_results( 'frm_item_metas', $where, 'field_id, meta_value' );
+			$max           = array_fill_keys( $repeater_ids, 0 );
+
+			foreach ( $repeater_meta as $row ) {
+				$start  = strpos( $row->meta_value, 'a:' ) + 2;
+				$end    = strpos( $row->meta_value, ':{' );
+				$length = substr( $row->meta_value, $start, $end - $start );
+
+				if ( $length > $max[ $row->field_id ] ) {
+					$max[ $row->field_id ] = $length;
+				}
+			}
+			unset( $start, $end, $length, $row, $repeater_meta, $where );
+
+			$flat = array();
+			foreach ( $headings as $key => $heading ) {
+				if ( is_array( $heading ) ) {
+					$repeater_id = str_replace( 'repeater', '', $key );
+
+					$repeater_headings = array();
+					foreach ( $fields_by_repeater_id[ $repeater_id ] as $col ) {
+						$repeater_headings += self::field_headings( $col );
+					}
+
+					for ( $i = 0; $i < $max[ $repeater_id ]; $i ++ ) {
+						foreach ( $repeater_headings as $repeater_key => $repeater_name ) {
+							$flat[ $repeater_key . '[' . $i . ']' ] = $repeater_name;
+						}
+					}
+				} else {
+					$flat[ $key ] = $heading;
+				}
 			}
 
-			$field_headings[ $col->id ] = strip_tags( $col->name );
-			$field_headings             = apply_filters(
-				'frm_csv_field_columns',
-				$field_headings,
-				array(
-					'field' => $col,
-				)
-			);
+			self::$fields_by_repeater_id = $fields_by_repeater_id;
 
-			$headings += $field_headings;
+			unset( $key, $heading, $max, $repeater_headings, $repeater_id, $fields_by_repeater_id );
+
+			$headings = $flat;
+			unset( $flat );
 		}
 
 		if ( self::$comment_count ) {
@@ -156,6 +224,25 @@ class FrmCSVExportHelper {
 		if ( self::has_parent_id() ) {
 			$headings['parent_id'] = __( 'Parent ID', 'formidable' );
 		}
+	}
+
+	/**
+	 * @param object $field
+	 * @return bool
+	 */
+	private static function is_the_child_of_a_repeater( $field ) {
+		if ( $field->form_id === self::$form_id || empty( $field->field_options['in_section'] ) ) {
+			return false;
+		}
+
+		$section_id = $field->field_options['in_section'];
+		$section    = FrmField::getOne( $section_id );
+
+		if ( ! $section ) {
+			return false;
+		}
+
+		return FrmField::is_repeating_field( $section );
 	}
 
 	private static function has_parent_id() {
@@ -220,6 +307,8 @@ class FrmCSVExportHelper {
 				//add the repeated values
 				$entries[ self::$entry->parent_item_id ]->metas[ $meta_id ][] = $meta_value;
 			}
+
+			self::$entry->metas                              = self::fill_missing_repeater_metas( self::$entry->metas, $entries );
 			$entries[ self::$entry->parent_item_id ]->metas += self::$entry->metas;
 		}
 
@@ -228,6 +317,48 @@ class FrmCSVExportHelper {
 			$entries[ self::$entry->parent_item_id ]->embedded_fields = array();
 		}
 		$entries[ self::$entry->parent_item_id ]->embedded_fields[ self::$entry->id ] = self::$entry->form_id;
+	}
+
+	/**
+	 * When an empty field is saved, it isn't saved as a meta value
+	 * The export needs all of the meta to be filled in, so we put blank strings for every missing repeater child
+	 *
+	 * @param array $metas
+	 * @param array $entries
+	 * @return array
+	 */
+	private static function fill_missing_repeater_metas( $metas, &$entries ) {
+		$field_ids = array_keys( $metas );
+		$field_id  = end( $field_ids );
+		$field     = self::get_field( $field_id );
+
+		if ( ! $field || empty( $field->field_options['in_section'] ) ) {
+			return $metas;
+		}
+
+		$repeater_id = $field->field_options['in_section'];
+		if ( ! isset( self::$fields_by_repeater_id[ $repeater_id ] ) ) {
+			return $metas;
+		}
+
+		foreach ( self::$fields_by_repeater_id[ $repeater_id ] as $repeater_child ) {
+			if ( ! isset( $metas[ $repeater_child->id ] ) ) {
+				$metas[ $repeater_child->id ]                                            = '';
+				$entries[ self::$entry->parent_item_id ]->metas[ $repeater_child->id ][] = '';
+			}
+		}
+
+		return $metas;
+	}
+
+	private static function get_field( $field_id ) {
+		$field_id = (int) $field_id;
+		foreach ( self::$fields as $field ) {
+			if ( $field_id === (int) $field->id ) {
+				return $field;
+			}
+		}
+		return false;
 	}
 
 	private static function add_field_values_to_csv( &$row ) {
@@ -247,7 +378,7 @@ class FrmCSVExportHelper {
 				)
 			);
 
-			if ( isset( $col->field_options['separate_value'] ) && $col->field_options['separate_value'] ) {
+			if ( ! empty( $col->field_options['separate_value'] ) ) {
 				$sep_value = FrmEntriesHelper::display_value(
 					$field_value,
 					$col,
@@ -303,7 +434,24 @@ class FrmCSVExportHelper {
 		$sep = '';
 
 		foreach ( self::$headings as $k => $heading ) {
-			$row = isset( $rows[ $k ] ) ? $rows[ $k ] : '';
+			if ( isset( $rows[ $k ] ) ) {
+				$row = $rows[ $k ];
+			} else {
+				$row = '';
+				// array indexed data is not at $rows[ $k ]
+				if ( $k[ strlen( $k ) - 1 ] === ']' ) {
+					$start = strrpos( $k, '[' );
+					$key   = substr( $k, 0, $start ++ );
+					$index = substr( $k, $start, strlen( $k ) - 1 - $start );
+
+					if ( isset( $rows[ $key ] ) && isset( $rows[ $key ][ $index ] ) ) {
+						$row = $rows[ $key ][ $index ];
+					}
+
+					unset( $start, $key, $index );
+				}
+			}
+
 			if ( is_array( $row ) ) {
 				// implode the repeated field values
 				$row = implode( self::$separator, FrmAppHelper::array_flatten( $row, 'reset' ) );

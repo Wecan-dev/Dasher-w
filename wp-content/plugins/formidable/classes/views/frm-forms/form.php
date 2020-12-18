@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
+?>
 <div id="frm_form_editor_container" class="<?php echo ( $has_fields ? 'frm-has-fields' : '' ); ?>">
 
 	<?php
@@ -31,6 +36,7 @@
 		}
 		?>
 	</ul>
+
 	<p id="frm-form-button">
 		<button class="frm_button_submit" disabled="disabled">
 			<?php echo esc_attr( isset( $form->options['submit_value'] ) ? $form->options['submit_value'] : __( 'Submit', 'formidable' ) ); ?>
@@ -47,5 +53,9 @@
 		</p>
 		<div class="clear"></div>
 	</div>
+
+	<?php do_action( 'frm_page_footer', array( 'table' => 'form-builder' ) ); ?>
 </div>
-<?php FrmFieldsHelper::bulk_options_overlay(); ?>
+<?php
+FrmFieldsHelper::bulk_options_overlay();
+FrmAppHelper::multiselect_accessibility();

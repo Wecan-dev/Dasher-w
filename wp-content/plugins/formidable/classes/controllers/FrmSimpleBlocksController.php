@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmSimpleBlocksController {
 
@@ -27,6 +30,7 @@ class FrmSimpleBlocksController {
 			'icon'  => $icon,
 			'name'  => $block_name,
 			'link'  => FrmAppHelper::admin_upgrade_link( 'block' ),
+			'url'   => FrmAppHelper::plugin_url(),
 		);
 
 		wp_localize_script( 'formidable-form-selector', 'formidable_form_selector', $script_vars );

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmEntryValidate {
 	public static function validate( $values, $exclude = false ) {
@@ -110,21 +113,19 @@ class FrmEntryValidate {
 		$errors = apply_filters( 'frm_validate_field_entry', $errors, $posted_field, $value, $args );
 	}
 
+	/**
+	 * Set $value to an empty string if it matches its label
+	 *
+	 * @param object $field
+	 * @param string $value
+	 */
 	private static function maybe_clear_value_for_default_blank_setting( $field, &$value ) {
-		$placeholder = FrmField::get_option( $field, 'placeholder' );
-		$is_default  = ( ! empty( $placeholder ) && $value == $placeholder );
-		$is_label    = false;
-
-		if ( ! $is_default ) {
-			$position = FrmField::get_option( $field, 'label' );
-			if ( empty( $position ) ) {
-				$position = FrmStylesController::get_style_val( 'position', $field->form_id );
-			}
-
-			$is_label = ( $position == 'inside' && FrmFieldsHelper::is_placeholder_field_type( $field->type ) && $value == $field->name );
+		$position = FrmField::get_option( $field, 'label' );
+		if ( ! $position ) {
+			$position = FrmStylesController::get_style_val( 'position', $field->form_id );
 		}
 
-		if ( $is_label || $is_default ) {
+		if ( $position === 'inside' && FrmFieldsHelper::is_placeholder_field_type( $field->type ) && $value === $field->name ) {
 			$value = '';
 		}
 	}
@@ -233,7 +234,7 @@ class FrmEntryValidate {
 		}
 
 		if ( self::blacklist_check( $values ) ) {
-			$errors['spam'] = __( 'Your entry appears to be blacklist spam!', 'formidable' );
+			$errors['spam'] = __( 'Your entry appears to be blocked spam!', 'formidable' );
 		}
 
 		if ( self::is_akismet_spam( $values ) ) {
@@ -272,7 +273,7 @@ class FrmEntryValidate {
 			return false;
 		}
 
-		$mod_keys = trim( get_option( 'blacklist_keys' ) );
+		$mod_keys = trim( self::get_disallowed_words() );
 		if ( empty( $mod_keys ) ) {
 			return false;
 		}
@@ -286,7 +287,34 @@ class FrmEntryValidate {
 		$user_agent = FrmAppHelper::get_server_value( 'HTTP_USER_AGENT' );
 		$user_info  = self::get_spam_check_user_info( $values );
 
-		return wp_blacklist_check( $user_info['comment_author'], $user_info['comment_author_email'], $user_info['comment_author_url'], $content, $ip, $user_agent );
+		return self::check_disallowed_words( $user_info['comment_author'], $user_info['comment_author_email'], $user_info['comment_author_url'], $content, $ip, $user_agent );
+	}
+
+	/**
+	 * For WP 5.5 compatibility.
+	 *
+	 * @since 4.06.02
+	 */
+	private static function check_disallowed_words( $author, $email, $url, $content, $ip, $user_agent ) {
+		if ( function_exists( 'wp_check_comment_disallowed_list' ) ) {
+			return wp_check_comment_disallowed_list( $author, $email, $url, $content, $ip, $user_agent );
+		} else {
+			return wp_blacklist_check( $author, $email, $url, $content, $ip, $user_agent );
+		}
+	}
+
+	/**
+	 * For WP 5.5 compatibility.
+	 *
+	 * @since 4.06.02
+	 */
+	private static function get_disallowed_words() {
+		$keys = get_option( 'disallowed_keys' );
+		if ( false === $keys ) {
+			// Fallback for WP < 5.5.
+			$keys = get_option( 'blacklist_keys' );
+		}
+		return $keys;
 	}
 
 	/**
@@ -358,6 +386,10 @@ class FrmEntryValidate {
 			$datas['comment_author']       = '';
 			$datas['comment_author_email'] = '';
 			$datas['comment_author_url']   = '';
+
+			if ( isset( $values['item_meta'] ) ) {
+				$values = $values['item_meta'];
+			}
 
 			$values = array_filter( $values );
 			foreach ( $values as $value ) {

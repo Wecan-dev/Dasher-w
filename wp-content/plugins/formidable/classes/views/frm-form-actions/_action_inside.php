@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
+?>
+
 <input type="hidden" name="<?php echo esc_attr( $action_control->get_field_name( 'post_excerpt', '' ) ); ?>" class="frm_action_name" value="<?php echo esc_attr( $form_action->post_excerpt ); ?>" />
 <input type="hidden" name="<?php echo esc_attr( $action_control->get_field_name( 'ID', '' ) ); ?>" value="<?php echo esc_attr( $form_action->ID ); ?>" />
 
@@ -59,13 +65,17 @@ do_action( 'frm_additional_action_settings', $form_action, $pass_args );
 
 // Show Conditional logic indicator.
 if ( ! FrmAppHelper::pro_is_installed() ) {
-	?>
-	<h3>
-		<a href="javascript:void(0)" class="frm_show_upgrade frm_noallow" data-upgrade="<?php esc_attr_e( 'Conditional emails', 'formidable' ); ?>" data-medium="conditional-email">
-			<?php esc_html_e( 'Use Conditional Logic', 'formidable' ); ?>
-		</a>
-	</h3>
-	<?php
+	if ( 'email' === $form_action->post_excerpt ) {
+		?>
+		<h3>
+			<a href="javascript:void(0)" class="frm_show_upgrade frm_noallow" data-upgrade="<?php esc_attr_e( 'Email attachments', 'formidable' ); ?>" data-medium="email-attachment">
+				<?php esc_html_e( 'Attachment', 'formidable' ); ?>
+			</a>
+		</h3>
+		<?php
+	}
+
+	$action_control->render_conditional_logic_call_to_action();
 }
 
 // Show Form Action Automation indicator.

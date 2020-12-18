@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
+
 // add post action
 class FrmDefPostAction extends FrmFormAction {
 	public function __construct() {
@@ -45,6 +49,14 @@ class FrmDefMlcmpAction extends FrmFormAction {
 		$action_ops['color']   = 'var(--dark-grey)';
 
 		parent::__construct( 'mailchimp', 'MailChimp', $action_ops );
+	}
+}
+
+// add zapier action
+class FrmDefZapierAction extends FrmFormAction {
+	public function __construct() {
+		$action_ops = FrmFormAction::default_action_opts( 'frm_zapier_icon frm_show_upgrade' );
+		parent::__construct( 'zapier', 'Zapier', $action_ops );
 	}
 }
 

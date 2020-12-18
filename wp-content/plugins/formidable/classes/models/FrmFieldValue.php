@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 /**
  * @since 2.04
@@ -53,6 +56,7 @@ class FrmFieldValue {
 
 		$this->entry    = $entry;
 		$this->entry_id = $entry->id;
+		$field = apply_filters( 'frm_field_value_object', $field );
 		$this->field    = $field;
 		$this->init_saved_value( $entry );
 	}
@@ -236,6 +240,8 @@ class FrmFieldValue {
 				'entry' => $this->entry,
 			)
 		);
+
+		$this->displayed_value = apply_filters( 'frm_display_value', $this->displayed_value, $this->field, $atts );
 	}
 
 	/**

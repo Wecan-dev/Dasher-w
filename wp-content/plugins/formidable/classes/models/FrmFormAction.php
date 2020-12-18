@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmFormAction {
 
@@ -712,6 +715,11 @@ class FrmFormAction {
 	}
 
 	public static function action_conditions_met( $action, $entry ) {
+		if ( is_callable( 'FrmProFormActionsController::action_conditions_met' ) ) {
+			return FrmProFormActionsController::action_conditions_met( $action, $entry );
+		}
+
+		// This is here for reverse compatibility.
 		$notification = $action->post_content;
 		$stop         = false;
 		$met          = array();
@@ -755,6 +763,7 @@ class FrmFormAction {
 	 * Prepare the logic value for comparison against the entered value
 	 *
 	 * @since 2.01.02
+	 * @deprecated 4.06.02
 	 *
 	 * @param array|string $logic_value
 	 */
@@ -779,6 +788,7 @@ class FrmFormAction {
 	 * Get the value from a specific field and entry
 	 *
 	 * @since 2.01.02
+	 * @deprecated 4.06.02
 	 *
 	 * @param object $entry
 	 * @param int $field_id
@@ -823,5 +833,19 @@ class FrmFormAction {
 		);
 
 		return apply_filters( 'frm_action_triggers', $triggers );
+	}
+
+	public function render_conditional_logic_call_to_action() {
+		?>
+			<h3>
+				<a href="javascript:void(0)" class="frm_show_upgrade frm_noallow" data-upgrade="<?php echo esc_attr( $this->get_upgrade_text() ); ?>" data-medium="conditional-<?php echo esc_attr( $this->id_base ); ?>">
+					<?php esc_html_e( 'Use Conditional Logic', 'formidable' ); ?>
+				</a>
+			</h3>
+		<?php
+	}
+
+	protected function get_upgrade_text() {
+		return __( 'Conditional form actions', 'formidable' );
 	}
 }

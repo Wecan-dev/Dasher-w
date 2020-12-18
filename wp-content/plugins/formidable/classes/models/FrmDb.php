@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmDb {
 	public $fields;
@@ -188,7 +191,7 @@ class FrmDb {
 	public static function get_count( $table, $where = array(), $args = array() ) {
 		$count = self::get_var( $table, $where, 'COUNT(*)', $args );
 
-		return $count;
+		return (int) $count;
 	}
 
 	/**

@@ -1,7 +1,10 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 $settings = FrmStylesHelper::get_settings_for_output( $style );
-extract( $settings );
+extract( $settings ); // phpcs:ignore WordPress.PHP.DontExtract
 
 $important = empty( $important_style ) ? '' : ' !important';
 
@@ -274,8 +277,13 @@ if ( '' === $field_height || 'auto' === $field_height ) {
 	box-shadow:0 1px 1px <?php echo esc_html( $submit_shadow_color ); ?>;
 	<?php } ?>
 	margin:<?php echo esc_html( $submit_margin ); ?>;
-	margin-left:0;
-	margin-right:0;
+	<?php
+	// For reverse compatibility... But allow "10px 10px".
+	if ( strpos( trim( $submit_margin ), ' ' ) === false ) {
+		?>
+		margin-left:0;
+		margin-right:0;
+	<?php } ?>
 	vertical-align:middle;
 }
 

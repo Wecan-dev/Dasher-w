@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmEntriesController {
 
@@ -6,6 +9,11 @@ class FrmEntriesController {
 		FrmAppHelper::force_capability( 'frm_view_entries' );
 
 		add_submenu_page( 'formidable', 'Formidable | ' . __( 'Entries', 'formidable' ), __( 'Entries', 'formidable' ), 'frm_view_entries', 'formidable-entries', 'FrmEntriesController::route' );
+
+		$views_installed = is_callable( 'FrmProAppHelper::views_is_installed' ) ? FrmProAppHelper::views_is_installed() : FrmAppHelper::pro_is_installed();
+		if ( ! $views_installed ) {
+			add_submenu_page( 'formidable', 'Formidable | ' . __( 'Views', 'formidable' ), __( 'Views', 'formidable' ), 'frm_view_entries', 'formidable-views', 'FrmFormsController::no_views' );
+		}
 
 		if ( FrmAppHelper::is_admin_page( 'formidable-entries' ) ) {
 			self::load_manage_entries_hooks();
@@ -598,6 +606,7 @@ class FrmEntriesController {
 			'include_extras' => '',
 			'inline_style'   => 1,
 			'child_array'    => false, // return embedded fields as nested array
+			'line_breaks'    => true,
 		);
 		$defaults = apply_filters( 'frm_show_entry_defaults', $defaults );
 

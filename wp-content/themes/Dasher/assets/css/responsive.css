@@ -614,6 +614,49 @@
 	}
 
 
+
+	/*-- Interna Blog --*/
+
+
+	.main-banner-blogInterna{
+		padding-top: 5rem;
+	}
+	.main-blogInterna{
+		height: 40vh;
+	}
+	.content-blogInterna__tags{
+		flex-direction: column;
+		padding: 2rem 0;
+	}
+	.content-blogInterna__tags p{
+		margin: .4rem .5rem;
+	}
+	.content-blogInterna__form--content{
+		padding: 1rem;
+	}
+	.content-blogInterna__inputs button{
+		width: 100%;
+	}
+	.interna-blog__recent--content .blog-post__items{
+		width: 100%;
+		margin: .5rem 0;
+	}
+	.follow-blogInterna{
+		flex-direction: column;
+	}
+	.follow-blogInterna__cat{
+		width: 100%;
+		padding: 0;
+	}
+	.follow-blogInterna__rrss{
+		width: 100%;
+		padding-top: 2rem
+	}
+	.follow-blogInterna__cat--item a{
+		width: 100%;
+	}
+
+
 }
 @media (min-width: 0px) and (max-width: 350px){
 	.wizard li.tab-step2.active:after{
@@ -912,6 +955,22 @@
 	}
 
 
+
+	/*-- Interna Blog --*/
+
+
+	.main-banner-blogInterna{
+		padding-top: 5rem;
+	}
+	.main-blogInterna{
+		height: 60vh;
+	}
+	.interna-blog__recent--content .blog-post__items{
+		width: 33%;
+	}
+	.follow-blogInterna__cat--item a{
+		width: 100%;
+	}
 
 
 }

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmStylesController {
 	public static $post_type = 'frm_styles';
@@ -413,7 +416,7 @@ class FrmStylesController {
 	}
 
 	public static function include_style_section( $atts, $sec ) {
-		extract( $atts );
+		extract( $atts ); // phpcs:ignore WordPress.PHP.DontExtract
 		$style = $atts['style'];
 		FrmStylesHelper::prepare_color_output( $style->post_content, false );
 

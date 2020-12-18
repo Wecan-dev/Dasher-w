@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
+}
 
 class FrmHooksController {
 
@@ -96,6 +99,7 @@ class FrmHooksController {
 		// Addons Controller.
 		add_action( 'admin_menu', 'FrmAddonsController::menu', 100 );
 		add_filter( 'pre_set_site_transient_update_plugins', 'FrmAddonsController::check_update' );
+		add_action( 'frm_page_footer', 'FrmAppHelper::renewal_message' );
 
 		// Entries Controller.
 		add_action( 'admin_menu', 'FrmEntriesController::menu', 12 );
@@ -113,6 +117,7 @@ class FrmHooksController {
 		// Forms Controller.
 		add_action( 'admin_menu', 'FrmFormsController::menu', 10 );
 		add_action( 'admin_head-toplevel_page_formidable', 'FrmFormsController::head' );
+		add_action( 'frm_after_field_options', 'FrmFormsController::logic_tip' );
 
 		add_filter( 'set-screen-option', 'FrmFormsController::save_per_page', 10, 3 );
 		add_action( 'admin_footer', 'FrmFormsController::insert_form_popup' );
@@ -155,7 +160,6 @@ class FrmHooksController {
 		// Addons.
 		add_action( 'wp_ajax_frm_addon_activate', 'FrmAddon::activate' );
 		add_action( 'wp_ajax_frm_addon_deactivate', 'FrmAddon::deactivate' );
-		add_action( 'wp_ajax_frm_install_addon', 'FrmAddonsController::ajax_install_addon' );
 		add_action( 'wp_ajax_frm_activate_addon', 'FrmAddonsController::ajax_activate_addon' );
 		add_action( 'wp_ajax_frm_connect', 'FrmAddonsController::connect_pro' );
 
@@ -201,6 +205,9 @@ class FrmHooksController {
 		add_action( 'wp_ajax_frm_entries_csv', 'FrmXMLController::csv' );
 		add_action( 'wp_ajax_nopriv_frm_entries_csv', 'FrmXMLController::csv' );
 		add_action( 'wp_ajax_frm_export_xml', 'FrmXMLController::export_xml' );
+
+		// Templates API.
+		add_action( 'wp_ajax_template_api_signup', 'FrmFormTemplateApi::signup' );
 	}
 
 	public static function load_form_hooks() {
